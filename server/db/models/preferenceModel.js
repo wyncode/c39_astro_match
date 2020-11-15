@@ -37,6 +37,7 @@ const PreferenceSchema = new mongoose.Schema({
       }
     }
   },
+  //will need to figure out how to fetch location relative to others
   location: [
     {
       type: Number
