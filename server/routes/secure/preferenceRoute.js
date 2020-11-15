@@ -1,8 +1,15 @@
 const router = require('express').Router();
+const {
+  getPreference,
+  updatePreference,
+  deletePreference
+} = require('../../controllers/preferenceController');
 
-//UPDATE PREF
+//UPDATE GET
 router.get('/', getPreference);
+//UPDATE PREF
 router.patch('/', updatePreference);
+
 //DELETE PREF
 router.delete('/', deletePreference);
 
