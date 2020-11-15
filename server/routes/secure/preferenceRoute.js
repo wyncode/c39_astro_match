@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
-// USER ROUTES
-//CREATE USER
-//LOGIN USER
+//UPDATE PREF
+//DELETE PREF
 
 module.exports = router;
