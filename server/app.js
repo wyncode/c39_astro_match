@@ -2,6 +2,7 @@ require('./db/config');
 const express = require('express'),
   path = require('path'),
   openRoutes = require('./routes/open');
+preferenceRoutes = require('./routes/secure/preferenceRoute');
 
 const app = express();
 
@@ -10,6 +11,8 @@ app.use(express.json());
 
 // Unauthenticated routes
 app.use(openRoutes);
+
+app.use('/pref', preferenceRoutes);
 
 // Serve any static files
 if (process.env.NODE_ENV === 'production') {

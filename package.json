@@ -7,7 +7,8 @@
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.9"
+    "mongoose": "^5.10.9",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

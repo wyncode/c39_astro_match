@@ -1,8 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+  validators = require('validator');
 
 //PREFERENCES SCHEMA
 
 const PreferenceSchema = new mongoose.Schema({
+  name: {
+    type: String
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

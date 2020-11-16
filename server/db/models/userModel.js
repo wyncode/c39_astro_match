@@ -7,14 +7,12 @@ const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'First name is empty']
+    trim: true
   },
   lastName: {
     type: String,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'Last name is empty']
+    trim: true
   },
   email: {
     type: String,
@@ -52,8 +50,7 @@ const UserSchema = new mongoose.Schema({
   city: {
     type: String,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'City is empty']
+    trim: true
   },
   zipCode: {
     type: Number,
@@ -75,8 +72,7 @@ const UserSchema = new mongoose.Schema({
   birthday: {
     type: Date,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'Birthday name is empty']
+    trim: true
   },
   gender: {
     type: String,

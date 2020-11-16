@@ -1,6 +1,20 @@
 const Preference = require('../db/models/preferenceModel');
 
 //which export model to use
+//CREATE PREF
+exports.createPreference = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const pref = new Preference({
+      name
+    });
+    await pref.save();
+    res.status(201).json(pref);
+  } catch (e) {
+    res.status(400).json({ error: e.toString() });
+  }
+};
+
 exports.getPreference = async (req, res) => {};
 //UPDATE PREF
 exports.updatePreference = async (req, res) => {
