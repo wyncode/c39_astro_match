@@ -1,7 +1,8 @@
+// PAUL
 const router = require('express').Router();
 
-// USER ROUTES
-//CREATE USER
-//LOGIN USER
+//CREATE MESSAGE
+//CREATE CONVERSATION
+//DELETE MESSAGE
 
 module.exports = router;

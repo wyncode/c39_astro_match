@@ -1,0 +1,68 @@
+{
+  "zodiac": [
+    {
+      "name": "aries",
+      "compatability": [
+        {
+          "name": "aries",
+          "score": 50
+        },
+        {
+          "name": "taurus",
+          "score": 50
+        },
+        {
+          "name": "gemini",
+          "score": 85
+        },
+        {
+          "name": "cancer",
+          "score": 65
+        },
+        {
+          "name": "leo",
+          "score": 95
+        },
+        {
+          "name": "virgo",
+          "score": 55
+        },
+        {
+          "name": "libra",
+          "score": 55
+        },
+        {
+          "name": "scorpio",
+          "score": 75
+        },
+        {
+          "name": "sagittarius",
+          "score": 100
+        },
+        {
+          "name": "capricorn",
+          "score": 40
+        },
+        {
+          "name": "aquarius",
+          "score": 90
+        },
+        {
+          "name": "pisces",
+          "score": 65
+        }
+      ]
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}
