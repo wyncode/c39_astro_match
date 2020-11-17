@@ -49,7 +49,7 @@ const UserSchema = new mongoose.Schema(
       },
       {
         type: Number
-
+      }
   ],
   city: {
     type: String,
@@ -84,9 +84,7 @@ const UserSchema = new mongoose.Schema(
           throw new Error('Zip code must be 5 digits');
         }
       }
-
-    }
-  },
+    },
   //neeed to add into birthday a validator to check that they are 18 and over
   //need to convert from date to ms
   //probably using moment
@@ -144,7 +142,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true,
       enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
-    },
+    }],
     zodiacSign: {
       type: String,
       required: true,
