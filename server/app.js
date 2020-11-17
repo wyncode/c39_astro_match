@@ -14,6 +14,8 @@ app.use(express.json());
 // Unauthenticated routes
 app.use('/api', openRoutes);
 
+app.use(cookieParser());
+
 // app.use('/pref', preferenceRoutes);
 
 // Serve any static files
