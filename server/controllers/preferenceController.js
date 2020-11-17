@@ -2,7 +2,7 @@ const Preference = require('../db/models/preferenceModel');
 
 //which export model to use
 
-//CREATE PREF
+//CREATE PREFERENCE
 exports.createPreference = async (req, res) => {
   Preference.create(req.body, (error, preferences) => {
     if (error) {
@@ -57,7 +57,6 @@ exports.updatePreference = async (req, res) => {
 };
 
 //DELETE PREF
-
 exports.deletePreference = async (req, res) => {
   try {
     await Preference.remove();
