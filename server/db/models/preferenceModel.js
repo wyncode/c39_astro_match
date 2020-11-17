@@ -4,9 +4,6 @@ const mongoose = require('mongoose'),
 //PREFERENCES SCHEMA
 
 const PreferenceSchema = new mongoose.Schema({
-  name: {
-    type: String
-  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

@@ -12,7 +12,7 @@ app.use(express.json());
 // Unauthenticated routes
 app.use(openRoutes);
 
-app.use('/pref', preferenceRoutes);
+app.use('/api/users/pref', preferenceRoutes);
 
 // Serve any static files
 if (process.env.NODE_ENV === 'production') {
