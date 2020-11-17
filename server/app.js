@@ -28,8 +28,6 @@ app.use('/api/*', passport.authenticate('jwt', { session: false }));
 
 app.use('/api/users', userRouter);
 
-app.use(cookieParser());
-
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {
   app.get('*', (request, response) => {
