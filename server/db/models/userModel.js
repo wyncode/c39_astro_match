@@ -3,6 +3,7 @@ const mongoose = require('mongoose'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken');
 
+
 const UserSchema = new mongoose.Schema(
   {
     firstName: {
@@ -24,6 +25,7 @@ const UserSchema = new mongoose.Schema(
         if (!validator.isEmail(value)) {
           throw new Error('Email is invalid');
         }
+
       }
     },
     password: {
@@ -39,6 +41,7 @@ const UserSchema = new mongoose.Schema(
         }
       }
     },
+
     //once we get to geolocation, refactor
     location: [
       {
@@ -46,8 +49,23 @@ const UserSchema = new mongoose.Schema(
       },
       {
         type: Number
+
+  ],
+  city: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  zipCode: {
+    type: Number,
+    required: true,
+    trim: true,
+    validate(value) {
+      if (!value) {
+        throw new Error('Zip code is empty');
+
       }
-    ],
+    ,
     city: {
       type: String,
       required: true,
@@ -66,17 +84,62 @@ const UserSchema = new mongoose.Schema(
           throw new Error('Zip code must be 5 digits');
         }
       }
-    },
-    //neeed to add into birthday a validator to check that they are 18 and over
-    //need to convert from date to ms
-    //probably using moment
-    //see if function can be w/n schema
-    birthday: {
-      type: Date,
-      required: true,
-      trim: true
-    },
-    gender: {
+
+    }
+  },
+  //neeed to add into birthday a validator to check that they are 18 and over
+  //need to convert from date to ms
+  //probably using moment
+  //see if function can be w/n schema
+  birthday: {
+    type: Date,
+    required: true,
+    trim: true
+  },
+  gender: {
+    type: String,
+    required: true,
+    trim: true,
+    enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
+  },
+  zodiacSign: {
+    type: String,
+    required: true,
+    trim: true,
+    enum: [
+      'Aries',
+      'Taurus',
+      'Gemini',
+      'Cancer',
+      'Leo',
+      'Virgo',
+      'Libra',
+      'Scorpio',
+      'Sagittarius',
+      'Capricorn',
+      'Aquarius',
+      'Pisces'
+    ]
+  },
+  //diff schema
+  matches: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true
+    }
+  ],
+  inbox: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Conversation',
+      unique: true
+    }
+  ],
+  //partner preference
+  partnerPreference: [
+    {
+
       type: String,
       required: true,
       trim: true,

@@ -6,13 +6,15 @@ const express = require('express'),
   cookieParser = require('cookie-parser'),
   passport = require('./middleware/authentication/index');
 
-const app = express();
+
 
 //Middleware
 app.use(express.json());
 
 // Unauthenticated routes
 app.use('/api', openRoutes);
+
+app.use('/pref', preferenceRoutes);
 
 // Serve any static files
 if (process.env.NODE_ENV === 'production') {
