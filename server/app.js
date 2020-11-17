@@ -6,7 +6,7 @@ const express = require('express'),
   cookieParser = require('cookie-parser'),
   passport = require('./middleware/authentication/index');
 
-
+const app = express();
 
 //Middleware
 app.use(express.json());
