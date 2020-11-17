@@ -1,21 +1,37 @@
 const Preference = require('../db/models/preferenceModel');
 
 //which export model to use
-//CREATE PREF
+
+//CREATE PREFERENCE
 exports.createPreference = async (req, res) => {
-  const { name } = req.body;
-  try {
-    const pref = new Preference({
-      name
-    });
-    await pref.save();
-    res.status(201).json(pref);
-  } catch (e) {
-    res.status(400).json({ error: e.toString() });
-  }
+  Preference.create(req.body, (error, preferences) => {
+    if (error) {
+      console.log(`Error creating preferences at ${new Date()}: ${error}`);
+    } else {
+      res.status(201).json(preferences);
+    }
+  });
 };
 
-exports.getPreference = async (req, res) => {};
+//GET PREFERENCE
+exports.getPreference = async (req, res) => {
+  //need to iron out how we are passing the user ID through
+  //for now addressing user ID as userId
+  Preference.findById(req.params.userId, (error, preferences) => {
+    if (error) {
+      console.log(`Error creating preferences at ${new Date()}: ${error}`);
+      res.status;
+    } else {
+      if (!preferences) {
+        console.log(`Preference for user does not exist`);
+        res.status(410);
+      } else {
+        res.status(201).json(preferences);
+      }
+    }
+  });
+};
+
 //UPDATE PREF
 exports.updatePreference = async (req, res) => {
   const updates = Object.keys(req.body);
@@ -41,13 +57,10 @@ exports.updatePreference = async (req, res) => {
 };
 
 //DELETE PREF
-
 exports.deletePreference = async (req, res) => {
   try {
     await Preference.remove();
-    // sendCancellationEmail(req.user.email, req.user.name);
-    res.clearCookie('jwt');
-    res.json({ message: 'user deleted' });
+    res.json({ message: 'preference deleted' });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
