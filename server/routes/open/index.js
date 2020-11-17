@@ -1,7 +1,14 @@
-const router = require('express').Router();
+const router = require('express').Router(),
+  {
+    createUser,
+    loginUser,
+    requestPasswordReset,
+    passwordRedirect
+  } = require('../../controllers/userControllers');
 
-// USER ROUTES
-//CREATE USER
-//LOGIN USER
+router.post('/', createUser);
+router.post('/login', loginUser);
+router.get('/password', requestPasswordReset);
+router.get('/password/:token', passwordRedirect);
 
 module.exports = router;
