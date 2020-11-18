@@ -3,7 +3,6 @@ const mongoose = require('mongoose'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken');
 
-
 const UserSchema = new mongoose.Schema(
   {
     firstName: {
@@ -25,7 +24,6 @@ const UserSchema = new mongoose.Schema(
         if (!validator.isEmail(value)) {
           throw new Error('Email is invalid');
         }
-
       }
     },
     password: {
@@ -41,7 +39,6 @@ const UserSchema = new mongoose.Schema(
         }
       }
     },
-
     //once we get to geolocation, refactor
     location: [
       {
@@ -50,22 +47,7 @@ const UserSchema = new mongoose.Schema(
       {
         type: Number
       }
-  ],
-  city: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  zipCode: {
-    type: Number,
-    required: true,
-    trim: true,
-    validate(value) {
-      if (!value) {
-        throw new Error('Zip code is empty');
-
-      }
-    ,
+    ],
     city: {
       type: String,
       required: true,
@@ -85,64 +67,21 @@ const UserSchema = new mongoose.Schema(
         }
       }
     },
-  //neeed to add into birthday a validator to check that they are 18 and over
-  //need to convert from date to ms
-  //probably using moment
-  //see if function can be w/n schema
-  birthday: {
-    type: Date,
-    required: true,
-    trim: true
-  },
-  gender: {
-    type: String,
-    required: true,
-    trim: true,
-    enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
-  },
-  zodiacSign: {
-    type: String,
-    required: true,
-    trim: true,
-    enum: [
-      'Aries',
-      'Taurus',
-      'Gemini',
-      'Cancer',
-      'Leo',
-      'Virgo',
-      'Libra',
-      'Scorpio',
-      'Sagittarius',
-      'Capricorn',
-      'Aquarius',
-      'Pisces'
-    ]
-  },
-  //diff schema
-  matches: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      unique: true
-    }
-  ],
-  inbox: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Conversation',
-      unique: true
-    }
-  ],
-  //partner preference
-  partnerPreference: [
-    {
-
+    //neeed to add into birthday a validator to check that they are 18 and over
+    //need to convert from date to ms
+    //probably using moment
+    //see if function can be w/n schema
+    birthday: {
+      type: Date,
+      required: true,
+      trim: true
+    },
+    gender: {
       type: String,
       required: true,
       trim: true,
       enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
-    }],
+    },
     zodiacSign: {
       type: String,
       required: true,
@@ -166,22 +105,22 @@ const UserSchema = new mongoose.Schema(
     matches: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-        // unique: true
+        ref: 'User',
+        unique: true
       }
     ],
     inbox: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Conversation'
-        // unique: true
+        ref: 'Conversation',
+        unique: true
       }
     ],
     //partner preference
     partnerPreference: [
       {
         type: String,
-        // required: true,
+        required: true,
         trim: true,
         enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
       }
@@ -236,6 +175,7 @@ UserSchema.methods.generateAuthToken = async function () {
   await user.save();
   return token;
 };
+
 UserSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) throw new Error('User not found');
@@ -243,12 +183,13 @@ UserSchema.statics.findByCredentials = async (email, password) => {
   if (!isMatch) throw new Error('Invalid password, try again.');
   return user;
 };
-// UserSchema.pre('save', async function (next) {
-//   const user = this;
-//   if (user.isModified('password'))
-//     user.password = await bcrypt.hash(user.password, 8);
-//   next();
-// });
+
+UserSchema.pre('save', async function (next) {
+  const user = this;
+  if (user.isModified('password'))
+    user.password = await bcrypt.hash(user.password, 8);
+  next();
+});
 
 const User = mongoose.model('User', UserSchema);
 

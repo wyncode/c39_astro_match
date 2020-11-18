@@ -104,7 +104,8 @@
           "name": "pisces",
           "score": 85
         }
-      ]},
+      ]
+    },
     {
       "name": "gemini",
       "compatability": [
@@ -156,7 +157,8 @@
           "name": "pisces",
           "score": 45
         }
-      ]},
+      ]
+    },
     {
       "name": "cancer",
       "compatability": [
@@ -208,7 +210,8 @@
           "name": "pisces",
           "score": 100
         }
-      ]},
+      ]
+    },
     {
       "name": "leo",
       "compatability": [
@@ -260,7 +263,8 @@
           "name": "pisces",
           "score": 60
         }
-      ]},
+      ]
+    },
     {
       "name": "virgo",
       "compatability": [
@@ -314,7 +318,7 @@
         }
       ]
     },
-    { 
+    {
       "name": "libra",
       "compatability": [
         {
@@ -469,7 +473,7 @@
         },
         {
           "name": "pisces",
-          "score":40
+          "score": 40
         }
       ]
     },
@@ -522,7 +526,7 @@
         },
         {
           "name": "pisces",
-          "score":40
+          "score": 40
         }
       ]
     },
@@ -579,7 +583,7 @@
         }
       ]
     },
-    { 
+    {
       "name": "pisces",
       "compatability": [
         {

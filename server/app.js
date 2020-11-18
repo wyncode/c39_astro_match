@@ -2,9 +2,11 @@ require('./db/config');
 const express = require('express'),
   path = require('path'),
   openRoutes = require('./routes/open'),
-  userRouter = require('./routes/secure/userRoute'),
-  cookieParser = require('cookie-parser'),
-  passport = require('./middleware/authentication/index');
+  messageRoutes = require('./routes/secure/chat/messageRoutes'),
+  conversationRoutes = require('./routes/secure/chat/conversationRoutes');
+(userRouter = require('./routes/secure/userRoute')),
+  (cookieParser = require('cookie-parser')),
+  (passport = require('./middleware/authentication/index'));
 
 const app = express();
 
@@ -25,6 +27,9 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/api/*', passport.authenticate('jwt', { session: false }));
 
 app.use('/api/users', userRouter);
+
+app.use('/api', messageRoutes);
+app.use('/api', conversationRoutes);
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {

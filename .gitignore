@@ -23,6 +23,10 @@ client/build
 .env.test.local
 .env.production.local
 
+# Rita's projects
+.server/db/models/chat/chatroom/
+.server/db/models/chat/messages/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
