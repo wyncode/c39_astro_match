@@ -4,6 +4,9 @@ const express = require('express'),
   openRoutes = require('./routes/open'),
   messageRoutes = require('./routes/secure/chat/messageRoutes'),
   conversationRoutes = require('./routes/secure/chat/conversationRoutes');
+(userRouter = require('./routes/secure/userRoute')),
+  (cookieParser = require('cookie-parser')),
+  (passport = require('./middleware/authentication/index'));
 
 const app = express();
 
@@ -11,7 +14,11 @@ const app = express();
 app.use(express.json());
 
 // Unauthenticated routes
-app.use(openRoutes);
+app.use('/api', openRoutes);
+
+app.use(cookieParser());
+
+// app.use('/pref', preferenceRoutes);
 
 // Serve any static files
 if (process.env.NODE_ENV === 'production') {
@@ -19,6 +26,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Any authentication middleware and related routing would be here.
+app.use('/api/*', passport.authenticate('jwt', { session: false }));
+
+app.use('/api/users', userRouter);
 
 app.use('/api', messageRoutes);
 app.use('/api', conversationRoutes);
