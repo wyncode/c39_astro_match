@@ -1,7 +1,9 @@
 require('./db/config');
 const express = require('express'),
   path = require('path'),
-  openRoutes = require('./routes/open');
+  openRoutes = require('./routes/open'),
+  messageRoutes = require('./routes/secure/chat/messageRoutes'),
+  conversationRoutes = require('./routes/secure/chat/conversationRoutes');
 
 const app = express();
 
@@ -17,6 +19,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Any authentication middleware and related routing would be here.
+
+app.use('/api', messageRoutes);
+app.use('/api', conversationRoutes);
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {

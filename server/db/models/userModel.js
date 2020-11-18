@@ -7,20 +7,19 @@ const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'First name is empty']
+    trim: true
   },
   lastName: {
     type: String,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'Last name is empty']
+    trim: true
   },
   email: {
     type: String,
     require: true,
     trim: true,
     unique: true,
+    set: (v) => v.toLowerCase(),
     validate(value) {
       if (!validator.isEmail(value)) {
         throw new Error('Email is invalid');
@@ -52,8 +51,7 @@ const UserSchema = new mongoose.Schema({
   city: {
     type: String,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'City is empty']
+    trim: true
   },
   zipCode: {
     type: Number,
@@ -75,8 +73,7 @@ const UserSchema = new mongoose.Schema({
   birthday: {
     type: Date,
     required: true,
-    trim: true,
-    validate: [validators.notEmpty, 'Birthday name is empty']
+    trim: true
   },
   gender: {
     type: String,
@@ -132,7 +129,13 @@ const UserSchema = new mongoose.Schema({
   },
   avatar: {
     type: String
-  }
+  },
+  messages: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Message'
+    }
+  ]
 });
 
 //ADD JWT GEN AUTH METHOD - PAUL
