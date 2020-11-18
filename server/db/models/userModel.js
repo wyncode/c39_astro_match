@@ -39,7 +39,6 @@ const UserSchema = new mongoose.Schema(
         }
       }
     },
-
     //once we get to geolocation, refactor
     location: [
       {
@@ -126,49 +125,6 @@ const UserSchema = new mongoose.Schema(
         enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
       }
     ],
-    zodiacSign: {
-      type: String,
-      required: true,
-      trim: true,
-      enum: [
-        'Aries',
-        'Taurus',
-        'Gemini',
-        'Cancer',
-        'Leo',
-        'Virgo',
-        'Libra',
-        'Scorpio',
-        'Sagittarius',
-        'Capricorn',
-        'Aquarius',
-        'Pisces'
-      ]
-    },
-    //diff schema
-    matches: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-        // unique: true
-      }
-    ],
-    inbox: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Conversation'
-        // unique: true
-      }
-    ],
-    //partner preference
-    partnerPreference: [
-      {
-        type: String,
-        // required: true,
-        trim: true,
-        enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
-      }
-    ],
     age: {
       type: Number
     },
@@ -219,6 +175,7 @@ UserSchema.methods.generateAuthToken = async function () {
   await user.save();
   return token;
 };
+
 UserSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) throw new Error('User not found');
@@ -226,12 +183,13 @@ UserSchema.statics.findByCredentials = async (email, password) => {
   if (!isMatch) throw new Error('Invalid password, try again.');
   return user;
 };
-// UserSchema.pre('save', async function (next) {
-//   const user = this;
-//   if (user.isModified('password'))
-//     user.password = await bcrypt.hash(user.password, 8);
-//   next();
-// });
+
+UserSchema.pre('save', async function (next) {
+  const user = this;
+  if (user.isModified('password'))
+    user.password = await bcrypt.hash(user.password, 8);
+  next();
+});
 
 const User = mongoose.model('User', UserSchema);
 
