@@ -1,19 +1,30 @@
 import React, { createContext, useState } from 'react';
-
+import axios from 'axios';
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-  const [contextMessage, setContextMessage] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const contextMethod = () => {
-    setContextMessage('Hello from client/src/context/AppContext.jsx');
-  };
+  const user = sessionStorage.getItem('user');
+
+  useEffect(() => {
+    if (user && !currentUser) {
+      axios
+        .get(`/api/users/me`, {
+          withCredentials: true
+        })
+        .then(({ data }) => {
+          setCurrentUser(data);
+        })
+        .catch((error) => console.error(error));
+    }
+  }, [currentUser, user]);
 
   return (
     <AppContext.Provider
       value={{
-        contextMessage,
-        contextMethod
+        currentUser,
+        setCurrentUser
       }}
     >
       {children}
