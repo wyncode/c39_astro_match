@@ -76,6 +76,16 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
+    birthPlace: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    birthTime: {
+      type: String,
+      required: true,
+      trim: true
+    },
     gender: {
       type: String,
       required: true,
@@ -186,8 +196,13 @@ UserSchema.statics.findByCredentials = async (email, password) => {
 
 UserSchema.pre('save', async function (next) {
   const user = this;
-  if (user.isModified('password'))
+  if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
+  }
+  //added new function code to convert birthday from string to Date object
+  if (user.isModified('birthday')) {
+    user.birthday = new Date(user.birthday);
+  }
   next();
 });
 

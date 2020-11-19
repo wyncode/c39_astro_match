@@ -9,14 +9,19 @@ const User = require('../db/models/userModel'),
 
 exports.createUser = async (req, res) => {
   //   const {email, password, zodiacSign, gender, birthday, zipCode, city, firstName, lastName } = req.body;
-  User.create(req.body, (err, user) => {
-    if (err) {
-      console.log(req.body);
-      res.status(400).json(err);
-    } else {
-      res.status(201).json(user);
-    }
-  });
+  console.log(req.body);
+  //will need to refactor below eventually
+  if (req.body.undefined) {
+    req.body.birthPlace = req.body.undefined;
+  }
+  // User.create(req.body, (err, user) => {
+  //   if (err) {
+  //     console.log(req.body);
+  //     res.status(400).json(err);
+  //   } else {
+  //     res.status(201).json(user);
+  //   }
+  // });
 
   //   try {
   //     const user = new User({
