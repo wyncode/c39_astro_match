@@ -3,3 +3,21 @@
   /* flex-wrap: wrap;  */
   overflow: auto;
 }
+
+.speaker-avatar {
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+}
+.speech-bubble {
+  border: 1px solid black;
+  border-radius: 10%;
+  height: 2em;
+  width: 9em;
+}
+
+img {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+}

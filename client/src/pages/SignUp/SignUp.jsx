@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import './SignUp.css';
 import axios from 'axios';
+import SpeakerAvatar from '../../components/SpeakerAvatar';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -27,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  input: {
+    width: '50%',
+    alignSelf: 'flex-end'
   }
 }));
 
@@ -36,13 +41,21 @@ const SignUp = () => {
   const [userData, setUserData] = useState('');
   const [open, setOpen] = useState(false);
 
+  //there is a better way to do this must refactor
+  const handleClick = (e) => {
+    setGender({ [e.target.id]: e.target.value });
+  };
+
   const handleChange = (e) => {
+    setGender({ [e.target.id]: e.target.value });
     setUserData({ ...gender, ...userData, [e.target.id]: e.target.value });
+    console.log(userData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(`Will send this to the backend`, userData);
       const response = await axios.post('/api', userData);
       console.log(response.data);
       // sessionStorage.setItem('user', response.data);
@@ -69,10 +82,11 @@ const SignUp = () => {
           </div>
         </RadioGroup> */}
       <form className={classes.container} onSubmit={handleSubmit}>
-        <ButtonGroup id="gender" onChange={handleChange}>
+        {/* <ButtonGroup id="gender" onChange={handleChange} >
           <Button
             className={classes.button}
             id="gender"
+            onClick={handleClick}
             onChange={handleChange}
             value="Cis Man"
           >
@@ -82,6 +96,7 @@ const SignUp = () => {
           <Button
             className={classes.button}
             id="gender"
+            onClick={handleClick}
             onChange={handleChange}
             value="Trans Man"
           >
@@ -100,7 +115,8 @@ const SignUp = () => {
             {' '}
             Non Binary{' '}
           </Button>
-        </ButtonGroup>
+        </ButtonGroup> */}
+        {/* <SpeakerAvatar question={"When were you born?"}/> */}
         <h2> When were you born? </h2>
         <TextField
           variant="filled"
@@ -109,8 +125,10 @@ const SignUp = () => {
           type="date"
           defaultValue="2017-05-24"
           onChange={handleChange}
+          // className={classes.input}
         />
-        <h2> What time were you born? </h2>
+        <SpeakerAvatar question={'What time were you born?'} />
+        {/* <h2> What time were you born? </h2> */}
         <TextField
           variant="filled"
           id="birthTime"
@@ -136,17 +154,25 @@ const SignUp = () => {
           </Select>
           {/* need to generate state and city for this one somehow */}
         </FormControl>
-        <h2> What is your current zipcode? </h2>
+        <h2> What city do you live in? </h2>
+        <TextField
+          variant="filled"
+          id="city"
+          type="text"
+          onChange={handleChange}
+        />
+        {/* <h2> What is your current zipcode? </h2>
         <TextField
           variant="filled"
           id="zipCode"
           type="number"
           onChange={handleChange}
-        />
+        /> */}
+        {/* //need to add validation to make sure there's a space below, maybe text helper  */}
         <h2> What is your name?</h2>
         <TextField
           variant="filled"
-          id="firstName"
+          id="name"
           type="text"
           onChange={handleChange}
         />
