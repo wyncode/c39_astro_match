@@ -82,40 +82,39 @@ const SignUp = () => {
           </div>
         </RadioGroup> */}
       <form className={classes.container} onSubmit={handleSubmit}>
-        {/* <ButtonGroup id="gender" onChange={handleChange} >
-          <Button
-            className={classes.button}
-            id="gender"
-            onClick={handleClick}
-            onChange={handleChange}
-            value="Cis Man"
-          >
-            {' '}
-            Cis Man{' '}
-          </Button>
-          <Button
-            className={classes.button}
-            id="gender"
-            onClick={handleClick}
-            onChange={handleChange}
-            value="Trans Man"
-          >
-            {' '}
-            Trans Man{' '}
-          </Button>
-          <Button className={classes.button} value="Cis Woman">
-            {' '}
-            Cis Woman{' '}
-          </Button>
-          <Button className={classes.button} value="Trans Woman">
-            {' '}
-            Trans Woman{' '}
-          </Button>
-          <Button className={classes.button} value="Non Binary">
-            {' '}
-            Non Binary{' '}
-          </Button>
-        </ButtonGroup> */}
+        {/* <ButtonGroup id="gender" onChange={handleChange} > */}
+        <Button
+          className={classes.button}
+          id="gender"
+          onClick={handleClick}
+          value="Cis Man"
+        >
+          {' '}
+          {/* //maybe target inner text or something similar  */}
+          Cis Man{' '}
+        </Button>
+        <Button
+          className={classes.button}
+          id="gender"
+          onClick={handleClick}
+          value="Trans Man"
+        >
+          {' '}
+          Trans Man{' '}
+        </Button>
+        <Button className={classes.button} value="Cis Woman">
+          {' '}
+          Cis Woman{' '}
+        </Button>
+        <Button className={classes.button} value="Trans Woman">
+          {' '}
+          Trans Woman{' '}
+        </Button>
+        <Button className={classes.button} value="Non Binary">
+          {' '}
+          Non Binary{' '}
+        </Button>
+        {/* </ButtonGroup> */}
         {/* <SpeakerAvatar question={"When were you born?"}/> */}
         <h2> When were you born? </h2>
         <TextField
