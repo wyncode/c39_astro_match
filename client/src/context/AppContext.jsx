@@ -4,6 +4,8 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  // const [userData, setUserData] = useState('')
+  const [gender, setGender] = useState('string');
 
   const user = sessionStorage.getItem('user');
 
@@ -24,7 +26,9 @@ export const AppContextProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         currentUser,
-        setCurrentUser
+        setCurrentUser,
+        gender,
+        setGender
       }}
     >
       {children}

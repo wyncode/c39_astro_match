@@ -3,6 +3,17 @@
   /* flex-wrap: wrap;  */
   overflow: auto;
 }
+.button-identity {
+  border-radius: 50%;
+  border: solid 1px black;
+  width: 3em;
+  height: 3em;
+  text-align: center;
+}
+
+.button-identity:hover {
+  cursor: pointer;
+}
 
 .speaker-avatar {
   display: flex;
