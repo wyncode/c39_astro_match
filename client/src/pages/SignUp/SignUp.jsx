@@ -1,23 +1,8 @@
 import React, { useState, useContext } from 'react';
-import {
-  ButtonGroup,
-  FormControl,
-  Input,
-  InputLabel,
-  FormHelperText,
-  Container,
-  TextField,
-  Select,
-  MenuItem,
-  makeStyles,
-  Button
-} from '@material-ui/core';
 import './SignUp.css';
 import { AppContext } from '../../context/AppContext';
 import axios from 'axios';
-import SpeakerAvatar from '../../components/SpeakerAvatar';
 import { schema } from './schema';
-import { PartOne } from './Parts';
 import Start from './Parts/Start';
 
 // const useStyles = makeStyles((theme) => ({
@@ -42,30 +27,11 @@ import Start from './Parts/Start';
 const SignUp = ({ history }) => {
   const { gender, setGender, setCurrentUser } = useContext(AppContext);
   const [activeSchema, setActiveSchema] = useState(null);
-  // const classes = useStyles();
-  // const [gender, setGender] = useState('');
+
   const [userData, setUserData] = useState('');
-  // const [open, setOpen] = useState(false);
-
-  // const options = ['Cis Man','Trans Man','Trans Woman','Cis Woman','Non-Binary']
-
-  //there is a better way to do this must refactor
-  // const handleClick = (e) => {
-  //   setGender(e.target.innerText);
-  // setUserData()
-  // handleChange()
-  // };
 
   const handleChange = (e) => {
-    // setGender(gender); gender
-    // console.log(e.target.innerText)
-    // setGender(e.target.innerText)
-    // console.log(gender)
-    // if (e.target.innerText) {
-    //   console.log(gender);
-    // }
     setUserData({ gender, ...userData, [e.target.id]: e.target.value });
-    // console.log(userData);
   };
 
   const handleSubmit = async (e) => {
@@ -81,12 +47,11 @@ const SignUp = ({ history }) => {
     try {
       console.log(`Will send this to the backend`, userData);
       const response = await axios.post('/api', userData);
-      console.log(response.data);
+      console.log(`here is the data saved to the DB`, response.data);
       sessionStorage.setItem('user', response.data);
       setCurrentUser(response.data.user);
-      // history.push('/');
+      history.push('/profile');
     } catch (error) {
-      // swal('SignUp Error: ', error.toString())
       console.log('SignUp Error: ', error.reason);
     }
     setActiveSchema(null);
@@ -104,10 +69,10 @@ const SignUp = ({ history }) => {
   //will probably make a component for the avatar and speech bubble to reuse over and over again
   //actually make a component for maybe even the buttons hemmemmeme
   return (
-    <>
+    <div className={'main-holder'}>
       <form onSubmit={handleSubmit} className={'container'}>
         <p className={'title'}> Astrodate </p>
-        <p className={'sub-title'}> LET'S GET TO KNOW YOU! </p>
+        <p className={'sub-title'}> LET'S GET STARTED! </p>
         <ActiveForm handleChange={handleChange} />
         <br />
         <button className={'sub-button'} type="submit">
@@ -115,7 +80,7 @@ const SignUp = ({ history }) => {
           {activeSchema.next ? 'Next' : 'Submit'}{' '}
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

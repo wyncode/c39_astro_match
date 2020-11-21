@@ -1,6 +1,33 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { TextField } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import './Login.css';
-const Login = () => {
+import axios from 'axios';
+import { AppContext } from '../../context/AppContext';
+
+const Login = ({ history }) => {
+  const [showEmail, setShowEmail] = useState('');
+  const [loginData, setLoginData] = useState('');
+  const { setCurrentUser } = useContext(AppContext);
+
+  const handleChange = (e) => {
+    setLoginData({ ...loginData, [e.target.id]: e.target.value });
+    console.log(loginData);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(`Will send this to the backend`, loginData);
+      const response = await axios.post('/api/login', loginData);
+      sessionStorage.setItem('user', response.data);
+      setCurrentUser(response.data.user);
+      history.push('/profile');
+    } catch (error) {
+      console.log('SignUp Error: ', error);
+    }
+  };
+
   return (
     <div className={'container'}>
       <h1 className={'title-log'}> Astrodate </h1>
@@ -18,10 +45,42 @@ const Login = () => {
         {' '}
         <p>Sign in with Facebook</p>
       </button>
-      <button className={'sign-in-button'} type="submit">
+      <button
+        className={'sign-in-button'}
+        type="submit"
+        onClick={() => setShowEmail(!showEmail)}
+      >
         {' '}
-        <p>Sign in with Phone Number</p>
+        <p>Sign in with Email</p>
       </button>
+      {showEmail && (
+        <form className={'user-login-holder'} onSubmit={handleSubmit}>
+          <TextField
+            id="email"
+            type="email"
+            onChange={handleChange}
+            placeholder="email address"
+            className="user-login"
+          />
+          <br />
+          <TextField
+            id="password"
+            type="password"
+            placeholder="password"
+            onChange={handleChange}
+            className="user-login"
+          />
+          <input type="submit" />
+        </form>
+      )}
+      {showEmail ? (
+        <div></div>
+      ) : (
+        <Link className={'back-link'} to="/">
+          {' '}
+          Back{' '}
+        </Link>
+      )}
     </div>
   );
 };

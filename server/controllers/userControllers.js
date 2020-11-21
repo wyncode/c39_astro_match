@@ -8,7 +8,7 @@ const User = require('../db/models/userModel'),
   jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
-  // console.log(req.body);
+  console.log('The request has made it to create user');
   // console.log(req.body.birthday, typeof req.body.birthday)
   //will need to refactor below eventually
   if (req.body.undefined) {
@@ -37,6 +37,7 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+  console.log('I HAVE MADE IT TO THE LOGIN ');
   const { email, password } = req.body;
   try {
     const user = await User.findByCredentials(email, password);

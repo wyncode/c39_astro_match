@@ -1,3 +1,8 @@
+.main-holder {
+  padding: 1em;
+  background: #181826;
+}
+
 .container {
   height: 100vh;
   display: flex;
@@ -11,17 +16,17 @@
   /* font-size: 24px; */
   line-height: 28px;
   color: #ffffff;
-  padding-left: 1em;
+  /* padding-left: 1em; */
 }
 
 .title {
   font-family: Spectral;
   font-style: normal;
   font-weight: normal;
-  font-size: 30px;
-  line-height: 46px;
+  font-size: 24px;
+  line-height: 37px;
+  color: #dfbc60;
   align-self: flex-start;
-  margin: 0em;
 }
 
 .sub-title {
@@ -31,29 +36,47 @@
   font-size: 24px;
   line-height: 28px;
   align-self: flex-start;
+  margin: 1.5em 0 1.5em 0;
 }
 
-.question-container {
+.form-question {
+  margin: 1em 0 5em 0;
+}
+
+.answer-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   overflow: auto;
+  margin: 2em 0 1em 0;
 }
 
 .button-identity {
   border-radius: 50%;
-  border: solid 1px black;
-  width: 3em;
-  height: 3em;
-  text-align: center;
+  border: solid 5px black;
+  width: 5em;
+  height: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* font-size: 0.6em; */
-  background: red;
+  background: #ffffff;
   color: #181827;
 }
 
-.unclicked {
-  background: #ffffff;
+.button-identity-p {
+  text-align: center;
+}
+
+.size {
+  font-size: 8px;
+  color: #ffffff;
+}
+
+.text-field-holder {
+  display: flex;
+  flex-direction: column;
 }
 
 .sub-button {
@@ -65,7 +88,7 @@
   /* width: 374px; */
   width: 25em;
   height: 44px;
-  align-self: flex-start;
+  align-self: center;
 }
 
 /* .clicked{
@@ -79,11 +102,50 @@
 }
 
 .user-input {
-  /* align-self: center; */
-  /* justify-self: center; */
+  align-self: center;
+  justify-self: center;
   width: 80%;
-  background: #c4c4c4;
+  background: #ffffff;
   border-radius: 3px;
+}
+
+/* ****************************** */
+/* ***** CAROUSEL !!!! ****** */
+/* ****************************** */
+.carousel-item {
+  background: #181826;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 25em;
+}
+.carousel-img {
+  height: 70vh;
+  width: 25em;
+}
+.carousel-p {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  /* font-size: 24px; */
+  line-height: 28px;
+}
+
+.start-button {
+  background: #dfbc60;
+  border: 1px solid #181827;
+  box-sizing: border-box;
+  border-radius: 20px;
+  width: 374px;
+  height: 1.5em;
+  /* *** */
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
 }
 /* 
 .speaker-avatar {

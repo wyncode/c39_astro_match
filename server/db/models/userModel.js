@@ -56,12 +56,12 @@ const UserSchema = new mongoose.Schema(
     ],
     city: {
       type: String,
-      required: true,
+      // required: true,
       trim: true
     },
     zipCode: {
       type: Number,
-      // required: true,
+      required: true,
       trim: true,
       validate(value) {
         if (!value) {
