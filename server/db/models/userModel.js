@@ -1,7 +1,13 @@
 const mongoose = require('mongoose'),
   validator = require('validator'),
   bcrypt = require('bcryptjs'),
-  jwt = require('jsonwebtoken');
+  jwt = require('jsonwebtoken'),
+  mzsi = require('mzsi');
+//backup option:   getSign = require('horoscope').getSign (package that gets Signs but does not take in Year/location)
+
+const today = new Date().getTime();
+const eighteenYears = 568025136000;
+const oneYear = 31536000000;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -74,6 +80,23 @@ const UserSchema = new mongoose.Schema(
     birthday: {
       type: Date,
       required: true,
+      trim: true,
+      validate(value) {
+        if (!(today - value.getTime() > eighteenYears)) {
+          throw new Error('Sorry,you have to be 18 years or older to join.');
+        }
+      }
+    },
+    birthMonth: {
+      type: Number,
+      trim: true
+    },
+    birthDate: {
+      type: Number,
+      trim: true
+    },
+    birthYear: {
+      type: Number,
       trim: true
     },
     birthPlace: {
@@ -127,14 +150,13 @@ const UserSchema = new mongoose.Schema(
       }
     ],
     //partner preference
-    partnerPreference: [
-      {
-        type: String,
-        // required: true,
-        trim: true,
-        enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
-      }
-    ],
+    partnerPreference: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Preference',
+      // required: true,
+      trim: true,
+      enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
+    },
     age: {
       type: Number
     },
@@ -155,8 +177,8 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-// UserSchema.virtual('tasks', {
-//   ref: 'Task',
+// UserSchema.virtual('Inbox', {
+//   ref: 'Conversation',
 //   localField: '_id',
 //   foreignField: 'owner'
 // });
@@ -199,9 +221,9 @@ UserSchema.pre('save', async function (next) {
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
   }
-  //added new function code to convert birthday from string to Date object
   if (user.isModified('birthday')) {
-    user.birthday = new Date(user.birthday);
+    user.age = Math.floor((today - user.birthday.getTime()) / oneYear);
+    user.zodiacSign = mzsi(user.birthMonth, user.birthDate).name;
   }
   next();
 });

@@ -14,16 +14,16 @@ import {
 
 const PartTwo = ({ handleChange }) => {
   return (
-    <div>
+    <div className={'text-field-holder'}>
       <h2> When were you born? </h2>
       <TextField
         variant="filled"
         id="birthday"
         label="When were you born?"
         type="date"
-        defaultValue="2017-05-24"
+        defaultValue="2002-11-20"
         onChange={handleChange}
-        // className={classes.input}
+        className="user-input"
       />
       {/* <SpeakerAvatar question={'What time were you born?'} /> */}
       <h2> What time were you born? </h2>
@@ -32,10 +32,11 @@ const PartTwo = ({ handleChange }) => {
         id="birthTime"
         type="time"
         onChange={handleChange}
+        className="user-input"
       />
       <br />
       <h2> Where were you born? </h2>
-      <FormControl id="birthPlace">
+      <FormControl id="birthPlace" className="user-input">
         <InputLabel id="demo-controlled-open-select-label">country</InputLabel>
         {/* why is birth place undefined  */}
         <Select id="birthPlace" value={''} onChange={handleChange}>

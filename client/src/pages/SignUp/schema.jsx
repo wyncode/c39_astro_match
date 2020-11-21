@@ -20,7 +20,7 @@ export const schema = {
     title: 'PartThree',
     form: PartThree,
     previous: 'second',
-    next: 'null'
+    next: null
   }
   // confirm: {
   //   title: 'Confirmation',
