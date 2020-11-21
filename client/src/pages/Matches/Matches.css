@@ -1,0 +1,91 @@
+.headerToCome {
+  color: DFBC60;
+}
+
+.try {
+  width: 60%;
+  border: solid pink 10px;
+  background: #181827;
+}
+.matchProfile {
+  display: flex;
+  height: 100%;
+}
+.leftPanel {
+  border: solid 1px purple;
+  width: 50%;
+  position: relative;
+  border-radius: 20px;
+  margin: 10px;
+  display: grid;
+}
+
+.matchImage {
+  border: solid 1px red;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  width: 50%;
+  border-radius: 20px;
+}
+.ascendant {
+  border: solid 1px blue;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 20%;
+  border-radius: 20px;
+}
+.moon {
+  border: solid 1px blue;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 20%;
+  border-radius: 20px;
+}
+.starsign {
+  border: solid 1px blue;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 20%;
+  border-radius: 20px;
+}
+.matchStats {
+  border: solid 1px yellow;
+  width: 50%;
+  display: flex-end;
+  display: grid;
+  position: relative;
+}
+ul {
+  list-style-type: none;
+  display: absolute;
+  top: 0;
+  left: 0;
+}
+.name {
+  border: solid 1px black;
+  padding: 20px;
+  font-size: 4em;
+}
+.age {
+  border: solid 1px black;
+  padding: 20px;
+  font-size: 3em;
+}
+.location {
+  border: solid 1px black;
+  padding: 20px;
+}
+.percentageMatch {
+  border: solid 1px black;
+  padding: 20px;
+}
+.matchBio {
+  border: solid 1px black;
+  padding: 20px;
+}
