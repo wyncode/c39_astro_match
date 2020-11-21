@@ -38,6 +38,14 @@ const PreferenceSchema = new mongoose.Schema({
       }
     }
   },
+  interestedIn: [
+    {
+      type: String,
+      // required: true,
+      trim: true,
+      enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
+    }
+  ],
   //will need to figure out how to fetch location relative to others
   location: [
     {

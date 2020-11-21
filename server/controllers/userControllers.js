@@ -8,36 +8,34 @@ const User = require('../db/models/userModel'),
   jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
-  //   const {email, password, zodiacSign, gender, birthday, zipCode, city, firstName, lastName } = req.body;
+  console.log('The request has made it to create user');
+
+  //will need to refactor below eventually
+  if (req.body.undefined) {
+    req.body.birthPlace = req.body.undefined;
+  }
+  let nameArr = req.body.name.split(' ');
+  req.body.firstName = nameArr[0];
+  req.body.lastName = nameArr[1];
+
+  let birthArr = req.body.birthday.split('-');
+  req.body.birthDate = Number(birthArr[2]);
+  req.body.birthMonth = Number(birthArr[1]);
+  req.body.birthYear = Number(birthArr[0]);
+
+  // console.log(req.body)
   User.create(req.body, (err, user) => {
     if (err) {
-      console.log(req.body);
+      console.log(err);
       res.status(400).json(err);
     } else {
       res.status(201).json(user);
     }
   });
-
-  //   try {
-  //     const user = new User({
-  //       name,
-  //       email,
-  //       password
-  //     });
-  //     // sendWelcomeEmail(user.email, user.name);
-  //     const token = await user.generateAuthToken();
-  //     res.cookie('jwt', token, {
-  //       httpOnly: true,
-  //       sameSite: 'Strict',
-  //       secure: process.env.NODE_ENV !== 'production' ? false : true
-  //     });
-  //     res.status(201).json(user);
-  //   } catch (e) {
-  //     res.status(400).json({ error: e.toString() });
-  //   }
 };
 
 exports.loginUser = async (req, res) => {
+  console.log('I HAVE MADE IT TO THE LOGIN ');
   const { email, password } = req.body;
   try {
     const user = await User.findByCredentials(email, password);
