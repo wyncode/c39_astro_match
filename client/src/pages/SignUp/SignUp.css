@@ -53,15 +53,15 @@
 }
 
 .unclicked {
-  background: #e5e5e5;
+  background: #ffffff;
 }
 
 .sub-button {
-  background: #181826;
-  border: 1px solid #ffffff;
+  background: #dfbc60;
+  border: 1px solid #181827;
   box-sizing: border-box;
   border-radius: 20px;
-  color: #ffffff;
+  color: #181827;
   /* width: 374px; */
   width: 25em;
   height: 44px;
@@ -77,8 +77,7 @@
   cursor: pointer;
   /* background: lightcyan; */
 }
-.text-field-holder {
-}
+
 .user-input {
   /* align-self: center; */
   /* justify-self: center; */
