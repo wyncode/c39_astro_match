@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Preferences.css';
 import RangeSlider from './Slider';
-import { Radio, FormControlLabel } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { FormControlLabel } from '@material-ui/core';
 import InputCircle from './InputCircle';
 
 const options = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo'];
@@ -21,7 +20,7 @@ const Preferences = () => {
   return (
     <div className={'preferences-container'}>
       <h1 className={'title'}> Astrodate </h1>
-      <p className={'tag-line'}>SELECT YOUR PREFERENCES</p>
+      <p className={'select-line'}>SELECT YOUR PREFERENCES</p>
       <p className={'dist-line'}> SELECT AGE RANGE </p>
       <RangeSlider step={1} min={21} max={91} id={'age'} />
       <p className={'dist-line'}> DISTANCE IN MILES </p>
@@ -49,8 +48,8 @@ const Preferences = () => {
           ))}
         </div>
       </div>
-      <Link to="/profile">
-        <button className={'sign-in-button'}>
+      <Link to="/profile" className={'centerMe'}>
+        <button className={'centerSelf'}>
           {' '}
           <p>Edit Profile</p>
         </button>
