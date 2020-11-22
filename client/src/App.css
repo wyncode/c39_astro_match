@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+}
+
+/* will add spacing to the left and right when screen is widened
+  will help stimulate the "mobile effect */
+@media only screen and (min-width: 1224px) {
+  * {
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+}

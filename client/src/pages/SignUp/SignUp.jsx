@@ -20,8 +20,23 @@ const SignUp = ({ history }) => {
     // console.log(activeSchema);
     const nextForm = activeSchema?.next;
     // console.log(nextForm);
+
+    if (
+      new Date().getTime() - new Date(userData.birthday).getTime() <
+      568025136000
+    ) {
+      alert('Sorry you have to be 18 years or older to join');
+      return;
+    }
+
     if (nextForm) {
       setActiveSchema(schema[nextForm]);
+      return;
+    }
+
+    if (userData.password !== userData.password_confirm) {
+      console.log('Passowrds do not match');
+      alert('password do not match');
       return;
     }
     try {
@@ -32,6 +47,7 @@ const SignUp = ({ history }) => {
       setCurrentUser(response.data.user);
       history.push('/profile');
     } catch (error) {
+      alert(error);
       console.log('SignUp Error: ', error);
     }
     setActiveSchema(null);
