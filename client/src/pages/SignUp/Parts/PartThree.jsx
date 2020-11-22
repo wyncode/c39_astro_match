@@ -12,14 +12,16 @@ const PartThree = ({ handleChange }) => {
           placeholder="zipcode"
           onChange={handleChange}
           className="user-input"
+          required
         />
         <h2> What is your name?</h2>
         <TextField
           id="name"
           type="text"
-          placeholder="name"
+          placeholder="FirstName LastName"
           onChange={handleChange}
           className="user-input"
+          required
         />
         <h2> What is your email?</h2>
         <TextField
@@ -28,6 +30,7 @@ const PartThree = ({ handleChange }) => {
           placeholder="email"
           onChange={handleChange}
           className="user-input"
+          required
         />
         {/* <p className="size"> Disclaimer: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis adipiscing tortor facilisi purus fermentum ultricies. In faucibus ac venenatis, quisque eget. </p> */}
         <h2> Please create your account password. </h2>
@@ -37,6 +40,17 @@ const PartThree = ({ handleChange }) => {
           placeholder="password"
           onChange={handleChange}
           className="user-input"
+          required
+        />
+
+        <h2> Please confirm your password. </h2>
+        <TextField
+          id="password_confirm"
+          type="password"
+          placeholder="password"
+          onChange={handleChange}
+          className="user-input"
+          required
         />
       </div>
     </>
