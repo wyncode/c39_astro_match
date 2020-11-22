@@ -10,10 +10,12 @@ import { AppContextProvider } from './context/AppContext';
 import './App.css';
 
 import Inbox from './pages/Inbox/Inbox';
+import NavigationBar from './components/NavigationBar';
 
 const App = () => {
   return (
     <AppContextProvider>
+      <NavigationBar />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
