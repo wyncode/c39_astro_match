@@ -10,7 +10,6 @@ import { AppContextProvider } from './context/AppContext';
 import './App.css';
 
 import Inbox from './pages/Inbox/Inbox';
-import IncomingMessages from './pages/Inbox/IncomingMessages';
 
 const App = () => {
   return (
@@ -22,8 +21,6 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/inbox" component={Inbox} />
-          <Route exact path="/messages" component={IncomingMessages} />
         </Switch>
       </BrowserRouter>
     </AppContextProvider>
