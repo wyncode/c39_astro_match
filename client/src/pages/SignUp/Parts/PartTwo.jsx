@@ -4,8 +4,7 @@ import {
   FormControl,
   Input,
   InputLabel,
-  Select,
-  MenuItem
+  NativeSelect
 } from '@material-ui/core';
 
 const PartTwo = ({ handleChange }) => {
@@ -48,7 +47,7 @@ const PartTwo = ({ handleChange }) => {
           country
         </InputLabel>
         {/* why is birth place undefined  */}
-        <Select
+        <NativeSelect
           id="birthPlace"
           defaultValue=""
           onChange={handleChange}
@@ -62,19 +61,12 @@ const PartTwo = ({ handleChange }) => {
           {apiData &&
             apiData.map((country, i) => {
               return (
-                <MenuItem id="birthPlace" key={i} value={country.name}>
+                <option id="birthPlace" key={i} value={country.name}>
                   {country.name}
-                </MenuItem>
+                </option>
               );
             })}
-          {/* <MenuItem id="birthPlace" value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem id="birthPlace" value={10}>
-            {' '}
-            Ten{' '}
-          </MenuItem> */}
-        </Select>
+        </NativeSelect>
       </FormControl>
     </div>
   );
