@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useContext } from 'react';
 import { TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
@@ -28,6 +29,11 @@ const Login = ({ history }) => {
     }
   };
 
+=======
+import React from 'react';
+import './Login.css';
+const Login = () => {
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
   return (
     <div className={'container'}>
       <h1 className={'title-log'}> Astrodate </h1>
@@ -45,6 +51,7 @@ const Login = ({ history }) => {
         {' '}
         <p>Sign in with Facebook</p>
       </button>
+<<<<<<< HEAD
       <button
         className={'sign-in-button'}
         type="submit"
@@ -81,6 +88,12 @@ const Login = ({ history }) => {
           Back{' '}
         </Link>
       )}
+=======
+      <button className={'sign-in-button'} type="submit">
+        {' '}
+        <p>Sign in with Phone Number</p>
+      </button>
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
     </div>
   );
 };

@@ -3,6 +3,10 @@ const mongoose = require('mongoose'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken'),
   mzsi = require('mzsi');
+<<<<<<< HEAD
+=======
+//backup option:   getSign = require('horoscope').getSign (package that gets Signs but does not take in Year/location)
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 
 const today = new Date().getTime();
 const eighteenYears = 568025136000;
@@ -60,7 +64,7 @@ const UserSchema = new mongoose.Schema(
     },
     zipCode: {
       type: Number,
-      required: true,
+      // required: true,
       trim: true,
       validate(value) {
         if (!value) {
@@ -96,12 +100,20 @@ const UserSchema = new mongoose.Schema(
     },
     birthPlace: {
       type: String,
+<<<<<<< HEAD
       // required: true,
+=======
+      required: true,
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
       trim: true
     },
     birthTime: {
       type: String,
+<<<<<<< HEAD
       // required: true,
+=======
+      required: true,
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
       trim: true
     },
     gender: {

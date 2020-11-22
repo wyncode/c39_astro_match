@@ -6,6 +6,10 @@ export const schema = {
   one: {
     title: 'PartOne',
     form: PartOne,
+<<<<<<< HEAD
+=======
+    // disables the previous button
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
     previous: null,
     next: 'second'
   },
@@ -21,4 +25,14 @@ export const schema = {
     previous: 'second',
     next: null
   }
+<<<<<<< HEAD
+=======
+  // confirm: {
+  //   title: 'Confirmation',
+  //   form: Confirm,
+  //   previous: 'second',
+  //   // signifies submission
+  //   next: null,
+  // },
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 };

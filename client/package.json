@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+<<<<<<< HEAD
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.21.0",
     "react": "^16.14.0",
@@ -11,6 +12,9 @@
     "react-material-ui-carousel": "^2.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
+=======
+    "axios": "^0.21.0",
+>>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
   },
   "scripts": {
     "start": "react-scripts start",
