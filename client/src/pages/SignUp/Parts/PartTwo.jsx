@@ -2,19 +2,26 @@ import React, { useState } from 'react';
 import {
   TextField,
   FormControl,
-  Input,
   InputLabel,
   NativeSelect
 } from '@material-ui/core';
+import SelectState from './SelectState';
+import SelectCity from './SelectCity';
+import axios from 'axios';
 
-const PartTwo = ({ handleChange }) => {
+const PartTwo = ({ handleChange, userData }) => {
   const [apiData, setApiData] = useState('');
-  const handleSearch = (e) => {
-    fetch(`http://restcountries.eu/rest/v2/`)
-      .then((response) => response.json())
-      .then((countries) => setApiData(countries))
-      .catch((e) => console.log(e));
-    // console.log(cities);
+
+  const handleSearch = async () => {
+    console.log('Called');
+    console.log(process.env.REACT_APP_AUTH_TOKEN);
+    try {
+      let response = await axios.get('/api/location/country');
+      console.log('ididt', response.data);
+      setApiData(response.data);
+    } catch (error) {
+      console.log('here is error', error);
+    }
   };
 
   return (
@@ -30,7 +37,6 @@ const PartTwo = ({ handleChange }) => {
         className="user-input"
         required
       />
-      {/* <SpeakerAvatar question={'What time were you born?'} /> */}
       <h2> What time were you born? </h2>
       <TextField
         variant="filled"
@@ -46,28 +52,29 @@ const PartTwo = ({ handleChange }) => {
         <InputLabel htmlFor="birthPlace" id="birthPlace">
           country
         </InputLabel>
-        {/* why is birth place undefined  */}
         <NativeSelect
-          id="birthPlace"
+          id="birthCountry"
           defaultValue=""
           onChange={handleChange}
           onClick={handleSearch}
           required
         >
-          {/* will have to fetch using api here like in wyn weather app, will populate out menu item */}
-          {/* <MenuItem value="">
-            <em>None</em>
-          </MenuItem> */}
           {apiData &&
             apiData.map((country, i) => {
               return (
-                <option id="birthPlace" key={i} value={country.name}>
-                  {country.name}
+                <option id="birthPlace" key={i} value={country.country_name}>
+                  {country.country_name}
                 </option>
               );
             })}
         </NativeSelect>
       </FormControl>
+      {userData.birthCountry === 'United States' && (
+        <SelectState handleChange={handleChange} userData={userData} />
+      )}
+      {userData.birthState && (
+        <SelectCity handleChange={handleChange} userData={userData} />
+      )}
     </div>
   );
 };

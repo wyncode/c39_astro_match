@@ -67,7 +67,7 @@ const SignUp = ({ history }) => {
       <form onSubmit={handleSubmit} className={'container'}>
         <p className={'title'}> Astrodate </p>
         <p className={'sub-title'}> LET'S GET STARTED! </p>
-        <ActiveForm handleChange={handleChange} />
+        <ActiveForm handleChange={handleChange} userData={userData} />
         <br />
         <button className={'sub-button'} type="submit">
           {' '}
