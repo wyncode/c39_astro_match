@@ -2,6 +2,8 @@
     margin: 0em;
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
 .container {
   height: 100vh;
   display: flex;
@@ -28,6 +30,7 @@
   font-size: 35px;
   line-height: 41px;
   color: #ffffff;
+  margin: 1em 0 0em 0;
 }
 
 .help-text {
@@ -38,15 +41,16 @@
   /* line-height: 20px; */
   color: #ffffff;
   width: 280px;
+  margin: 2.5em 0 2.5em 0;
 }
 
 .sign-in-button {
   font-family: Karla;
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
   border: 1px solid #dfbc60;
-  font-size: 18px;
-  line-height: 21px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -60,4 +64,30 @@
   justify-content: center;
   text-align: center;
   margin-bottom: 0.8em;
+}
+
+.user-login-holder {
+  display: flex;
+  flex-direction: column;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  /* line-height: 24px; */
+}
+
+.user-login {
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /* margin: 0.5em; */
+  padding: 0.5em;
+}
+
+.back-link {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: white;
 }

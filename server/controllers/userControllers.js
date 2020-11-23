@@ -8,18 +8,14 @@ const User = require('../db/models/userModel'),
   jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
-  // console.log(req.body);
-  // console.log(req.body.birthday, typeof req.body.birthday)
   //will need to refactor below eventually
   if (req.body.undefined) {
     req.body.birthPlace = req.body.undefined;
   }
   let nameArr = req.body.name.split(' ');
-  // console.log(req.body.firstName.split(" "))
   req.body.firstName = nameArr[0];
   req.body.lastName = nameArr[1];
 
-  //will comment back in after the API method is decided
   let birthArr = req.body.birthday.split('-');
   req.body.birthDate = Number(birthArr[2]);
   req.body.birthMonth = Number(birthArr[1]);

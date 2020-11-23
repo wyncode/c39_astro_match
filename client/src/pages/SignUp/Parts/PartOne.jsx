@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../../../context/AppContext';
 
 const options = [
@@ -9,29 +9,26 @@ const options = [
   'Non-Binary'
 ];
 const PartOne = ({ handleChange }) => {
-  // const { userData, setUserData } = useContext(AppContext)
   const { gender, setGender } = useContext(AppContext);
-  const [buttonColor, setButtonColor] = useState('unclicked');
 
   const handleClick = (e) => {
     // console.log(gender);
     setGender(e.target.innerText);
-    e.target.className = setButtonColor('clicked');
   };
 
   return (
     <>
-      <h2> How do you identify?</h2>
-      <div className={`question-container`}>
+      <h2 className={`form-question`}> How do you identify?</h2>
+      <div className={`answer-container`}>
         {options.map((identity) => (
           <div
             key={identity}
-            className={`button-identity ${buttonColor}`}
+            className={`button-identity`}
             id="gender"
             onClick={handleClick}
             value={identity}
           >
-            <p>{identity}</p>
+            <p className={'button-identity-p'}>{identity}</p>
           </div>
         ))}
       </div>

@@ -3,7 +3,6 @@ const mongoose = require('mongoose'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken'),
   mzsi = require('mzsi');
-//backup option:   getSign = require('horoscope').getSign (package that gets Signs but does not take in Year/location)
 
 const today = new Date().getTime();
 const eighteenYears = 568025136000;
@@ -56,7 +55,7 @@ const UserSchema = new mongoose.Schema(
     ],
     city: {
       type: String,
-      required: true,
+      // required: true,
       trim: true
     },
     zipCode: {
@@ -73,10 +72,6 @@ const UserSchema = new mongoose.Schema(
         }
       }
     },
-    //neeed to add into birthday a validator to check that they are 18 and over
-    //need to convert from date to ms
-    //probably using moment
-    //see if function can be w/n schema
     birthday: {
       type: Date,
       required: true,
@@ -101,12 +96,12 @@ const UserSchema = new mongoose.Schema(
     },
     birthPlace: {
       type: String,
-      required: true,
+      // required: true,
       trim: true
     },
     birthTime: {
       type: String,
-      required: true,
+      // required: true,
       trim: true
     },
     gender: {

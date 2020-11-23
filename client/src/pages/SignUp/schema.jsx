@@ -6,7 +6,6 @@ export const schema = {
   one: {
     title: 'PartOne',
     form: PartOne,
-    // disables the previous button
     previous: null,
     next: 'second'
   },
@@ -22,11 +21,4 @@ export const schema = {
     previous: 'second',
     next: null
   }
-  // confirm: {
-  //   title: 'Confirmation',
-  //   form: Confirm,
-  //   previous: 'second',
-  //   // signifies submission
-  //   next: null,
-  // },
 };
