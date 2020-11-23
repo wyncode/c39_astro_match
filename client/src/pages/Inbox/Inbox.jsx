@@ -2,6 +2,7 @@ import React from 'react';
 import './Inbox.css';
 /*import {Message, Title, Sender, Recipient, SenderAvatar} from = require(');*/
 
+
 const Inbox = () => {
   return(
     <div>
@@ -12,11 +13,11 @@ const Inbox = () => {
 
           <div className="incoming"> 
 
-            <span className="avatar" roundedCircle /*backgroundimg={}*/></span>
+            <span className="avatar" /*backgroundimg={}*/></span>
 
             <div className="messageBox">
-              <span classsName="messageTitle">SUBJECT: "{"msgTitle"}" </span>
-              <span className="text">"{"incomingMessage"}"</span>
+              <div classsName="messageTitle">SUBJECT: msgTitle</div>
+              <div className="text"> incomingMessage </div>
             </div>
 
           </div>
