@@ -16,7 +16,6 @@ const Matches = () => {
   return ( 
     <div className="background">
 
-      <h1 className="navLogo"><img src="" className="logo" /></h1>
       <h1 className="title">YOUR BEST MATCHES</h1>
 
         <div className="matchProfile" id="linkToMatchProfile">

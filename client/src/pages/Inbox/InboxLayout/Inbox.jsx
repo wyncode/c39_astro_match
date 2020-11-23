@@ -1,7 +1,6 @@
 import React, { useContext, /*useState*/ } from 'react';
 // import { AppContext } from '../../context/AppContext';
 // import axios from 'axios';
-// import shave from 'shave';
 import MessageCard from './MessageCard';
 import './Inbox.css';
 

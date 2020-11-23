@@ -10,9 +10,11 @@ export class NavigationBar extends Component {
   render() {
     return (
       <div>
-        <div className="navbar">
-          <img src={LogoHorizontal} className="logo" />
-          <img src={hamburger} className="menu" />
+        <div className="borderBuffer">
+          <div className="navbar">
+            <img src={LogoHorizontal} className="logo" />
+            <img src={hamburger} className="menu" />
+          </div>
         </div>
       </div>
     )

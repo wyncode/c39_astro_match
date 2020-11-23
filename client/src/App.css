@@ -4,9 +4,9 @@
 
 /* will add spacing to the left and right when screen is widened
 will help stimulate the "mobile effect */
-@media only screen and (min-width: 1224px) {
+/* @media only screen and (min-width: 1024px) {
   * {
     margin-left: 2em;
     margin-right: 2em;
   }
-}
+} */

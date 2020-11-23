@@ -8,28 +8,15 @@
   flex-direction: column;
   align-items: center;
 }
-.navLogo {
-  /* position: relative; */
-  left: 15.01%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  font-family: Spectral;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 37px;
-  color: #dfbc60;
-}
 .title {
-  padding: 2em;
+  padding-bottom: 2em;
   height: 22px;
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
   font-size: 44px;
   line-height: 28px;
-  color: #dfbc60;
+  color: blue;
   align-self: center;
 }
 .incoming {
@@ -38,21 +25,23 @@
   flex-direction: row;
   justify-content: center;
   width: 80%;
-  height: 14em;
+  height: 8em;
+  border: 5px solid pink;
 }
 .avatar {
-  position: absolute;
-  width: 300px;
-  height: 100%;
-  background: #c4c4c4;
+  position: relative;
+  width: 8em;
+  height: 8em;
   border: 0.15px solid #ffffff;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 75px;
+  border: 5px solid blue;
 }
 .messageBox {
   box-sizing: border-box;
   border-radius: 10px;
   background-color: #ffffff;
+  border: 5px solid yellow;
 }
 .messageTitle {
   position: absolute;
@@ -65,6 +54,7 @@
   font-size: 16px;
   line-height: 19px;
   color: rgba(24, 24, 39, 1);
+  border: 5px solid green;
 }
 .text {
   position: absolute;
@@ -77,6 +67,7 @@
   font-size: 14px;
   line-height: 16px;
   color: #181827;
+  border: 5px solid purple;
 }
 .button {
   position: absolute;

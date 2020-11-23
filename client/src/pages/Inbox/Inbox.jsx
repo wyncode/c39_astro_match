@@ -8,7 +8,6 @@ const Inbox = () => {
 
       <div className="background">
 
-        <h1 className="navLogo"><img src="" className="logo" /></h1>
         <div className="title">YOUR MESSAGES</div>
 
           <div className="incoming"> 
