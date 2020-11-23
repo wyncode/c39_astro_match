@@ -45,10 +45,7 @@ const UserSchema = new mongoose.Schema(
       }
     },
     //once we get to geolocation, refactor
-    location: [
-      {
-        type: Number
-      },
+    birthdayCoords: [
       {
         type: Number
       }
@@ -96,12 +93,12 @@ const UserSchema = new mongoose.Schema(
     },
     birthPlace: {
       type: String,
-      // required: true,
+      required: true,
       trim: true
     },
     birthTime: {
       type: String,
-      // required: true,
+      required: true,
       trim: true
     },
     gender: {

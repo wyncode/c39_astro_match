@@ -11,10 +11,9 @@ const SelectCity = ({ handleChange, userData }) => {
       let response = await axios.get(
         `/api/location/city/${userData.birthState}`
       );
-      console.log('ididt', response.data);
       setApiData(response.data);
     } catch (error) {
-      console.log('here is error', error);
+      alert('here is error', error);
     }
   };
 

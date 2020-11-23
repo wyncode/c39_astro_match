@@ -11,10 +11,9 @@ const SelectState = ({ handleChange, userData }) => {
       let response = await axios.get(
         `/api/location/state/${userData.birthCountry}`
       );
-      console.log('ididt', response.data);
       setApiData(response.data);
     } catch (error) {
-      console.log('here is error', error);
+      alert('here is error', error);
     }
   };
 
