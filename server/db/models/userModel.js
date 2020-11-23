@@ -2,7 +2,8 @@ const mongoose = require('mongoose'),
   validator = require('validator'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken'),
-  mzsi = require('mzsi');
+  mzsi = require('mzsi'),
+  { getLatLon } = require('../../controllers/apiCalls/zipcodeController');
 
 const today = new Date().getTime();
 const eighteenYears = 568025136000;
@@ -91,9 +92,16 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       trim: true
     },
-    birthPlace: {
+    birthCountry: {
       type: String,
-      required: true,
+      trim: true
+    },
+    birthState: {
+      type: String,
+      trim: true
+    },
+    birthCity: {
+      type: String,
       trim: true
     },
     birthTime: {
@@ -215,7 +223,15 @@ UserSchema.pre('save', async function (next) {
   }
   if (user.isModified('birthday')) {
     user.age = Math.floor((today - user.birthday.getTime()) / oneYear);
-    user.zodiacSign = mzsi(user.birthMonth, user.birthDate).name;
+    // user.zodiacSign = mzsi(user.birthMonth, user.birthDate).name;
+  }
+  if (user.isModified('zipCode')) {
+    let retCoords = await getLatLon(user.zipCode);
+    user.birthdayCoords = retCoords;
+  }
+
+  if (user.isModified('birthdayCoords')) {
+    //need to fetch to API
   }
   next();
 });

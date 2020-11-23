@@ -6,7 +6,7 @@ const options = [
   'Trans Man',
   'Trans Woman',
   'Cis Woman',
-  'Non-Binary'
+  'Non-binary'
 ];
 
 const PartOne = () => {
