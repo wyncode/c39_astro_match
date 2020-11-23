@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
-import {
-  TextField,
-  FormControl,
-  Input,
-  InputLabel,
-  NativeSelect,
-  Select
-} from '@material-ui/core';
+import { FormControl, InputLabel, NativeSelect } from '@material-ui/core';
 import axios from 'axios';
 
 const SelectState = ({ handleChange, userData }) => {
   const [apiData, setApiData] = useState('');
 
-  const handleSearch = async (event) => {
+  const handleSearch = async () => {
     try {
       console.log(userData);
       let response = await axios.get(
@@ -31,7 +24,6 @@ const SelectState = ({ handleChange, userData }) => {
         <InputLabel htmlFor="birthState" id="birthState">
           country
         </InputLabel>
-        {/* why is birth place undefined  */}
         <NativeSelect
           id="birthState"
           defaultValue=""
@@ -39,7 +31,6 @@ const SelectState = ({ handleChange, userData }) => {
           onClick={handleSearch}
           required
         >
-          {/* will have to fetch using api here like in wyn weather app, will populate out menu item */}
           {apiData &&
             apiData.map((state, i) => {
               return (

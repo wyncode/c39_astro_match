@@ -8,11 +8,11 @@ const options = [
   'Cis Woman',
   'Non-Binary'
 ];
-const PartOne = ({ handleChange }) => {
-  const { gender, setGender } = useContext(AppContext);
+
+const PartOne = () => {
+  const { setGender } = useContext(AppContext);
 
   const handleClick = (e) => {
-    // console.log(gender);
     setGender(e.target.innerText);
   };
 

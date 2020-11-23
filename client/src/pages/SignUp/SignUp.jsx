@@ -6,7 +6,7 @@ import { schema } from './schema';
 import Start from './Parts/Start';
 
 const SignUp = ({ history }) => {
-  const { gender, setGender, setCurrentUser } = useContext(AppContext);
+  const { gender, setCurrentUser } = useContext(AppContext);
   const [activeSchema, setActiveSchema] = useState(null);
 
   const [userData, setUserData] = useState('');
@@ -17,9 +17,7 @@ const SignUp = ({ history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(activeSchema);
     const nextForm = activeSchema?.next;
-    // console.log(nextForm);
 
     if (
       new Date().getTime() - new Date(userData.birthday).getTime() <
