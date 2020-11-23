@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+.preferences-container {
+  background-color: #181827;
+  height: inherit;
+  /* background-size: auto; */
+  /* width: inherit; */
+  padding: 2em 1em 2em 1em;
+  display: flex;
+  flex-direction: column;
+  background: #181826;
+  color: #ffffff;
+}
+
+.select-line {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 28px;
+  margin: 1.5em 0;
+}
+
+.dist-line {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 21px;
+}
+
+.option-holder {
+  margin: 0.5em 0;
+  display: flex;
+}
+
+.option-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-left: 1em;
+}
+
+.radio-buttons-signs {
+  background: #ffffff;
+  border: 0.5px solid #000000;
+  box-sizing: border-box;
+  border-radius: 20px;
+  height: 2em;
+  /*find way to see if can make width proportional to the length of word */
+  width: 10em;
+  color: #181826;
+  padding-right: 0.45em;
+  display: flex;
+  margin: 1em;
+
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+}
+
+.centerMe {
+  margin: 2em 0;
+  justify-self: center;
+  align-self: center;
+}
+
+.centerSelf {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  border: 1px solid #dfbc60;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #181827;
+  background: #dfbc60;
+  box-sizing: border-box;
+  border-radius: 20px;
+  width: 18em;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0.8em;
+}
+
+/* ****************************** */
+/* TABLET + LAPTOP CSS */
+/* ****************************** */
+
+@media only screen and (min-width: 1024px) {
+  .preferences-container {
+    padding: 3em;
+  }
+
+  .option-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .option-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
