@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 .main-holder {
   padding: 1em;
   background: #181826;
 }
 
-=======
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 .container {
   height: 100vh;
   display: flex;
@@ -19,28 +16,17 @@
   /* font-size: 24px; */
   line-height: 28px;
   color: #ffffff;
-<<<<<<< HEAD
   /* padding-left: 1em; */
-=======
-  padding-left: 1em;
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 }
 
 .title {
   font-family: Spectral;
   font-style: normal;
   font-weight: normal;
-<<<<<<< HEAD
   font-size: 24px;
   line-height: 37px;
   color: #dfbc60;
   align-self: flex-start;
-=======
-  font-size: 30px;
-  line-height: 46px;
-  align-self: flex-start;
-  margin: 0em;
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 }
 
 .sub-title {
@@ -50,7 +36,6 @@
   font-size: 24px;
   line-height: 28px;
   align-self: flex-start;
-<<<<<<< HEAD
   margin: 1.5em 0 1.5em 0;
 }
 
@@ -59,25 +44,16 @@
 }
 
 .answer-container {
-=======
-}
-
-.question-container {
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   overflow: auto;
-<<<<<<< HEAD
   margin: 2em 0 1em 0;
-=======
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 }
 
 .button-identity {
   border-radius: 50%;
-<<<<<<< HEAD
   border: solid 5px black;
   width: 5em;
   height: 5em;
@@ -101,19 +77,6 @@
 .text-field-holder {
   display: flex;
   flex-direction: column;
-=======
-  border: solid 1px black;
-  width: 3em;
-  height: 3em;
-  text-align: center;
-  /* font-size: 0.6em; */
-  background: red;
-  color: #181827;
-}
-
-.unclicked {
-  background: #ffffff;
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 }
 
 .sub-button {
@@ -125,21 +88,12 @@
   /* width: 374px; */
   width: 25em;
   height: 44px;
-<<<<<<< HEAD
   align-self: center;
 }
 
 /* .clicked{
     
   } */
-=======
-  align-self: flex-start;
-}
-
-/* .clicked{
-  
-} */
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 
 .button-identity:hover,
 .sub-button:hover {
@@ -148,7 +102,6 @@
 }
 
 .user-input {
-<<<<<<< HEAD
   align-self: center;
   justify-self: center;
   width: 80%;
@@ -217,35 +170,3 @@
     justify-content: center;
     align-content: center;
   } */
-=======
-  /* align-self: center; */
-  /* justify-self: center; */
-  width: 80%;
-  background: #c4c4c4;
-  border-radius: 3px;
-}
-/* 
-.speaker-avatar {
-  display: flex;
-  justify-content: center;
-  font-size: 2em;
-}
-.speech-bubble {
-  border: 1px solid black;
-  border-radius: 10%;
-  height: 2em;
-  width: 9em;
-}
-
-img {
-  width: 5em;
-  height: 5em;
-  border-radius: 50%;
-} */
-
-/* .container {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-} */
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851

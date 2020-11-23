@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import Carousel from 'react-material-ui-carousel';
 import Item from './Item';
 
@@ -29,14 +28,6 @@ const Start = ({ initForm }) => {
       </Carousel>
       {/* <p>Click the button to start filling out the form!</p>
       <button onClick={initForm}>Start!</button> */}
-=======
-
-const Start = ({ initForm }) => {
-  return (
-    <div>
-      <p>Click the button to start filling out the form!</p>
-      <button onClick={initForm}>Start!</button>
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
     </div>
   );
 };

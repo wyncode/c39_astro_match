@@ -2,11 +2,8 @@
     margin: 0em;
 } */
 
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
-=======
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 .container {
   height: 100vh;
   display: flex;
@@ -33,10 +30,7 @@
   font-size: 35px;
   line-height: 41px;
   color: #ffffff;
-<<<<<<< HEAD
   margin: 1em 0 0em 0;
-=======
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 }
 
 .help-text {
@@ -47,26 +41,16 @@
   /* line-height: 20px; */
   color: #ffffff;
   width: 280px;
-<<<<<<< HEAD
   margin: 2.5em 0 2.5em 0;
-=======
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
 }
 
 .sign-in-button {
   font-family: Karla;
   font-style: normal;
-<<<<<<< HEAD
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
   border: 1px solid #dfbc60;
-=======
-  font-weight: normal;
-  border: 1px solid #dfbc60;
-  font-size: 18px;
-  line-height: 21px;
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
   display: flex;
   align-items: center;
   text-align: center;
@@ -81,7 +65,6 @@
   text-align: center;
   margin-bottom: 0.8em;
 }
-<<<<<<< HEAD
 
 .user-login-holder {
   display: flex;
@@ -108,5 +91,3 @@
   line-height: 28px;
   color: white;
 }
-=======
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851

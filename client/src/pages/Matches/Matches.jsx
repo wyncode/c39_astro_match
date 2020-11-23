@@ -1,5 +1,9 @@
 import React from 'react';
 import './Matches.css';
+import Scorpio from '../../components/Images/Vectors/Matches/Scorpio.svg';
+import Capricorn from '../../components/Images/Vectors/Matches/Scorpio.svg';
+import Pisces from '../../components/Images/Vectors/Matches/Scorpio.svg';
+import ManThree from '../../components/Images/Vectors/Matches/ManThree.svg';
 
 const Matches = () => {
   // some sort of state that will capture the data retrieval 
@@ -12,17 +16,17 @@ const Matches = () => {
   return ( 
     <div className="background">
 
-      <h1 className="navLogo"><img src="../../components/Images/Vectors/LogoHorizontal.png" className="logo" />AstroDate</h1>
+      <h1 className="navLogo"><img src="" className="logo" /></h1>
       <h1 className="title">YOUR BEST MATCHES</h1>
 
         <div className="matchProfile" id="linkToMatchProfile">
 
             <div className="dynamicPicture">
-              <img src="./academic.png" alt="match img" className="matchImage" />
+              <img src="" alt={ManThree} className="matchImage" />
                 <span className="viewProfile">View Profile</span>
-                <img src="../../components/Images/Vectors/Scorpio-1.png" alt="{ascendant}" className="ascendant" />
-                <img src="../../components/Images/Vectors/Scorpio-1.png" alt="{moon}" className="moon" />
-                <img src="../../components/Images/Vectors/Capricorn.png" alt="{starsign}" className="starsign" />
+                <img src={Scorpio} alt="{ascendant}" className="ascendant" />
+                <img src={Pisces} alt="{moon}" className="moon" />
+                <img src={Capricorn} alt="{starsign}" className="starsign" />
             </div>
 
             <div className="matchStats">

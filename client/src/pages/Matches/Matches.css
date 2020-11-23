@@ -41,7 +41,6 @@
 .matchProfile {
   display: flex;
   justify-content: center;
-  border: solid 10px yellow;
   width: 70%;
   height: 18em;
 }
@@ -140,8 +139,8 @@
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
-  /* line-height: 21px; */
+  font-size: 32px;
+  line-height: 30px;
   color: #dfbc60;
   /* display: flex;
   align-items: flex-end; */
@@ -155,26 +154,19 @@
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
-  font-size: 36px;
+  font-size: 28px;
   /* line-height: 21px; */
   color: #ffffff;
   /* display: flex;
   align-items: flex-end; */
 }
 .location {
-  /* position: absolute; */
-  /* width: 134px;
-  height: 17px; */
-  /* left: 204px;
-  top: 255px; */
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
-  font-size: 36px;
+  font-size: 28px;
   /* line-height: 21px; */
   color: #ffffff;
-  /* display: flex;
-  align-items: flex-end; */
 }
 .percentageMatch {
   /* position: absolute; */
@@ -185,7 +177,7 @@
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 28px;
   /* line-height: 21px; */
   color: #dfbc60;
   /* display: flex;
@@ -194,14 +186,14 @@
 .matchBio {
   position: absolute;
   width: 20%;
-  height: 100px;
+  height: px;
   /* left: 204px;
   top: 321px; */
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
-  font-size: 28px;
-  /* line-height: 16px; */
+  font-size: 24px;
+  line-height: 20px;
   color: #ffffff;
   /* display: flex;
   align-items: flex-end; */

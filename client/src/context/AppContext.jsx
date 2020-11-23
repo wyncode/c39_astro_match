@@ -4,10 +4,6 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-<<<<<<< HEAD
-=======
-  // const [userData, setUserData] = useState('')
->>>>>>> 36dcef695cf3fa7072f16212dda1a598d6ab2851
   const [gender, setGender] = useState('string');
 
   const user = sessionStorage.getItem('user');
