@@ -12,7 +12,6 @@ exports.getCountry = async (req, res) => {
       'https://www.universal-tutorial.com/api/countries/',
       headers
     );
-    // console.log(data.data)
     res.json(data.data);
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -25,7 +24,6 @@ exports.getState = async (req, res) => {
       `https://www.universal-tutorial.com/api/states/${req.params.id}`,
       headers
     );
-    // console.log(data.data)
     res.json(data.data);
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -38,7 +36,6 @@ exports.getCity = async (req, res) => {
       `https://www.universal-tutorial.com/api/cities/${req.params.id}`,
       headers
     );
-    // console.log(data.data)
     res.json(data.data);
   } catch (error) {
     res.status(500).send({ error: error.message });
