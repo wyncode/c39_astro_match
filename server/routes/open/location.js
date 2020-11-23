@@ -3,7 +3,7 @@ const router = require('express').Router(),
     getCountry,
     getCity,
     getState
-  } = require('../../controllers/location/locationControllers');
+  } = require('../../controllers/apiCalls/locationControllers');
 
 router.get('/country', getCountry);
 router.get('/state/:id', getState);

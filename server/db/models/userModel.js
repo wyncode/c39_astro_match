@@ -3,7 +3,8 @@ const mongoose = require('mongoose'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken'),
   mzsi = require('mzsi'),
-  { getLatLon } = require('../../controllers/apiCalls/zipcodeController');
+  { getLatLon } = require('../../controllers/apiCalls/zipcodeController'),
+  { getSigns } = require('../../controllers/apiCalls/zodiacController');
 
 const today = new Date().getTime();
 const eighteenYears = 568025136000;
@@ -231,7 +232,10 @@ UserSchema.pre('save', async function (next) {
   }
 
   if (user.isModified('birthdayCoords')) {
-    //need to fetch to API
+    let planetInfo = getSigns(user);
+    user.sunSign = planetInfo.planets.sun.sign;
+    user.moonSign = planetInfo.planets.moon.sign;
+    user.ascSign = planetInfo.angles.asc.sign;
   }
   next();
 });
