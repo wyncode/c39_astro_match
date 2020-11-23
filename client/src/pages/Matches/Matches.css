@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+.background {
+  width: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  top: 10px;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 28px;
+  color: #dfbc60;
+  align-self: center;
+  padding-top: 50px;
+  padding-bottom: 88px;
+}
+.matchProfile {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  height: 18em;
+}
+.dynamicPicture {
+  position: relative;
+  margin-right: 10%;
+  width: 250px;
+  height: 250px;
+}
+.matchImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #c4c4c4;
+  border: 0.15px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.viewProfile {
+  position: absolute;
+  left: 12%;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #dfbc60;
+  text-shadow: -0.15px 0 white, 0 0.15px white, 0.15px 0 white, 0 -0.15px white;
+}
+
+.ascendant {
+  position: absolute;
+  bottom: 0;
+  background: #ffffff;
+  width: 20px;
+  height: 20px;
+}
+.moon {
+  position: absolute;
+  left: 47%;
+  right: 35%;
+  bottom: 0;
+  background: #ffffff;
+  width: 20px;
+  height: 20px;
+}
+.starsign {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  width: 20px;
+  height: 20px;
+}
+.name {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 30px;
+  color: #dfbc60;
+}
+.age {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  color: #ffffff;
+}
+.location {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  color: #ffffff;
+}
+.percentageMatch {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  color: #dfbc60;
+}
+.matchBio {
+  position: absolute;
+  width: 25%;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 20px;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.button {
+  position: absolute;
+  bottom: 5%;
+  width: 374px;
+  height: 44px;
+  background: #dfbc60;
+  border: 1px solid #181827;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.buttonText {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 18.18%;
+  bottom: 18.18%;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  color: #181827;
+}
