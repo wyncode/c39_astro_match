@@ -69,7 +69,7 @@ const PartTwo = ({ handleChange, userData }) => {
             })}
         </NativeSelect>
       </FormControl>
-      {userData.birthCountry === 'United States' && (
+      {userData.birthCountry && (
         <SelectState handleChange={handleChange} userData={userData} />
       )}
       {userData.birthState && (

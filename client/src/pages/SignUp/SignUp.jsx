@@ -43,7 +43,7 @@ const SignUp = ({ history }) => {
       console.log(`here is the data saved to the DB`, response.data);
       sessionStorage.setItem('user', response.data);
       setCurrentUser(response.data.user);
-      history.push('/profile');
+      history.push('/preferences');
     } catch (error) {
       alert(error);
       console.log('SignUp Error: ', error);

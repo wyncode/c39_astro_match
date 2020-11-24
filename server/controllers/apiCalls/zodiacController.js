@@ -26,6 +26,5 @@ exports.getSigns = async (user) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    console.log('nonon');
   }
 };

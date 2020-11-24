@@ -18,10 +18,10 @@ const SelectCity = ({ handleChange, userData }) => {
   };
 
   return (
-    <div>
+    <>
       <FormControl id="birthCity" className="user-input">
         <InputLabel htmlFor="birthCity" id="birthCity">
-          country
+          city
         </InputLabel>
         <NativeSelect
           id="birthCity"
@@ -40,7 +40,7 @@ const SelectCity = ({ handleChange, userData }) => {
             })}
         </NativeSelect>
       </FormControl>
-    </div>
+    </>
   );
 };
 

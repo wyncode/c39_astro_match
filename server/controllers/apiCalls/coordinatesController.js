@@ -19,8 +19,6 @@ exports.getLatLonFC = async (city, state) => {
     let foundCity = response.data.records.filter(
       (x) => x.fields.state[0] === state[0]
     );
-    console.log(foundCity);
-    console.log(foundCity[0].fields.geo_point_2d);
     return foundCity[0].fields.geo_point_2d;
   } catch (error) {
     console.log(error);

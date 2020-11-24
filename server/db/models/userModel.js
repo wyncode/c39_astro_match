@@ -77,7 +77,6 @@ const UserSchema = new mongoose.Schema(
           throw new Error('Zip code is empty');
         }
         if (value.toString().length !== 5) {
-          console.log(typeof value);
           throw new Error('Zip code must be 5 digits');
         }
       }
@@ -195,9 +194,7 @@ UserSchema.methods.generateAuthToken = async function () {
     process.env.JWT_SECRET,
     { expiresIn: '24h' }
   );
-  console.log(user);
   user.tokens = user.tokens.concat({ token });
-  console.log(user);
   await user.save();
   return token;
 };
