@@ -13,8 +13,6 @@ const PartTwo = ({ handleChange, userData }) => {
   const [apiData, setApiData] = useState('');
 
   const handleSearch = async () => {
-    console.log('Called');
-    console.log(process.env.REACT_APP_AUTH_TOKEN);
     try {
       let response = await axios.get('/api/location/country');
       console.log('ididt', response.data);
