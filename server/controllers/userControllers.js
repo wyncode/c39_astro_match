@@ -8,10 +8,7 @@ const User = require('../db/models/userModel'),
   jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
-  //will need to refactor below eventually
-  if (req.body.undefined) {
-    req.body.birthPlace = req.body.undefined;
-  }
+
   let nameArr = req.body.name.split(' ');
   req.body.firstName = nameArr[0];
   req.body.lastName = nameArr[1];
@@ -27,6 +24,12 @@ exports.createUser = async (req, res) => {
       console.log(err);
       res.status(400).json(err);
     } else {
+      const token = user.generateAuthToken();
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        sameSite: 'Strict',
+        secure: process.env.NODE_ENV !== 'production' ? false : true
+      });
       res.status(201).json(user);
     }
   });

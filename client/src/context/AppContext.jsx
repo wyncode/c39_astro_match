@@ -14,12 +14,13 @@ export const AppContextProvider = ({ children }) => {
         .get(`/api/users/me`, {
           withCredentials: true
         })
-        .then(({ data }) => {
-          setCurrentUser(data);
+        .then((response) => {
+          console.log(response.data);
+          setCurrentUser(response.data);
         })
         .catch((error) => console.error(error));
     }
-  }, [currentUser, user]);
+  }, [currentUser, user, setCurrentUser]);
 
   return (
     <AppContext.Provider
