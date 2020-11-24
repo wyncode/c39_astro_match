@@ -22,7 +22,7 @@ const Preferences = ({ history }) => {
   const { setCurrentUser } = useContext(AppContext);
 
   const [preferences, setPreferences] = useState({});
-  const [zodiacPref, setZodiacPref] = useState(['Taruas']);
+  const [zodiacPref, setZodiacPref] = useState([]);
 
   const handleChange = (e, value) => {
     setPreferences({ ...preferences, [e.target.ariaLabel]: value });
@@ -32,14 +32,23 @@ const Preferences = ({ history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(`Will send this to the backend`, {
-        zodiac: zodiacPref,
-        ...preferences
-      });
-      // const response = await axios.post('/api/login', loginData);
+      // console.log(`Will send this to the backend`, {
+      //   zodiac: zodiacPref,
+      //   ...preferences
+      // });
+      const response = await axios.post(
+        '/api/preferences',
+        {
+          zodiac: zodiacPref,
+          ...preferences
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data);
       // sessionStorage.setItem('user', response.data);
       // setCurrentUser(response.data.user);
-      // history.push('/profile');
+      //do we need two routes for create preference or do we need one page with conditional rendering?!
+      history.push('/profile');
     } catch (error) {
       console.log('SignUp Error: ', error);
     }
