@@ -8,7 +8,6 @@ const User = require('../db/models/userModel'),
   jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
-
   //will need to refactor below eventually
   if (req.body.undefined) {
     req.body.birthPlace = req.body.undefined;
