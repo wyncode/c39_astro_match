@@ -54,8 +54,13 @@ const RangeSlider = (props) => {
       <StyledSlider
         step={props.step}
         marks={marks}
+        name={props.name}
+        id={'FIND ME'}
+        // value
+        // onChange={props.handleChange}
+        onChangeCommitted={props.handleChange}
         valueLabelDisplay="auto"
-        getAriaLabel={(index) => (index === 0 ? 'Minimum age' : 'Maximum age')}
+        getAriaLabel={() => (props.id === 'age' ? 'age' : 'distance')}
         defaultValue={
           props.id === 'age'
             ? [props.min, props.max]
