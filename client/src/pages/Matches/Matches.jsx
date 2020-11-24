@@ -1,8 +1,8 @@
 import React from 'react';
 import './Matches.css';
-import Scorpio from '../../components/Images/Vectors/Matches/Scorpio.svg';
-import Capricorn from '../../components/Images/Vectors/Matches/Scorpio.svg';
-import Pisces from '../../components/Images/Vectors/Matches/Scorpio.svg';
+import Scorpio from '../../components/Images/Vectors/Matches/Scorpio.png';
+import Capricorn from '../../components/Images/Vectors/Matches/Scorpio.png';
+import Pisces from '../../components/Images/Vectors/Matches/Scorpio.png';
 import ManThree from '../../components/Images/Vectors/Matches/ManThree.svg';
 
 const Matches = () => {
