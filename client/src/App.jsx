@@ -4,7 +4,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile/Profile';
 import Preferences from './pages/Preferences/Preferences';
 import { AppContextProvider } from './context/AppContext';
 import './App.css';

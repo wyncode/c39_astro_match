@@ -2,8 +2,8 @@ import ReactDOM from 'react-dom';
 import React, { Component, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import SignUp from '../SignUp';
-import Login from '../Login';
+import SignUp from '../SignUp/SignUp';
+import Login from '../Login/Login';
 
 const Home = () => {
   return (
