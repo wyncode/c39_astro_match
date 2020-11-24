@@ -8,9 +8,10 @@ const User = require('../db/models/userModel'),
   jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
-  // let nameArr = req.body.name.split(' ');
-  // req.body.firstName = nameArr[0];
-  // req.body.lastName = nameArr[1];
+
+  let nameArr = req.body.name.split(' ');
+  req.body.firstName = nameArr[0];
+  req.body.lastName = nameArr[1];
 
   let birthArr = req.body.birthday.split('-');
   req.body.birthDate = Number(birthArr[2]);

@@ -42,7 +42,6 @@ const PartThree = ({ handleChange }) => {
           className="user-input"
           required
         />
-
         <h2> Please confirm your password. </h2>
         <TextField
           id="password_confirm"
@@ -56,4 +55,5 @@ const PartThree = ({ handleChange }) => {
     </>
   );
 };
+
 export default PartThree;

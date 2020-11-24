@@ -17,6 +17,5 @@ const Profile = () => {
       <p>Top personality traits are based on: </p>
     </div>
   );
-};
-
+  
 export default Profile;
