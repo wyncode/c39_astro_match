@@ -60,7 +60,7 @@ const UserSchema = new mongoose.Schema(
     },
     zipCode: {
       type: Number,
-      required: true,
+      // required: true,
       trim: true,
       validate(value) {
         if (!value) {
