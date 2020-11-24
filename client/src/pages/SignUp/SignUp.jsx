@@ -6,7 +6,7 @@ import { schema } from './schema';
 import Start from './Parts/Start';
 
 const SignUp = ({ history }) => {
-  const { gender, setGender, setCurrentUser } = useContext(AppContext);
+  const { gender, setCurrentUser } = useContext(AppContext);
   const [activeSchema, setActiveSchema] = useState(null);
 
   const [userData, setUserData] = useState('');
@@ -17,9 +17,7 @@ const SignUp = ({ history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(activeSchema);
     const nextForm = activeSchema?.next;
-    // console.log(nextForm);
 
     if (
       new Date().getTime() - new Date(userData.birthday).getTime() <
@@ -45,7 +43,7 @@ const SignUp = ({ history }) => {
       console.log(`here is the data saved to the DB`, response.data);
       sessionStorage.setItem('user', response.data);
       setCurrentUser(response.data.user);
-      history.push('/profile');
+      history.push('/preferences');
     } catch (error) {
       alert(error);
       console.log('SignUp Error: ', error);
@@ -67,7 +65,7 @@ const SignUp = ({ history }) => {
       <form onSubmit={handleSubmit} className={'container'}>
         <p className={'title'}> Astrodate </p>
         <p className={'sub-title'}> LET'S GET STARTED! </p>
-        <ActiveForm handleChange={handleChange} />
+        <ActiveForm handleChange={handleChange} userData={userData} />
         <br />
         <button className={'sub-button'} type="submit">
           {' '}

@@ -1,9 +1,10 @@
 require('./db/config');
 const express = require('express'),
   path = require('path'),
-  openRoutes = require('./routes/open'),
-  messageRoutes = require('./routes/secure/chat/messageRoutes'),
-  conversationRoutes = require('./routes/secure/chat/conversationRoutes');
+  openRoutes = require('./routes/open/index'),
+  locationRoutes = require('./routes/open/location');
+(messageRoutes = require('./routes/secure/chat/messageRoutes')),
+  (conversationRoutes = require('./routes/secure/chat/conversationRoutes'));
 (userRouter = require('./routes/secure/userRoute')),
   (cookieParser = require('cookie-parser')),
   (passport = require('./middleware/authentication/index'));
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // Unauthenticated routes
 app.use('/api', openRoutes);
+app.use('/api/location', locationRoutes);
 
 app.use(cookieParser());
 
