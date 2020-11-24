@@ -6,13 +6,10 @@ const {
   createPreference
 } = require('../../controllers/preferenceController');
 
-//UPDATE GET
 router.get('/', getPreference);
-//UPDATE PREF
-// router.post('/pref', updatePreference);
-router.post('/test', createPreference);
 
-//DELETE PREF
-router.delete('/', deletePreference);
+// router.post('/udpate/:id', updatePreference);
+router.post('/', createPreference);
+router.delete('/delete/:id', deletePreference);
 
 module.exports = router;

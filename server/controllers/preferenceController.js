@@ -1,35 +1,42 @@
 const Preference = require('../db/models/preferenceModel');
 
-//which export model to use
-
 //CREATE PREFERENCE
 exports.createPreference = async (req, res) => {
-  Preference.create(req.body, (error, preferences) => {
-    if (error) {
-      console.log(`Error creating preferences at ${new Date()}: ${error}`);
-    } else {
-      res.status(201).json(preferences);
-    }
-  });
+  console.log(req.body);
+  try {
+    const preferences = await new Preference({
+      ...req.body,
+      owner: req.user._id
+    });
+    await preferences.save();
+    res.status(200).send(preferences);
+  } catch (error) {
+    console.log(`Error creating preferences at ${new Date()}: ${error}`);
+    res.status(400).json({ error: error.message });
+  }
+  // Preference.create(req.body, (error, preferences) => {
+  //   if (error) {
+  //     console.log(`Error creating preferences at ${new Date()}: ${error}`);
+  //   } else {
+  //     res.status(201).json(preferences);
+  //   }
+  // });
 };
 
 //GET PREFERENCE
 exports.getPreference = async (req, res) => {
-  //need to iron out how we are passing the user ID through
-  //for now addressing user ID as userId
-  Preference.findById(req.params.userId, (error, preferences) => {
-    if (error) {
-      console.log(`Error creating preferences at ${new Date()}: ${error}`);
-      res.status;
+  try {
+    const preferences = await Preference.findOne(req.params.id, req.user._id);
+    if (!preferences) {
+      console.log(`Preference for user does not exist`);
+      res.status(410);
     } else {
-      if (!preferences) {
-        console.log(`Preference for user does not exist`);
-        res.status(410);
-      } else {
-        res.status(201).json(preferences);
-      }
+      res.status(201).json(preferences);
     }
-  });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error });
+  }
 };
 
 //UPDATE PREF
@@ -65,3 +72,8 @@ exports.deletePreference = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+// const task = await Task.findOneAndDelete({
+//   _id: req.params.id,
+//   owner: req.user._id
+// })
