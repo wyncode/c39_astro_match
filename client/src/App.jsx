@@ -20,8 +20,12 @@ const App = () => {
       {/* <NavigationBar /> */}
       <BrowserRouter>
         <Switch>
+<<<<<<< HEAD
           <Route exact path="/" component={Home} />
           <Route exact path="/matches" component={Matches} />
+=======
+          <PrivateRoute exact path="/" component={Home} />
+>>>>>>> 6b577db... check in
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/profile" component={Profile} />

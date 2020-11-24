@@ -6,6 +6,7 @@ import { FormControlLabel } from '@material-ui/core';
 import InputCircle from './InputCircle';
 import axios from 'axios';
 import { AppContext } from '../../context/AppContext';
+import Interested from './Interested';
 
 const options = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo'];
 
@@ -24,9 +25,12 @@ const Preferences = ({ history }) => {
   const [preferences, setPreferences] = useState({});
   const [zodiacPref, setZodiacPref] = useState([]);
 
+  const handleCheck = (e) => {
+    setZodiacPref([...zodiacPref, e.target.value && e.target.value]);
+  };
+
   const handleChange = (e, value) => {
     setPreferences({ ...preferences, [e.target.ariaLabel]: value });
-    setZodiacPref([...zodiacPref, e.target.value]);
   };
 
   const handleSubmit = async (e) => {
@@ -59,6 +63,9 @@ const Preferences = ({ history }) => {
       <form onSubmit={handleSubmit}>
         <h1 className={'title'}> Astrodate </h1>
         <p className={'select-line'}>SELECT YOUR PREFERENCES</p>
+
+        <p className={'dist-line'}> YOU ARE INTERESTED IN </p>
+        <Interested />
         <p className={'dist-line'}> SELECT AGE RANGE </p>
 
         <RangeSlider
@@ -87,7 +94,7 @@ const Preferences = ({ history }) => {
               <FormControlLabel
                 value="end"
                 control={
-                  <InputCircle handleChange={handleChange} value={sign} />
+                  <InputCircle handleChange={handleCheck} value={sign} />
                 }
                 label={sign}
                 className={'radio-buttons-signs'}
@@ -99,7 +106,7 @@ const Preferences = ({ history }) => {
               <FormControlLabel
                 value="end"
                 control={
-                  <InputCircle value={sign} handleChange={handleChange} />
+                  <InputCircle value={sign} handleChange={handleCheck} />
                 }
                 label={sign}
                 className={'radio-buttons-signs'}
