@@ -4,11 +4,12 @@ const mongoose = require('mongoose'),
   Conversation = require('../../db/models/chat/privateMessages/conversationModel');
 
 exports.sendMessage = async (req, res) => {
-  const { sender, recipient, text, conversation } = req.body;
+  const { participants, text, conversation } = req.body;
   try {
     const message = new Message(req.body);
     await message.save();
     console.log(message);
+    console.log(message.conversation);
     const found = await Conversation.findById(conversation);
     console.log(found);
     found.messages.push(message);

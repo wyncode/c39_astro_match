@@ -52,7 +52,7 @@ const Room = mongoose.model('Room', roomSchema);
 
 module.exports = Room;
 
-// onClick
+// onClick - deleting your thread
 //if.... (req.id === originalPoster.type && participants.length === 1) {
 // try{
 // const deletedRoom = await Room.findByIdAndDelete({

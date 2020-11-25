@@ -22,8 +22,8 @@ const messageSchema = new mongoose.Schema(
     },
     senderAvatar: {
       type: String,
-      ref: 'User',
-      required: true
+      ref: 'User'
+      // required: true
     },
     text: {
       type: String,

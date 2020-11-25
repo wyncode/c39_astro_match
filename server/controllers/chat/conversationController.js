@@ -4,14 +4,19 @@ const mongoose = require('mongoose'),
   Conversation = require('../../db/models/chat/privateMessages/conversationModel');
 
 exports.createConversation = async (req, res) => {
-  const { sender, recipient } = req.body;
-  if (!recipient) {
-    return res.status(500).json('Error: Having trouble finding match');
-  }
+  const { participants } = req.body;
   try {
     const conversation = new Conversation(req.body);
-    conversation.participants.push(sender, recipient);
+    // conversation.participants.push(participants);
+    conversation.participants = participants;
+    console.log('I made it after the array');
     await conversation.save();
+    let userOne = await User.findById(participants[0]);
+    let userTwo = await User.findById(participants[1]);
+    userOne.inbox.push(conversation);
+    userTwo.inbox.push(conversation);
+    await userOne.save();
+    await userTwo.save();
     console.log(conversation);
     res.status(201).json(conversation);
   } catch (error) {
