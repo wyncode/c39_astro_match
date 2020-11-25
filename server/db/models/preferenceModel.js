@@ -29,7 +29,6 @@ const PreferenceSchema = new mongoose.Schema({
       ]
     }
   ],
-  religion: String,
   age: [
     {
       type: Number,
@@ -62,11 +61,4 @@ const PreferenceSchema = new mongoose.Schema({
   ]
 });
 
-PreferenceSchema.pre('save', async function (next) {
-  const preference = this;
-  if (preference.isModified('zodiac')) {
-    preference.zodiac = preference.zodiac.filter((x) => x);
-  }
-  next();
-});
 module.exports = mongoose.model('Preference', PreferenceSchema);

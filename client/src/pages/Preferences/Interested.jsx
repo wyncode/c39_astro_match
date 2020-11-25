@@ -8,7 +8,7 @@ const options = [
   'Trans Man',
   'Trans Woman',
   'Cis Woman',
-  'Non-Binary'
+  'Non-binary'
 ];
 
 //label on top and un underline to choose whichone you have
@@ -17,9 +17,9 @@ const useStyles = makeStyles({
   root: {
     background: '#ffffff',
     padding: '0em',
-    borderRadius: '50%',
-    height: '6em',
-    width: '6em',
+    borderRadius: '1em',
+    height: '4em',
+    width: '7em',
     border: 0,
     color: '#181826'
     //   height: 48,
@@ -32,10 +32,10 @@ const useStyles = makeStyles({
   // },
   icon: {
     //the icon (if it's a check mark or not oooooh)
-    // borderRadius: '50%',
+    borderRadius: '50%',
     // backgroundColor: 'blue',
     width: '1em',
-    height: '0.5em',
+    height: '1em',
     'input:disabled ~ &': {
       boxShadow: 'none',
       background: 'green'
@@ -43,30 +43,28 @@ const useStyles = makeStyles({
   },
   checkedIcon: {
     backgroundColor: '#ffd76e',
-    width: '1em',
-    height: '0.5em',
+    // width: '1em',
+    // height: '0.5em',
     // visibility: 'hidden',
     '&:before': {
       //before the check, like the hover over
       // borderRadius: '5px',
-      display: 'block',
-      width: '1em',
-      height: '0.5em',
+      // display: 'block',
+      // width: '1em',
+      // height: '0.5em',
       content: '""'
       // visibility: 'hidden',
     }
   }
 });
 
-const Interested = () => {
+const Interested = (props) => {
   const classes = useStyles();
-  const [clicked, setClicked] = useState(false);
-  const [classThing, setClassThing] = useState('');
 
-  const handleClick = (e) => {
-    console.log(e.target);
-    console.log(e.target.name);
-  };
+  // const handleClick = (e) => {
+  //   console.log(e.target);
+  //   console.log(e.target.name);
+  // };
   return (
     <div>
       <div className={`answer-container`}>
@@ -90,11 +88,14 @@ const Interested = () => {
 
           <FormControlLabel
             className={`${classes.root} centerMe`}
-            labelPlacement="top"
+            // onClick={props.handleClick}
+            labelPlacement="end"
             // value="top"
             control={
               <Checkbox
                 // className={classes.root}
+                onClick={props.handleClick}
+                value={identity}
                 checkedIcon={
                   <span className={clsx(classes.icon, classes.checkedIcon)} />
                 }

@@ -5,10 +5,10 @@ const {
   deletePreference,
   createPreference
 } = require('../../controllers/preferenceController');
+// router.patch('/udpate/:id', updatePreference);
+router.get('/:id', getPreference);
 
-router.get('/', getPreference);
-
-// router.post('/udpate/:id', updatePreference);
+router.patch('/update/:id', updatePreference);
 router.post('/', createPreference);
 router.delete('/delete/:id', deletePreference);
 

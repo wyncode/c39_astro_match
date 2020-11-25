@@ -8,6 +8,7 @@ const mongoose = require('mongoose'),
   } = require('../../controllers/apiCalls/coordinatesController'),
   { getSigns } = require('../../controllers/apiCalls/zodiacController');
 
+
 const signs = [
   'Aries',
   'Taurus',
@@ -212,6 +213,7 @@ UserSchema.pre('save', async function (next) {
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
   }
+<<<<<<< HEAD
 
   if (user.isModified('birthCity')) {
     let retCoords = await getLatLonFC(user.birthCity, user.birthState);
@@ -228,6 +230,10 @@ UserSchema.pre('save', async function (next) {
     user.sunSign = planetInfo.planets.sun.sign;
     user.moonSign = planetInfo.planets.moon.sign;
     user.ascSign = planetInfo.angles.asc.sign;
+=======
+  if (user.isModified('birthday')) {
+    user.age = Math.floor((today - user.birthday.getTime()) / oneYear);
+>>>>>>> db0d23b... added preferences functinality
   }
   next();
 });

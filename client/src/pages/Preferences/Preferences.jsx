@@ -24,6 +24,11 @@ const Preferences = ({ history }) => {
 
   const [preferences, setPreferences] = useState({});
   const [zodiacPref, setZodiacPref] = useState([]);
+  const [interestedIn, setInterestedIn] = useState([]);
+
+  const handleClick = (e) => {
+    setInterestedIn([...interestedIn, e.target.value && e.target.value]);
+  };
 
   const handleCheck = (e) => {
     setZodiacPref([...zodiacPref, e.target.value && e.target.value]);
@@ -44,7 +49,8 @@ const Preferences = ({ history }) => {
         '/api/preferences',
         {
           zodiac: zodiacPref,
-          ...preferences
+          ...preferences,
+          interestedIn
         },
         { withCredentials: true }
       );
@@ -65,7 +71,7 @@ const Preferences = ({ history }) => {
         <p className={'select-line'}>SELECT YOUR PREFERENCES</p>
 
         <p className={'dist-line'}> YOU ARE INTERESTED IN </p>
-        <Interested />
+        <Interested handleClick={handleClick} />
         <p className={'dist-line'}> SELECT AGE RANGE </p>
 
         <RangeSlider
