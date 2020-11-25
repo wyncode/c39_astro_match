@@ -10,7 +10,7 @@ const PreferenceSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
-  sunSign: [
+  zodiac: [
     {
       type: String,
       enum: [
@@ -29,15 +29,16 @@ const PreferenceSchema = new mongoose.Schema({
       ]
     }
   ],
-  religion: String,
-  age: {
-    type: Number,
-    validate(value) {
-      if (value < 18) {
-        throw new Error('That is not a valid age');
+  age: [
+    {
+      type: Number,
+      validate(value) {
+        if (value < 18) {
+          throw new Error('That is not a valid age');
+        }
       }
     }
-  },
+  ],
   interestedIn: [
     {
       type: String,
@@ -46,6 +47,9 @@ const PreferenceSchema = new mongoose.Schema({
       enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
     }
   ],
+  distance: {
+    type: Number
+  },
   //will need to figure out how to fetch location relative to others
   location: [
     {
