@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const dummy = require('mongoose-dummy');
 // moment = require('moment');
 const Conversation = require('./conversationModel');
 
@@ -41,9 +40,6 @@ const messageSchema = new mongoose.Schema(
     timestamp: true
   }
 );
-
-let randomMessages = dummy(model, { returnDate: true });
-console.log(randomObject);
 
 messageSchema.methods.addToConversation = async function () {
   const conversation = Conversation.ObjectId;
