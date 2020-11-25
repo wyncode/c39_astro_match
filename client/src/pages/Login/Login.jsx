@@ -29,7 +29,7 @@ const Login = ({ history }) => {
   };
 
   return (
-    <div className={'container'}>
+    <div className={'container-login'}>
       <h1 className={'title-log'}> Astrodate </h1>
       <p className={'tag-line'}>Find Love in the Stars! </p>
       <p className={'help-text'}>

@@ -17,7 +17,7 @@ export class NavigationBar extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

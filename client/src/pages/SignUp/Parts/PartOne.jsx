@@ -6,24 +6,24 @@ const options = [
   'Trans Man',
   'Trans Woman',
   'Cis Woman',
-  'Non-Binary'
+  'Non-binary'
 ];
-const PartOne = ({ handleChange }) => {
-  const { gender, setGender } = useContext(AppContext);
+
+const PartOne = () => {
+  const { setGender } = useContext(AppContext);
 
   const handleClick = (e) => {
-    // console.log(gender);
     setGender(e.target.innerText);
   };
 
   return (
     <>
-      <h2 className={`form-question`}> How do you identify?</h2>
-      <div className={`answer-container`}>
+      <h2 className={`form-question-su`}> How do you identify?</h2>
+      <div className={`answer-container-su`}>
         {options.map((identity) => (
           <div
             key={identity}
-            className={`button-identity`}
+            className={`button-identity-su`}
             id="gender"
             onClick={handleClick}
             value={identity}

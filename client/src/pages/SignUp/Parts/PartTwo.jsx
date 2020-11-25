@@ -2,24 +2,28 @@ import React, { useState } from 'react';
 import {
   TextField,
   FormControl,
-  Input,
   InputLabel,
-  Select,
-  MenuItem
+  NativeSelect
 } from '@material-ui/core';
+import SelectState from './SelectState';
+import SelectCity from './SelectCity';
+import axios from 'axios';
 
-const PartTwo = ({ handleChange }) => {
+const PartTwo = ({ handleChange, userData }) => {
   const [apiData, setApiData] = useState('');
-  const handleSearch = (e) => {
-    fetch(`http://restcountries.eu/rest/v2/`)
-      .then((response) => response.json())
-      .then((countries) => setApiData(countries))
-      .catch((e) => console.log(e));
-    // console.log(cities);
+
+  const handleSearch = async () => {
+    try {
+      let response = await axios.get('/api/location/country');
+      console.log('ididt', response.data);
+      setApiData(response.data);
+    } catch (error) {
+      console.log('here is error', error);
+    }
   };
 
   return (
-    <div className={'text-field-holder'}>
+    <div className={'text-field-holder-su'}>
       <h2> When were you born? </h2>
       <TextField
         variant="filled"
@@ -28,54 +32,51 @@ const PartTwo = ({ handleChange }) => {
         type="date"
         defaultValue="2002-11-20"
         onChange={handleChange}
-        className="user-input"
+        className="user-input-su"
         required
       />
-      {/* <SpeakerAvatar question={'What time were you born?'} /> */}
       <h2> What time were you born? </h2>
       <TextField
         variant="filled"
         id="birthTime"
         type="time"
         onChange={handleChange}
-        className="user-input"
+        className="user-input-su"
         required
       />
       <br />
       <h2> Where were you born? </h2>
-      <FormControl id="birthPlace" className="user-input">
+      <FormControl id="birthPlace" className="user-input-su">
         <InputLabel htmlFor="birthPlace" id="birthPlace">
           country
         </InputLabel>
-        {/* why is birth place undefined  */}
-        <Select
-          id="birthPlace"
+        <NativeSelect
+          id="birthCountry"
           defaultValue=""
           onChange={handleChange}
           onClick={handleSearch}
           required
         >
-          {/* will have to fetch using api here like in wyn weather app, will populate out menu item */}
-          {/* <MenuItem value="">
-            <em>None</em>
-          </MenuItem> */}
           {apiData &&
             apiData.map((country, i) => {
               return (
-                <MenuItem id="birthPlace" key={i} value={country.name}>
-                  {country.name}
-                </MenuItem>
+                <option id="birthPlace" key={i} value={country.country_name}>
+                  {country.country_name}
+                </option>
               );
             })}
-          {/* <MenuItem id="birthPlace" value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem id="birthPlace" value={10}>
-            {' '}
-            Ten{' '}
-          </MenuItem> */}
-        </Select>
+        </NativeSelect>
       </FormControl>
+      {userData.birthCountry && (
+        <SelectState
+          className="user-input-su"
+          handleChange={handleChange}
+          userData={userData}
+        />
+      )}
+      {userData.birthState && (
+        <SelectCity handleChange={handleChange} userData={userData} />
+      )}
     </div>
   );
 };
