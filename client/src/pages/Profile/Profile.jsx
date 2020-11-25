@@ -4,7 +4,7 @@ import axios from 'axios';
 // import swal from 'sweetalert';
 // import { TextField } from '@material-ui/core';
 // import { Container, Image, Button } from 'react-bootstrap';
-import Navigation from '../../components/NavigationBar';
+// import Navigation from '../../components/NavigationBar';
 
 const Profile = () => {
   //bring in user from app context
@@ -12,10 +12,11 @@ const Profile = () => {
 
   return (
     <div>
-      <Navigation />
+      {/* <Navigation /> */}
       <h1>Your Profile</h1>
       <p>Top personality traits are based on: </p>
     </div>
   );
-  
+};
+
 export default Profile;

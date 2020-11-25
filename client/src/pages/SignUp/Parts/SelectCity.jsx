@@ -19,7 +19,7 @@ const SelectCity = ({ handleChange, userData }) => {
 
   return (
     <>
-      <FormControl id="birthCity" className="user-input">
+      <FormControl id="birthCity" className="user-input-su">
         <InputLabel htmlFor="birthCity" id="birthCity">
           city
         </InputLabel>
