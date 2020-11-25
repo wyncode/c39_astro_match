@@ -19,7 +19,7 @@ const SelectState = ({ handleChange, userData }) => {
 
   return (
     <>
-      <FormControl id="birthState" className="user-input">
+      <FormControl id="birthState" className="user-input-su">
         <InputLabel htmlFor="birthState" id="birthState">
           state
         </InputLabel>

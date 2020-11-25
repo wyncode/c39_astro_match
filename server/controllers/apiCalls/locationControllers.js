@@ -14,6 +14,7 @@ exports.getCountry = async (req, res) => {
     );
     res.json(data.data);
   } catch (error) {
+    console.log(error);
     res.status(500).send({ error: error.message });
   }
 };

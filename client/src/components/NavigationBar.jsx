@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Nav} from 'react-bootstrap';
+// import {Nav} from 'react-bootstrap';
 
 // import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ export class NavigationBar extends Component {
     return (
       <div>
         Hello
-    {/* <Nav>
+        {/* <Nav>
       <Nav.Item>
         <Nav.Link href="../App.jsx"><img src="../components/Images/Vectors/LogoHorizontal.png" width="30" height="30" alt=""></img></Nav.Link>
       </Nav.Item>
@@ -17,8 +17,8 @@ export class NavigationBar extends Component {
       </Nav.Item>
     </Nav> */}
       </div>
-    )
+    );
   }
 }
 
-export default NavigationBar
+export default NavigationBar;

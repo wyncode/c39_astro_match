@@ -61,13 +61,13 @@ const SignUp = ({ history }) => {
   const ActiveForm = activeSchema.form;
 
   return (
-    <div className={'main-holder'}>
-      <form onSubmit={handleSubmit} className={'container'}>
-        <p className={'title'}> Astrodate </p>
-        <p className={'sub-title'}> LET'S GET STARTED! </p>
+    <div className={'main-holder-sign-up'}>
+      <form onSubmit={handleSubmit} className={'container-caro'}>
+        <p className={'title-su'}> Astrodate </p>
+        <p className={'sub-title-su'}> LET'S GET STARTED! </p>
         <ActiveForm handleChange={handleChange} userData={userData} />
         <br />
-        <button className={'sub-button'} type="submit">
+        <button className={'sub-button-su'} type="submit">
           {' '}
           {activeSchema.next ? 'Next' : 'Submit'}{' '}
         </button>

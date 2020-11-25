@@ -23,7 +23,7 @@ const PartTwo = ({ handleChange, userData }) => {
   };
 
   return (
-    <div className={'text-field-holder'}>
+    <div className={'text-field-holder-su'}>
       <h2> When were you born? </h2>
       <TextField
         variant="filled"
@@ -32,7 +32,7 @@ const PartTwo = ({ handleChange, userData }) => {
         type="date"
         defaultValue="2002-11-20"
         onChange={handleChange}
-        className="user-input"
+        className="user-input-su"
         required
       />
       <h2> What time were you born? </h2>
@@ -41,12 +41,12 @@ const PartTwo = ({ handleChange, userData }) => {
         id="birthTime"
         type="time"
         onChange={handleChange}
-        className="user-input"
+        className="user-input-su"
         required
       />
       <br />
       <h2> Where were you born? </h2>
-      <FormControl id="birthPlace" className="user-input">
+      <FormControl id="birthPlace" className="user-input-su">
         <InputLabel htmlFor="birthPlace" id="birthPlace">
           country
         </InputLabel>
@@ -68,7 +68,11 @@ const PartTwo = ({ handleChange, userData }) => {
         </NativeSelect>
       </FormControl>
       {userData.birthCountry && (
-        <SelectState handleChange={handleChange} userData={userData} />
+        <SelectState
+          className="user-input-su"
+          handleChange={handleChange}
+          userData={userData}
+        />
       )}
       {userData.birthState && (
         <SelectCity handleChange={handleChange} userData={userData} />
