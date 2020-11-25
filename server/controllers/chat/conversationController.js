@@ -44,6 +44,20 @@ exports.getConversation = async (req, res) => {
   );
 };
 
+//   exports.getConversationById = async (req, res) => {
+//     const _id = req.params.id;
+//     console.log(_id);
+//     if (!mongoose.Types.ObjectId.isValid(_id))
+//       return res.status(400).json({ message: 'not a valid thread' });
+//     try {
+//       const conversation = await Conversation.findById({ _id });
+//       if (!conversation) return res.status(400).json({ alert: 'Seems lonely. Say hello!' });
+//       res.status(200).json(conversation);
+//     } catch (error) {
+//       res.status(400).json({ error: error.message });
+//     }
+//   };
+
 exports.deleteConversationById = (req, res) => {
   Conversation.findByIdAndDelete(req.params.id)
     .then((data) => {
@@ -92,17 +106,3 @@ exports.updateConversationById = async (req, res) => {
 //     conversation.messages.push(messages);
 //     return conversation;
 // };
-
-//   exports.getConversationById = async (req, res) => {
-//     const _id = req.params.id;
-//     console.log(_id);
-//     if (!mongoose.Types.ObjectId.isValid(_id))
-//       return res.status(400).json({ message: 'not a valid thread' });
-//     try {
-//       const conversation = await Conversation.findById({ _id });
-//       if (!conversation) return res.status(400).json({ alert: 'Seems lonely. Say hello!' });
-//       res.status(200).json(conversation);
-//     } catch (error) {
-//       res.status(400).json({ error: error.message });
-//     }
-//   };

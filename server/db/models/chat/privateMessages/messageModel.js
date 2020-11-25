@@ -1,5 +1,6 @@
-const mongoose = require('mongoose'),
-  moment = require('moment');
+const mongoose = require('mongoose');
+const dummy = require('mongoose-dummy');
+// moment = require('moment');
 const Conversation = require('./conversationModel');
 
 const messageSchema = new mongoose.Schema(
@@ -8,19 +9,20 @@ const messageSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Conversation'
     },
-    // participants: {
-    //     type: this.messageSchema.recipient.type && this.messageSchema.sender.type
-    // },
-    sender: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
+    participants: {
+      sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
+      recipient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      }
     },
     senderAvatar: {
-      type: String
-    },
-    recipient: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: 'User',
       required: true
     },
@@ -40,6 +42,9 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
+let randomMessages = dummy(model, { returnDate: true });
+console.log(randomObject);
+
 messageSchema.methods.addToConversation = async function () {
   const conversation = Conversation.ObjectId;
   // next two lines are for matching purposes
@@ -52,7 +57,6 @@ messageSchema.methods.addToConversation = async function () {
     sender: this.sender,
     timestamp: this.timestamp
   };
-
   conversation.messages.push(messages);
   return conversation;
 };

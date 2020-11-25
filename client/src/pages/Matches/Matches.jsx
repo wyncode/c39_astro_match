@@ -23,7 +23,7 @@ import ManThree from '../../components/Images/Vectors/Matches/ManThree.svg';
 
 
 
-// const Matches = () => {
+const Matches = () => {
 //   // some sort of state that will capture the data retrieval 
 //   const [matches, setMatches] = useState(null);
 
