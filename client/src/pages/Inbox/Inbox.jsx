@@ -3,23 +3,23 @@ import './Inbox.css';
 /*import {Message, Title, Sender, Recipient, SenderAvatar} from = require(');*/
 
 
-const Inbox = () => {
-  const [match, setMatch] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
+// const Inbox = () => {
+//   const [match, setMatch] = useState([]);
+//   const [isLoading, setLoading] = useState(true);
+//   const [isError, setError] = useState(false);
 
-  useEffect(() => {
-    const callOurYelpAPI = async () => {
-      try {
-        // FIX ME
-        const resp = await axios.get('/api/places');
-        setPlaces(resp.data);
-        setLoading(false);
-      } catch (e) {
-        setLoading(false);
-        setError(true);
-      }
-    };
+//   useEffect(() => {
+//     const callOurYelpAPI = async () => {
+//       try {
+//         // FIX ME
+//         const resp = await axios.get('/api/places');
+//         setPlaces(resp.data);
+//         setLoading(false);
+//       } catch (e) {
+//         setLoading(false);
+//         setError(true);
+//       }
+//     };
 
 //     callOurYelpAPI();
 //   }, []);

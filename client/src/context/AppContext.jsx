@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { delete } from '../../../server/app';
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
