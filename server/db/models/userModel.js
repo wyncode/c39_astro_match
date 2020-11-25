@@ -147,8 +147,7 @@ const UserSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Preference',
       // required: true,
-      trim: true,
-      enum: ['Non-binary', 'Cis Man', 'Cis Woman', 'Trans Man', 'Trans Woman']
+      trim: true
     },
     age: {
       type: Number
