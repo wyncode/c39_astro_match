@@ -35,5 +35,4 @@ const PartOne = () => {
     </>
   );
 };
-
 export default PartOne;

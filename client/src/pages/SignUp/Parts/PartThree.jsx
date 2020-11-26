@@ -55,5 +55,4 @@ const PartThree = ({ handleChange }) => {
     </>
   );
 };
-
 export default PartThree;

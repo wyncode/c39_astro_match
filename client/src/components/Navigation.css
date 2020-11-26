@@ -1,11 +1,21 @@
-body {
-  position: absolute;
-  width: 414px;
-  height: 108px;
-  left: 0px;
-  top: 1px;
+.navbar {
+  position: relative;
+  width: auto;
   background: #181827;
+  height: 15%;
 }
 
-#home {
+.logo {
+  transform: scale(2);
+  position: relative;
+  left: 8%;
+  padding-left: 20px;
+  padding-top: 30px;
+}
+
+.menu {
+  transform: scale(2);
+  position: relative;
+  right: 10%;
+  padding-top: 30px;
 }

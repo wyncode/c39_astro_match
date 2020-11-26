@@ -4,10 +4,8 @@ const mongoose = require('mongoose'),
 const conversationModel = new mongoose.Schema({
   participants: [
     {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-      }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
     }
   ],
   messages: [

@@ -1,38 +1,48 @@
 import React from 'react';
+import axios from 'axios';
+import { AppContext } from '../../context/AppContext';
 import './Matches.css';
+//import pictures?//
 
 const Matches = () => {
-  // some sort of state that will capture the data retrieval 
-  // const [matches, setMatches] = useState(null)
+  const { setCurrentUser } = useContext(AppContext);
 
-  // make a call to the backend to retrieve the users matches 
-  // useEffect to the get users matches, and set the matches state variable to the response
-
+    useEffect(() => {
+    axios
+      .get(`/api/users/match/${id}`);
+      .then((response) => {
+        setCurrentUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
 
   return ( 
     <div className="background">
 
-      <h1 className="navLogo"><img src="../../components/Images/Vectors/LogoHorizontal.png" className="logo" />AstroDate</h1>
       <h1 className="title">YOUR BEST MATCHES</h1>
-
+      {currentUser.matches.map((match) => {
+             return(
         <div className="matchProfile" id="linkToMatchProfile">
 
             <div className="dynamicPicture">
-              <img src="./academic.png" alt="match img" className="matchImage" />
+             <img src="" alt={match.name} className="matchImage" />
+
                 <span className="viewProfile">View Profile</span>
-                <img src="../../components/Images/Vectors/Scorpio-1.png" alt="{ascendant}" className="ascendant" />
-                <img src="../../components/Images/Vectors/Scorpio-1.png" alt="{moon}" className="moon" />
-                <img src="../../components/Images/Vectors/Capricorn.png" alt="{starsign}" className="starsign" />
+                <img src={match.ascendant} alt={match.ascendant} className="ascendant" />
+                <img src={match.moon} alt={match.moon} className="moon" />
+                <img src={match.starsign} alt={match.starsign} className="starsign" />
             </div>
 
             <div className="matchStats">
-              <div className="name">JOHN</div>
-              <div className="age">AGE: 49</div>
-              <div className="location">Falls Church, VA</div>
-              <div className="percentageMatch">98% Match</div>
+              <div className="name">{match.firstName}</div>
+              <div className="age">AGE: {match.age}</div>
+              <div className="location">{match.city}, {match.state}</div>
+              <div className="sunMoonAscendant"><span></span><span></span><span></span></div>
+              <div className="percentageMatch">{match.partnerPreference.zodiac.compatibility.score}% Match</div>
               <div className="matchBio">Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur.Lorem ipsum dolor sit amet, consectetur. </div>
-            </div>
-
+            </div>)   })}
             <div className="button" ><span className="buttonText">Upgrade Membership</span></div>
 
         </div>

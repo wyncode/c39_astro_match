@@ -10,18 +10,18 @@ import Preferences from './pages/Preferences/Preferences';
 
 import { AppContextProvider } from './context/AppContext';
 import './App.css';
-
 import Inbox from './pages/Inbox/Inbox';
-// import NavigationBar from './components/NavigationBar';
+import NavigationBar from './components/NavigationBar';
 
 const App = () => {
   return (
     <AppContextProvider>
-      {/* <NavigationBar /> */}
+      <NavigationBar />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/matches" component={Matches} />
+          <Route exact path='/inbox' component={Inbox} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/profile" component={Profile} />
