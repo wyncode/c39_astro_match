@@ -12,16 +12,8 @@ exports.createUser = (req, res) => {
   req.body.firstName = nameArr[0];
   req.body.lastName = nameArr[1];
 
-  let birthArr = req.body.birthday.split('-');
-  req.body.birthDate = Number(birthArr[2]);
-  req.body.birthMonth = Number(birthArr[1]);
-  req.body.birthYear = Number(birthArr[0]);
-
-  // console.log(req.body)
   User.create(req.body, async (err, user) => {
-    console.log(req.body);
     if (err) {
-      console.log(err);
       res.status(400).json(err);
     } else {
       const token = await user.generateAuthToken();
@@ -31,7 +23,6 @@ exports.createUser = (req, res) => {
         secure: process.env.NODE_ENV !== 'production' ? false : true
       });
       res.status(201).json(user);
-      console.log('have sent user');
     }
   });
 };

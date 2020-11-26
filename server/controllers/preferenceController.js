@@ -1,7 +1,6 @@
 const Preference = require('../db/models/preferenceModel');
 
 exports.createPreference = async (req, res) => {
-  console.log(req.body);
   try {
     const preferences = await new Preference({
       ...req.body,
