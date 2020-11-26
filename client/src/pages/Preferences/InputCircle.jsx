@@ -36,18 +36,23 @@ const useStyles = makeStyles({
   }
 });
 
-const InputCircle = () => {
+const InputCircle = (props) => {
   const classes = useStyles();
   return (
     <div>
       <Checkbox
         className={classes.root}
+        onChange={props.handleChange}
+        inputProps
+        value={props.value}
+        id="zodiac"
+        lab
         disableRipple
         checkedIcon={
           <span className={clsx(classes.icon, classes.checkedIcon)} />
         }
         icon={<span className={classes.icon} />}
-        inputProps={{ 'aria-label': 'decorative checkbox' }}
+        // inputProps={{ 'aria-label': 'decorative checkbox' }}
       />
     </div>
   );

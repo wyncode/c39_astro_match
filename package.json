@@ -14,6 +14,7 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "glob-to-regexp": "^0.4.1",
     "husky": "^4.3.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
@@ -28,6 +29,7 @@
     "socket.io": "^3.0.1",
     "sweetalert": "^2.1.2",
     "validator": "^13.1.17"
+    "zipcode-city-distance": "^1.0.6"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

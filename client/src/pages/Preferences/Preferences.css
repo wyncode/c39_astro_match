@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
+.title-pref {
+  font-family: Spectral;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  line-height: 37px;
+  color: #dfbc60;
+  align-self: flex-start;
+}
+
 .preferences-container {
   background-color: #181827;
   height: inherit;
