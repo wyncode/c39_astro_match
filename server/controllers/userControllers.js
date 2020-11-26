@@ -1,14 +1,13 @@
 const User = require('../db/models/userModel'),
   cloudinary = require('cloudinary').v2,
-  //   {
-  //     sendWelcomeEmail,
-  //     sendCancellationEmail,
-  //     forgotPasswordEmail
-  //   } = require('../emails/index'),
+  {
+    sendWelcomeEmail,
+    sendCancellationEmail,
+    forgotPasswordEmail
+  } = require('../emails/index'),
   jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
-
   let nameArr = req.body.name.split(' ');
   req.body.firstName = nameArr[0];
   req.body.lastName = nameArr[1];
