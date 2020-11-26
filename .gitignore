@@ -24,7 +24,6 @@ client/build
 .env.production.local
 
 # Rita's projects
-client/src/components/Images
 client/src/pages/Matches
 
 npm-debug.log*

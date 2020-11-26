@@ -1,11 +1,29 @@
-import React, { useContext, /*useState*/ } from 'react';
-// import { AppContext } from '../../context/AppContext';
-// import axios from 'axios';
+import React, { useContext, useState } from 'react';
+import { AppContext } from '../../context/AppContext';
+import axios from 'axios';
 import MessageCard from './MessageCard';
 import './Inbox.css';
 
 
 const Inbox = () => {
+
+  const App = () => {
+    const [currentUser, setCurrentUser] = setState();
+    const [places, setPlaces] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+    const [isError, setError] = useState(false);
+ 
+      useEffect(() => {
+        axios
+          .get(`/api/users/${id}`)
+          .then((response) => {
+            setUser(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, [id]);
+
   return (
     <div>
       <div className="messageCard" >
