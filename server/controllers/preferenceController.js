@@ -1,4 +1,5 @@
-const Preference = require('../db/models/preferenceModel');
+const Preference = require('../db/models/preferenceModel'),
+  User = require('../db/models/userModel');
 
 exports.createPreference = async (req, res) => {
   try {
@@ -7,6 +8,9 @@ exports.createPreference = async (req, res) => {
       owner: req.user._id
     });
     await preferences.save();
+    let user = await User.findOne({ _id: req.user._id });
+    user.partnerPreference = preferences._id;
+    await user.save();
     res.status(200).send(preferences);
   } catch (error) {
     console.log(`Error creating preferences at ${new Date()}: ${error}`);
