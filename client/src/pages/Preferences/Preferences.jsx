@@ -41,10 +41,6 @@ const Preferences = ({ history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // console.log(`Will send this to the backend`, {
-      //   zodiac: zodiacPref,
-      //   ...preferences
-      // });
       const response = await axios.post(
         '/api/preferences',
         {
@@ -54,10 +50,8 @@ const Preferences = ({ history }) => {
         },
         { withCredentials: true }
       );
-      console.log(response.data);
       // sessionStorage.setItem('user', response.data);
-      // setCurrentUser(response.data.user);
-      //do we need two routes for create preference or do we need one page with conditional rendering?!
+      setCurrentUser(response.data.user);
       history.push('/profile');
     } catch (error) {
       console.log('SignUp Error: ', error);
@@ -67,7 +61,7 @@ const Preferences = ({ history }) => {
   return (
     <div className={'preferences-container'}>
       <form onSubmit={handleSubmit}>
-        <h1 className={'title'}> Astrodate </h1>
+        <h1 className={'title-pref'}> Astrodate </h1>
         <p className={'select-line'}>SELECT YOUR PREFERENCES</p>
 
         <p className={'dist-line'}> YOU ARE INTERESTED IN </p>

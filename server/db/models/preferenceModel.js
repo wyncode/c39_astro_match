@@ -1,5 +1,8 @@
 const mongoose = require('mongoose'),
-  validators = require('validator');
+  validators = require('validator'),
+  zipCodeData = require('zipcode-city-distance'),
+  User = require('./userModel');
+getMe = require('../../../zodiac.json');
 
 //PREFERENCES SCHEMA
 
@@ -50,15 +53,34 @@ const PreferenceSchema = new mongoose.Schema({
   distance: {
     type: Number
   },
-  //will need to figure out how to fetch location relative to others
-  location: [
-    {
-      type: Number
-    },
+  eligibleZipCodes: [
     {
       type: Number
     }
   ]
+});
+
+PreferenceSchema.pre('save', async function (next) {
+  const pref = this;
+  if (pref.isModified('zodiac')) {
+    console.log({ _id: pref.owner });
+    let { sunSign } = await User.findOne({ _id: pref.owner });
+    console.log(sunSign);
+    let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
+    let newSignArr = signArr.compatability.filter(
+      (match, i) => match.score >= 75
+    );
+    newSignArr.forEach((x) => pref.zodiac.push(x.name));
+    pref.zodiac = [...new Set(pref.zodiac)];
+  }
+
+  if (pref.isModified('distance')) {
+    let { zipCode } = await User.findOne({ _id: pref.owner });
+    const zipRadius = zipCodeData.getRadius(zipCode, pref.distance, 'M');
+    const zipCodeArr = zipRadius.map((x) => x.zipcode);
+    pref.eligibleZipCodes = zipCodeArr;
+  }
+  next();
 });
 
 module.exports = mongoose.model('Preference', PreferenceSchema);
