@@ -5,7 +5,7 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [gender, setGender] = useState('string');
-
+  const [loading, setLoading] = useState(false);
   const user = sessionStorage.getItem('user');
 
   useEffect(() => {
@@ -28,7 +28,9 @@ export const AppContextProvider = ({ children }) => {
         currentUser,
         setCurrentUser,
         gender,
-        setGender
+        setGender,
+        loading,
+        setLoading
       }}
     >
       {children}

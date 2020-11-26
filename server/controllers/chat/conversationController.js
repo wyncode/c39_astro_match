@@ -7,9 +7,7 @@ exports.createConversation = async (req, res) => {
   const { participants } = req.body;
   try {
     const conversation = new Conversation(req.body);
-    // conversation.participants.push(participants);
     conversation.participants = participants;
-    console.log('I made it after the array');
     await conversation.save();
     let userOne = await User.findById(participants[0]);
     let userTwo = await User.findById(participants[1]);
@@ -97,17 +95,3 @@ exports.updateConversationById = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
-// conversationSchema.methods.pre = async function () {
-//   Conversation.participants.populate(req.body.params)
-// }
-
-//   messageSchema.methods.addToConversation = async function () {
-//     const conversation = Conversation.ObjectId;
-//     try {
-//     const sender =  user.id
-//     const recipient = this.recipient;
-//     const messages = {text: this.text, sender: this.sender, timestamp: this.timestamp};
-//     conversation.messages.push(messages);
-//     return conversation;
-// };

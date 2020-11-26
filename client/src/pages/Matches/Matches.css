@@ -83,6 +83,7 @@
   font-size: 32px;
   line-height: 30px;
   color: #dfbc60;
+  text-transform: uppercase;
 }
 .age {
   font-family: Karla;

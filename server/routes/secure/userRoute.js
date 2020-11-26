@@ -7,9 +7,11 @@ const router = require('express').Router(),
     deleteUser,
     uploadAvatar,
     updatePassword
+    // getUserMatches
   } = require('../../controllers/userControllers');
 
 router.get('/me', getCurrentUser);
+// router.get('/me/match', getUserMatches);
 router.patch('/me', updateCurrentUser);
 router.post('/logout', logoutUser);
 router.post('/logoutall', logoutAllDevices);

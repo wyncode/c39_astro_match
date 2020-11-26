@@ -8,11 +8,7 @@ import './Inbox.css';
 const Inbox = () => {
 
   const App = () => {
-    const [currentUser, setCurrentUser] = setState();
-    const [places, setPlaces] = useState([]);
-    const [isLoading, setLoading] = useState(true);
-    const [isError, setError] = useState(false);
- 
+    const { setCurrentUser } = useContext(AppContext);
       useEffect(() => {
         axios
           .get(`/api/users/${id}`)
@@ -37,7 +33,4 @@ const Inbox = () => {
   )
 }
 
-export default Inbox
-
-
-
+export default Inbox;
