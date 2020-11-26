@@ -212,6 +212,13 @@ UserSchema.pre('save', async function (next) {
     user.password = await bcrypt.hash(user.password, 8);
   }
 
+  if (user.isModified('birthday')) {
+    const TODAY = new Date().getTime();
+    const ONE_YEAR = 31536000000;
+    const birthday = new Date(user.birthday);
+    user.age = Math.floor((TODAY - birthday.getTime()) / ONE_YEAR);
+  }
+
   if (user.isModified('birthCity')) {
     let retCoords = await getLatLonFC(user.birthCity, user.birthState);
     user.birthdayCoords = retCoords;
@@ -224,6 +231,7 @@ UserSchema.pre('save', async function (next) {
 
   if (user.isModified('birthdayCoords')) {
     let planetInfo = await getSigns(user);
+    console.log('done planet');
     user.sunSign = planetInfo.planets.sun.sign;
     user.moonSign = planetInfo.planets.moon.sign;
     user.ascSign = planetInfo.angles.asc.sign;
