@@ -56,7 +56,7 @@ const Preferences = ({ history }) => {
       );
       console.log(response.data);
       // sessionStorage.setItem('user', response.data);
-      // setCurrentUser(response.data.user);
+      setCurrentUser(response.data.user);
       //do we need two routes for create preference or do we need one page with conditional rendering?!
       history.push('/profile');
     } catch (error) {

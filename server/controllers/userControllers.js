@@ -7,8 +7,7 @@ const User = require('../db/models/userModel'),
   //   } = require('../emails/index'),
   jwt = require('jsonwebtoken');
 
-exports.createUser = async (req, res) => {
-
+exports.createUser = (req, res) => {
   let nameArr = req.body.name.split(' ');
   req.body.firstName = nameArr[0];
   req.body.lastName = nameArr[1];
@@ -19,18 +18,20 @@ exports.createUser = async (req, res) => {
   req.body.birthYear = Number(birthArr[0]);
 
   // console.log(req.body)
-  User.create(req.body, (err, user) => {
+  User.create(req.body, async (err, user) => {
+    console.log(req.body);
     if (err) {
       console.log(err);
       res.status(400).json(err);
     } else {
-      const token = user.generateAuthToken();
+      const token = await user.generateAuthToken();
       res.cookie('jwt', token, {
         httpOnly: true,
         sameSite: 'Strict',
         secure: process.env.NODE_ENV !== 'production' ? false : true
       });
       res.status(201).json(user);
+      console.log('have sent user');
     }
   });
 };

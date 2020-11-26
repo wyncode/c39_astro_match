@@ -20,7 +20,7 @@ export const AppContextProvider = ({ children }) => {
         })
         .catch((error) => console.error(error));
     }
-  }, [currentUser, user, setCurrentUser]);
+  }, [currentUser, user]);
 
   return (
     <AppContext.Provider

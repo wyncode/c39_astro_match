@@ -1,7 +1,8 @@
 const mongoose = require('mongoose'),
   validators = require('validator'),
   zipCodeData = require('zipcode-city-distance'),
-  getMe = require('../../../zodiac.json');
+  User = require('./userModel');
+getMe = require('../../../zodiac.json');
 
 //PREFERENCES SCHEMA
 
@@ -64,10 +65,10 @@ const PreferenceSchema = new mongoose.Schema({
 PreferenceSchema.pre('save', async function (next) {
   const pref = this;
   //could add this to create a prefernces
-  if (pre.isModified('zodiac')) {
+  if (pref.isModified('zodiac')) {
     let { sunSign } = await User.findOne({ _id: pref.owner });
     console.log(sunSign);
-    let [signArr] = getMe.zodiac.filter((sign) => sign.name === userSign);
+    let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
     console.log(signArr);
     let newSignArr = signArr.compatability.filter(
       (match, i) => match.score >= 75
