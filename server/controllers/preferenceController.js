@@ -11,6 +11,7 @@ exports.createPreference = async (req, res) => {
     let user = await User.findOne({ _id: req.user._id });
     user.partnerPreference = preferences._id;
     await user.save();
+    //will add match logic here
     res.status(200).send(preferences);
   } catch (error) {
     console.log(`Error creating preferences at ${new Date()}: ${error}`);
