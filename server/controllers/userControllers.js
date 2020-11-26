@@ -1,29 +1,24 @@
 const User = require('../db/models/userModel'),
   cloudinary = require('cloudinary').v2,
-  //   {
-  //     sendWelcomeEmail,
-  //     sendCancellationEmail,
-  //     forgotPasswordEmail
-  //   } = require('../emails/index'),
+  {
+    sendWelcomeEmail,
+    sendCancellationEmail,
+    forgotPasswordEmail
+  } = require('../emails/index'),
   jwt = require('jsonwebtoken');
+getMe = require('../../zodiac.json');
 
-exports.createUser = async (req, res) => {
+exports.createUser = (req, res) => {
   let nameArr = req.body.name.split(' ');
   req.body.firstName = nameArr[0];
   req.body.lastName = nameArr[1];
 
-  let birthArr = req.body.birthday.split('-');
-  req.body.birthDate = Number(birthArr[2]);
-  req.body.birthMonth = Number(birthArr[1]);
-  req.body.birthYear = Number(birthArr[0]);
-
-  // console.log(req.body)
-  User.create(req.body, (err, user) => {
+  User.create(req.body, async (err, user) => {
+    console.log(req.body);
     if (err) {
-      console.log(err);
       res.status(400).json(err);
     } else {
-      const token = user.generateAuthToken();
+      const token = await user.generateAuthToken();
       res.cookie('jwt', token, {
         httpOnly: true,
         sameSite: 'Strict',
@@ -46,6 +41,7 @@ exports.loginUser = async (req, res) => {
     });
     res.json(user);
   } catch (e) {
+    console.log(e);
     res.status(400).json({ error: e.toString() });
   }
 };

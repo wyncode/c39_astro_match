@@ -5,14 +5,11 @@ const {
   deletePreference,
   createPreference
 } = require('../../controllers/preferenceController');
+// router.patch('/udpate/:id', updatePreference);
+router.get('/:id', getPreference);
 
-//UPDATE GET
-router.get('/', getPreference);
-//UPDATE PREF
-// router.post('/pref', updatePreference);
-router.post('/test', createPreference);
-
-//DELETE PREF
-router.delete('/', deletePreference);
+router.patch('/update/:id', updatePreference);
+router.post('/', createPreference);
+router.delete('/delete/:id', deletePreference);
 
 module.exports = router;
