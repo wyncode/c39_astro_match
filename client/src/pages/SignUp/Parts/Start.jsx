@@ -1,8 +1,22 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Item from './Item';
+import { makeStyles } from '@material-ui/core/styles';
+import ImageOne from './Images/Slide1Graphic';
 
 const Start = ({ initForm }) => {
+  const useStyles = makeStyles(
+    {
+      root: {
+        overflow: 'inherit'
+        // height: '100vh'
+      }
+    },
+    { name: 'Carousel' }
+  );
+
+  const classes = useStyles();
+
   var items = [
     {
       name: 'Welcome',
@@ -21,9 +35,15 @@ const Start = ({ initForm }) => {
 
   return (
     <div className={'container-caro'}>
-      <Carousel autoPlay={false} className={'carousel-container-su'}>
+      <Carousel
+        autoPlay={false}
+        className={`carousel-container-su ${classes.root}`}
+      >
         {items.map((item, i) => (
-          <Item key={i} item={item} check={i} initForm={initForm} />
+          <>
+            <ImageOne height={11.75} width={23.4375} />
+            <Item key={i} item={item} check={i} initForm={initForm} />
+          </>
         ))}
       </Carousel>
     </div>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 import { AppContext } from '../../context/AppContext';
+import Logo from '../../components/Logo';
 
 const Login = ({ history }) => {
   const [showEmail, setShowEmail] = useState('');
@@ -31,6 +32,7 @@ const Login = ({ history }) => {
   return (
     <div className={'container-login'}>
       <h1 className={'title-log'}> Astrodate </h1>
+      <Logo height={7.625} width={10.625} />
       <p className={'tag-line'}>Find Love in the Stars! </p>
       <p className={'help-text'}>
         {' '}

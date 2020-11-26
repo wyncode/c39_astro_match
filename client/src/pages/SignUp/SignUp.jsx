@@ -4,6 +4,7 @@ import { AppContext } from '../../context/AppContext';
 import axios from 'axios';
 import { schema } from './schema';
 import Start from './Parts/Start';
+import Logo from '../../components/Logo';
 
 const SignUp = ({ history }) => {
   const { gender, setCurrentUser } = useContext(AppContext);
@@ -57,13 +58,16 @@ const SignUp = ({ history }) => {
   };
 
   if (!activeSchema) return <Start initForm={initForm} />;
-
   const ActiveForm = activeSchema.form;
 
   return (
     <div className={'main-holder-sign-up'}>
       <form onSubmit={handleSubmit} className={'container-caro'}>
-        <p className={'title-su'}> Astrodate </p>
+        <p className={'title-su'}>
+          <Logo />
+          Astrodate{' '}
+        </p>
+        {/* <div style={{display: 'flex'}}><Logo /> <p className={'title-su'}> Astrodate </p></div> */}
         <p className={'sub-title-su'}> LET'S GET STARTED! </p>
         <ActiveForm handleChange={handleChange} userData={userData} />
         <br />
