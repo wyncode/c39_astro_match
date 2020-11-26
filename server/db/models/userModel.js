@@ -175,6 +175,13 @@ const UserSchema = new mongoose.Schema(
 //   foreignField: 'owner'
 // });
 
+//
+// UserSchema.virtual('matches', {
+//   ref: 'User',
+//   localField: '_id',
+//   foreignField: 'owner'
+// });
+
 UserSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
