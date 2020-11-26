@@ -1,24 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
-.body {
+.main-holder {
   background: #181826;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .title {
-  /* position: absolute; */
-  text-align: center;
-  /* width: 220px;
-    height: 48px; */
-  left: 97px;
-  top: 121px;
   font-family: Spectral;
   font-style: normal;
   font-weight: normal;
-  font-size: 48px;
-  line-height: 73px;
+  font-size: 2em;
+  line-height: 37px;
   color: #ffffff;
+  align-self: flex-start;
 }
+
 .div {
+  display: flex;
   justify-content: center;
 }
 .h1 {
@@ -51,6 +55,7 @@
   font-size: 12px;
   line-height: 15px;
   color: #ffffff;
+  display: block;
 }
 
 .create {
@@ -77,6 +82,7 @@ right: 0%; */
   right: 0%;
   top: 0%;
   bottom: 0%;
+  align-self: center;
 }
 .log {
   /* position: absolute;
@@ -94,7 +100,4 @@ right: 0%; */
   text-decoration-line: underline;
   transform: scale(2);
   color: #ffffff;
-}
-
-.sign {
 }
