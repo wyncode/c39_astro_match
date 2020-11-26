@@ -3,27 +3,19 @@ const mongoose = require('mongoose'),
   User = require('../../db/models/userModel'),
   Conversation = require('../../db/models/chat/privateMessages/conversationModel');
 
-// initiation blank conversation from pressing "say hi button!"
 exports.createConversation = async (req, res) => {
-  const { sender, recipient } = req.body;
-  if (!recipient) {
-    return res.status(500).json('Oopsie!');
-  }
+  const { participants } = req.body;
   try {
     const conversation = new Conversation(req.body);
-    conversation.participants.push(sender, recipient);
+    conversation.participants = participants;
     await conversation.save();
+    let userOne = await User.findById(participants[0]);
+    let userTwo = await User.findById(participants[1]);
+    userOne.inbox.push(conversation);
+    userTwo.inbox.push(conversation);
+    await userOne.save();
+    await userTwo.save();
     console.log(conversation);
-
-    // this is for inbox
-    // let userOne = await User.findById(sender);
-    // let userTwo = await User.findById(recipient);
-
-    // userOne.inbox.push(conversation);
-    // userTwo.inbox.push(conversation);
-    // await userOne.save();
-    // await userTwo.save();
-
     res.status(201).json(conversation);
   } catch (error) {
     console.log(error);
@@ -31,69 +23,29 @@ exports.createConversation = async (req, res) => {
   }
 };
 
-//   messageSchema.methods.addToConversation = async function () {
-//     const conversation = Conversation.ObjectId;
-//     // next two lines are for matching purposes
-//     const sender =  this.sender;
-//     const recipient = this.recipient;
-//     const messages = {text: this.text, sender: this.sender, timestamp: this.timestamp};
-//     conversation.messages.push(messages);
-//     return conversation;
-// };
-// messageSchema.methods.createNewConversation = async function () {
-//     const conversation = new Conversation(req.body);
-//     // for theory testing. can refactor later.
-//     const sender = this.sender;
-//     const recipient = this.recipient;
-//     const participants = {sender, recipient};
-//     const messages = {text: this.text, sender: this.sender, timestamp: this.timestamp};
-//     await conversation.push(participants);
-//     await conversation.push(messages);
-//     await conversation.save();
-//     return conversation;
-// };
-
-//     message = this.message;
-//     await Conversation.find({'participants': { $all: [ mongoose.Types.ObjectId(req.params.sender),
-//     mongoose.Types.ObjectId(req.params.recipient) ]}}, async function(err, conversation){
-//         if (!Conversation) {
-//             await message.createConversation();
-//             res.json(conversation);
-//             console.log(conversation.id);
-//         } else
-//     });
-//  {
-//     if (!Conversation) {
-
-//     }
-
-//         (err)
-//     {
-//         res.send(err);
-//     }
-//     console.log(user);
-//     res.json(user);
-
-//  });
-
-//     try {
-//         const conversation = new Message(req.body);
-//         // conversation.find().populate('personid').exec(function (err,res) {
-//         //     if(err){
-//         //         console.log('error');
-//         //     }
-//         //     else{
-//         //         console.log(res);
-//         //         // or just name
-//         //         console.log(res.personid.name);
-//         //     }
-//         // });
-//         await conversation.save();
-//         res.status(200).json( {message: 'sent!'} );
-//       } catch (error) {
-//             res.status(400).json({ error: error.2 mn
-//       }
-//   };
+exports.getConversation = async (req, res) => {
+  await Conversation.find(
+    {
+      participants: {
+        $all: [
+          mongoose.Types.ObjectId(req.params.sender),
+          mongoose.Types.ObjectId(req.params.recipient)
+        ]
+      }
+    },
+    async function (err, conversation) {
+      if (!Conversation) {
+        console.log('No conversation!');
+        await message.createConversation(req.body);
+        res.json(conversation);
+        await conversation.save();
+        return conversation;
+      } else {
+        res.status(201).json(conversation);
+      }
+    }
+  );
+};
 
 //   exports.getConversationById = async (req, res) => {
 //     const _id = req.params.id;
@@ -109,13 +61,37 @@ exports.createConversation = async (req, res) => {
 //     }
 //   };
 
-//   exports.deleteConversationById = async (req, res) => {
-//     const _id = req.params.id;
-//       try {
-//         const conversation = await Conversation.findByIdAndDelete({ _id });
-//         if (!conversation) {return res.status(404).json({ message: 'Nothing to delete!'});}
-//         await res.status(200).json( {message: `Conversation deleted. Would you like to remove ${ recipient } from your match list?`} );
-//       } catch (error) {
-//         res.status(400).json({ error: error.message });
-//       }
-//     };
+exports.deleteConversationById = (req, res) => {
+  Conversation.findByIdAndDelete(req.params.id)
+    .then((data) => {
+      if (!data) {
+        return res.status(404).json('Conversation deleted!');
+      }
+      res.status(204).json(data);
+    })
+    .catch((err) => {
+      res.status(500).json('Error: ' + err);
+    });
+};
+
+exports.updateConversationById = async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ['messages', 'newStatus'];
+  const isValidOperation = updates.every((update) =>
+    allowedUpdates.includes(update)
+  );
+  if (!isValidOperation)
+    return res.status(400).json({ message: 'message not sent..try again' });
+  try {
+    updates.forEach(
+      (update) =>
+        (req.conversation[update] = req.conversation[update].append(
+          body[update]
+        ))
+    );
+    await req.conversation.save();
+    res.json(req.conversation);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};

@@ -20,8 +20,8 @@ const Start = ({ initForm }) => {
   ];
 
   return (
-    <div className={'container'}>
-      <Carousel autoPlay={false} className={'carousel-container'}>
+    <div className={'container-caro'}>
+      <Carousel autoPlay={false} className={'carousel-container-su'}>
         {items.map((item, i) => (
           <Item key={i} item={item} check={i} initForm={initForm} />
         ))}

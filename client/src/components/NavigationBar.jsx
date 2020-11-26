@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import {Nav} from 'react-bootstrap';
+import LogoHorizontal from '../components/Images/Vectors/Matches/LogoHorizontal.svg';
+import hamburger from '../components/Images/Vectors/Matches/hamburger.svg';
+import './Navigation.css';
 
 // import { Link } from 'react-router-dom';
 
 export class NavigationBar extends Component {
+
   render() {
     return (
       <div>
-        Hello
-    {/* <Nav>
-      <Nav.Item>
-        <Nav.Link href="../App.jsx"><img src="../components/Images/Vectors/LogoHorizontal.png" width="30" height="30" alt=""></img></Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-1">Link</Nav.Link>
-      </Nav.Item>
-    </Nav> */}
+        <div className="borderBuffer">
+          <div className="navbar">
+            <img src={LogoHorizontal} className="logo" />
+            <img src={hamburger} className="menu" />
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default NavigationBar
+export default NavigationBar;

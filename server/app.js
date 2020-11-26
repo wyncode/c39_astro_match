@@ -7,7 +7,8 @@ const express = require('express'),
   (conversationRoutes = require('./routes/secure/chat/conversationRoutes'));
 (userRouter = require('./routes/secure/userRoute')),
   (cookieParser = require('cookie-parser')),
-  (passport = require('./middleware/authentication/index'));
+  (passport = require('./middleware/authentication/index')),
+  (preferencesRouter = require('./routes/secure/preferenceRoute'));
 
 const app = express();
 
@@ -26,12 +27,14 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Any authentication middleware and related routing would be here.
-app.use('/api/*', passport.authenticate('jwt', { session: false }));
+// app.use('/api/*', passport.authenticate('jwt', { session: false }));
 
 app.use('/api/users', userRouter);
 
 app.use('/api', messageRoutes);
 app.use('/api', conversationRoutes);
+
+app.use('/api/preferences', preferencesRouter);
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {

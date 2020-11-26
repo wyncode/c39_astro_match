@@ -1,62 +1,70 @@
-const Preference = require('../db/models/preferenceModel');
+const Preference = require('../db/models/preferenceModel'),
+  User = require('../db/models/userModel');
 
-//which export model to use
-
-//CREATE PREFERENCE
 exports.createPreference = async (req, res) => {
-  Preference.create(req.body, (error, preferences) => {
-    if (error) {
-      console.log(`Error creating preferences at ${new Date()}: ${error}`);
+  const { age, zodiac, eligibleZipCodes, interestedIn } = req.body;
+  try {
+    const preferences = await new Preference({
+      ...req.body,
+      owner: req.user._id
+    });
+    console.log(preferences);
+    await preferences.save();
+    let user = await User.findOne({ _id: req.user._id });
+    user.partnerPreference = preferences._id;
+    let matchesFound = await User.find({
+      $and: [
+        { sunSign: { $in: zodiac } },
+        { zipCode: { $in: eligibleZipCodes } },
+        { age: { $gte: age[0] } },
+        { age: { $lte: age[1] } },
+        { gender: { $in: interestedIn } }
+      ]
+    });
+    matchesFound.forEach((x) => user.matches.push(x._id));
+    await user.save();
+    res.status(200).send(`preferences were created!`);
+  } catch (error) {
+    console.log(`Error creating preferences at ${new Date()}: ${error}`);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getPreference = async (req, res) => {
+  try {
+    const preferences = await Preference.findById(req.params.id);
+    if (!preferences) {
+      console.log(`Preference for user does not exist`);
+      res.status(410);
     } else {
       res.status(201).json(preferences);
     }
-  });
-};
-
-//GET PREFERENCE
-exports.getPreference = async (req, res) => {
-  //need to iron out how we are passing the user ID through
-  //for now addressing user ID as userId
-  Preference.findById(req.params.userId, (error, preferences) => {
-    if (error) {
-      console.log(`Error creating preferences at ${new Date()}: ${error}`);
-      res.status;
-    } else {
-      if (!preferences) {
-        console.log(`Preference for user does not exist`);
-        res.status(410);
-      } else {
-        res.status(201).json(preferences);
-      }
-    }
-  });
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 };
 
 //UPDATE PREF
 exports.updatePreference = async (req, res) => {
+  const _id = req.params.id;
+  const owner = req.user._id;
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['sunSign', 'religion', 'location', 'age'];
+  const allowedUpdates = ['zodiac', 'distance', 'age', 'interestedIn'];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
   if (!isValidOperation)
     return res.status(400).json({ message: 'Invalid updates' });
   try {
-    //need to determine how we are going to pass the ID into the request
-    //probably as owner the front end
-    let preferences = await Preference.findOneAndUpdate(owner);
+    let preferences = await Preference.findOneAndUpdate({ _id, owner });
     updates.forEach((update) => (preferences[update] = req.body[update]));
-    //save the updated user in the db
     await preferences.save();
-    //return preferences to the front it
-    //perhaps able to display
     res.json(preferences);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-//DELETE PREF
 exports.deletePreference = async (req, res) => {
   try {
     await Preference.remove();

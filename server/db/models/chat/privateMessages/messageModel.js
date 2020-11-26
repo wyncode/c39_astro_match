@@ -1,5 +1,5 @@
-const mongoose = require('mongoose'),
-  moment = require('moment');
+const mongoose = require('mongoose');
+// moment = require('moment');
 const Conversation = require('./conversationModel');
 
 const messageSchema = new mongoose.Schema(
@@ -8,21 +8,22 @@ const messageSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Conversation'
     },
-    // participants: {
-    //     type: this.messageSchema.recipient.type && this.messageSchema.sender.type
-    // },
-    sender: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
+    participants: {
+      sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
+      recipient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      }
     },
     senderAvatar: {
-      type: String
-    },
-    recipient: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
+      type: String,
+      ref: 'User'
+      // required: true
     },
     text: {
       type: String,
@@ -52,7 +53,6 @@ messageSchema.methods.addToConversation = async function () {
     sender: this.sender,
     timestamp: this.timestamp
   };
-
   conversation.messages.push(messages);
   return conversation;
 };

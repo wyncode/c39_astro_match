@@ -18,12 +18,12 @@ const PartOne = () => {
 
   return (
     <>
-      <h2 className={`form-question`}> How do you identify?</h2>
-      <div className={`answer-container`}>
+      <h2 className={`form-question-su`}> How do you identify?</h2>
+      <div className={`answer-container-su`}>
         {options.map((identity) => (
           <div
             key={identity}
-            className={`button-identity`}
+            className={`button-identity-su`}
             id="gender"
             onClick={handleClick}
             value={identity}
@@ -35,5 +35,4 @@ const PartOne = () => {
     </>
   );
 };
-
 export default PartOne;

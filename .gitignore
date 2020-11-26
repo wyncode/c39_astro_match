@@ -24,8 +24,7 @@ client/build
 .env.production.local
 
 # Rita's projects
-.server/db/models/chat/chatroom/
-.server/db/models/chat/messages/
+client/src/pages/Matches
 
 npm-debug.log*
 yarn-debug.log*
