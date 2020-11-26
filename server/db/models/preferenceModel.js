@@ -53,7 +53,6 @@ const PreferenceSchema = new mongoose.Schema({
   distance: {
     type: Number
   },
-  //will need to figure out how to fetch location relative to others
   eligibleZipCodes: [
     {
       type: Number
@@ -61,19 +60,15 @@ const PreferenceSchema = new mongoose.Schema({
   ]
 });
 
-//preSave, fetch to the zodiac json and push in their compatability
 PreferenceSchema.pre('save', async function (next) {
   const pref = this;
   //could add this to create a prefernces
   if (pref.isModified('zodiac')) {
     let { sunSign } = await User.findOne({ _id: pref.owner });
-    console.log(sunSign);
     let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
-    console.log(signArr);
     let newSignArr = signArr.compatability.filter(
       (match, i) => match.score >= 75
     );
-    console.log(newSignArr);
     newSignArr.forEach((x) => pref.zodiac.push(x.name));
     pref.zodiac = [...new Set(pref.zodiac)];
   }
@@ -86,10 +81,6 @@ PreferenceSchema.pre('save', async function (next) {
   }
   next();
 });
-//ALSO fetch to package to return zipcodes that are in their area push it into their preferences hmmmm
 
-//push eligible zipcodes in their preferences array
-
-//PRE SAVE
 
 module.exports = mongoose.model('Preference', PreferenceSchema);
