@@ -62,7 +62,6 @@ const PreferenceSchema = new mongoose.Schema({
 
 PreferenceSchema.pre('save', async function (next) {
   const pref = this;
-  //could add this to create a prefernces
   if (pref.isModified('zodiac')) {
     let { sunSign } = await User.findOne({ _id: pref.owner });
     let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
@@ -81,6 +80,5 @@ PreferenceSchema.pre('save', async function (next) {
   }
   next();
 });
-
 
 module.exports = mongoose.model('Preference', PreferenceSchema);
