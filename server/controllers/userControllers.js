@@ -13,6 +13,7 @@ exports.createUser = (req, res) => {
   req.body.lastName = nameArr[1];
 
   User.create(req.body, async (err, user) => {
+    console.log(req.body);
     if (err) {
       res.status(400).json(err);
     } else {

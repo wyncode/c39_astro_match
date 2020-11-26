@@ -21,7 +21,8 @@ const useStyles = makeStyles({
     height: '4em',
     width: '7em',
     border: 0,
-    color: '#181826'
+    color: '#181826',
+    paddingLeft: '1em'
     //   height: 48,
     //   padding: '0 30px',
     // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',

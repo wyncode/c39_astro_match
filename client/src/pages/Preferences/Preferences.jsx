@@ -61,7 +61,7 @@ const Preferences = ({ history }) => {
   return (
     <div className={'preferences-container'}>
       <form onSubmit={handleSubmit}>
-        <h1 className={'title'}> Astrodate </h1>
+        <h1 className={'title-pref'}> Astrodate </h1>
         <p className={'select-line'}>SELECT YOUR PREFERENCES</p>
 
         <p className={'dist-line'}> YOU ARE INTERESTED IN </p>
