@@ -12,7 +12,7 @@ const Slide1Graphic = (props) => {
         fontSize: '1em',
         margin: '5em 1em 5em 1em',
         overflow: 'inherit',
-        display: 'block'
+        display: 'inline-table'
       }
     },
     { name: 'MuiIcon' }
