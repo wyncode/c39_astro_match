@@ -3,27 +3,18 @@ import axios from 'axios';
 import './Matches.css';
 //import pictures?//
 
-const Matched = () => {
+const Matches = () => {
   const [match, setMatch] = useState('');
   useEffect(() => {
     axios
-      .get(`/api/users/matched/`, { withCredentials: true })
+      .get(`/api/users/matches/`, { withCredentials: true })
       .then((response) => {
-        // (response);
         setMatch(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
-  // const { firstName } = match;
-
-  // return (
-  //   <>
-  //   <p>{match && match.map((match) => match.firstName)} </p>
-  //   </>
-  // );
 
   return (
     <div className="background">
@@ -73,4 +64,4 @@ const Matched = () => {
   );
 };
 
-export default Matched;
+export default Matches;

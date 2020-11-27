@@ -180,3 +180,20 @@ exports.getAllMatches = async (req, res) => {
     res.status(400).json(`Unable to do: ${error}`);
   }
 };
+
+exports.getInbox = async (req, res) => {
+  try {
+    await req.user
+      .populate({
+        path: 'inbox',
+        populate: {
+          path: 'participants'
+        }
+      })
+      .execPopulate();
+    res.json(req.user.inbox);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Please try again...');
+  }
+};

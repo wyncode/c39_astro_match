@@ -25,6 +25,14 @@ const dbReset = async () => {
   await Message.countDocuments({}, function (err, count) {
     console.log('Number of messages: ', count);
   });
+  //Count number of user documents ===> should be 0
+  await Preference.countDocuments({}, function (err, count) {
+    console.log('Number of preferences: ', count);
+  });
+  //Count number of message documents ===> should be 0
+  await Conversation.countDocuments({}, function (err, count) {
+    console.log('Number of conversations: ', count);
+  });
 
   //Loop 100 times and create 100 new users
   const userIdArray = [];
@@ -41,16 +49,16 @@ const dbReset = async () => {
     userIdArray.push(me._id);
   }
 
-  //Loop 100 times and create 100 new messages
-  //   for (let i = 0; i < 100; i++) {
-  //     const message = new Message({
-  //       description: faker.lorem.paragraph(),
-  //       completed: Boolean(Math.round(Math.random())),
-  //       dueDate: faker.date.future(),
-  //       owner: userIdArray[Math.floor(Math.random() * userIdArray.length)]
-  //     });
-  //     await message.save();
-  //   }
+  // Loop 100 times and create 100 new messages
+  for (let i = 0; i < 100; i++) {
+    const message = new Message({
+      description: faker.lorem.paragraph(),
+      completed: Boolean(Math.round(Math.random())),
+      dueDate: faker.date.future(),
+      owner: userIdArray[Math.floor(Math.random() * userIdArray.length)]
+    });
+    await message.save();
+  }
 
   //   //Loop 100 times and create 100 new preferences
   //   for (let i = 0; i < 100; i++) {

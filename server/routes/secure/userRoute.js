@@ -7,7 +7,8 @@ const router = require('express').Router(),
     deleteUser,
     uploadAvatar,
     updatePassword,
-    getAllMatches
+    getAllMatches,
+    getInbox
   } = require('../../controllers/userControllers');
 
 router.get('/me', getCurrentUser);
@@ -17,7 +18,7 @@ router.post('/logoutall', logoutAllDevices);
 router.delete('/', deleteUser);
 router.post('/avatar', uploadAvatar);
 router.put('/password', updatePassword);
-
-router.get('/matched', getAllMatches);
+router.get('/matches', getAllMatches);
+router.get('/inbox', getInbox);
 
 module.exports = router;
