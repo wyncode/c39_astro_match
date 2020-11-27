@@ -155,6 +155,9 @@ const UserSchema = new mongoose.Schema(
     avatar: {
       type: String
     },
+    bio: {
+      type: String
+    },
     tokens: [
       {
         token: {
