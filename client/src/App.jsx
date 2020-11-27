@@ -4,7 +4,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
-import Matches from './pages/Matches/Matches';
+import Matched from './pages/Matches/Matched';
 import Profile from './pages/Profile/Profile';
 import Preferences from './pages/Preferences/Preferences';
 
@@ -20,8 +20,8 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/matches" component={Matches} />
-          <Route exact path='/inbox' component={Inbox} />
+          <Route exact path="/matched" component={Matched} />
+          <Route exact path="/inbox" component={Inbox} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/profile" component={Profile} />

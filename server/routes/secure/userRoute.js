@@ -18,6 +18,6 @@ router.delete('/', deleteUser);
 router.post('/avatar', uploadAvatar);
 router.put('/password', updatePassword);
 
-router.get('/matches', getAllMatches);
+router.get('/matched', getAllMatches);
 
 module.exports = router;
