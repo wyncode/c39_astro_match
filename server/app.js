@@ -2,13 +2,13 @@ require('./db/config');
 const express = require('express'),
   path = require('path'),
   openRoutes = require('./routes/open/index'),
-  locationRoutes = require('./routes/open/location');
-(messageRoutes = require('./routes/secure/chat/messageRoutes')),
-  (conversationRoutes = require('./routes/secure/chat/conversationRoutes'));
-(userRouter = require('./routes/secure/userRoute')),
-  (cookieParser = require('cookie-parser')),
-  (passport = require('./middleware/authentication/index')),
-  (preferencesRouter = require('./routes/secure/preferenceRoute'));
+  locationRoutes = require('./routes/open/location'),
+  messageRoutes = require('./routes/secure/chat/messageRoutes'),
+  conversationRoutes = require('./routes/secure/chat/conversationRoutes'),
+  userRouter = require('./routes/secure/userRoute'),
+  cookieParser = require('cookie-parser'),
+  passport = require('./middleware/authentication/index'),
+  preferencesRouter = require('./routes/secure/preferenceRoute');
 
 const app = express();
 
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Any authentication middleware and related routing would be here.
-// app.use('/api/*', passport.authenticate('jwt', { session: false }));
+app.use('/api/*', passport.authenticate('jwt', { session: false }));
 
 app.use('/api/users', userRouter);
 
