@@ -1,3 +1,5 @@
+const { populate } = require('../db/models/userModel');
+
 const User = require('../db/models/userModel'),
   cloudinary = require('cloudinary').v2,
   {
@@ -199,7 +201,22 @@ exports.getInbox = async (req, res) => {
         }
       })
       .execPopulate();
-    res.json(req.user.inbox);
+    let inboxArr = req.user.inbox;
+    console.log(req.user._id.toString());
+    let participants2 = inboxArr.map((obj) => obj.participants);
+    let otherPeople = participants2.flat(1);
+    let sendBackArr = otherPeople.map((x) => {
+      if (x._id.toString() !== req.user._id.toString()) {
+        return {
+          firstName: x.firstName,
+          avatar: x.avatar,
+          _id: x._id
+        };
+      }
+    });
+    //right now just information will figoure out how to get the message later
+    sendBackArr = sendBackArr.filter((x) => x);
+    res.send(sendBackArr);
   } catch (error) {
     console.log(error);
     res.status(400).json('Please try again...');

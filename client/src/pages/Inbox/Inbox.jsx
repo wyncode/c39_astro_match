@@ -40,24 +40,22 @@ const Inbox = () => {
         <div className="background">
           <div className="title">YOUR MESSAGES</div>
 
-          {(inbox && inbox).map((chat) => {
-            return (
-              <div className="incoming">
-                <span className="avatar">{inbox.id}</span>
+          {inbox &&
+            inbox.map((chat) => {
+              return (
+                <div className="incoming">
+                  <span className="avatar">{chat.id}</span>
 
-                <div className="messageBox">
-                  <div classsName="messageTitle">SUBJECT: HI!</div>
-                  <div className="text">
-                    {' '}
-                    {inbox.id} {inbox.id}
+                  <div className="messageBox">
+                    <div classsName="messageTitle">SUBJECT: HI!</div>
+                    <div className="text"> {chat._id}</div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-          <div className="button">
-            <span className="buttonText">Upgrade Membership</span>
-          </div>
+              );
+            })}
+          {/* <div className="button"> */}
+          {/* <span className="buttonText">Upgrade Membership</span> */}
+          {/* </div> */}
         </div>
         ; ;
       </div>
