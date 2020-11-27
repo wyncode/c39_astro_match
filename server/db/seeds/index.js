@@ -28,7 +28,7 @@ const dbReset = async () => {
 
   //Loop 100 times and create 100 new users
   const userIdArray = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 20; i++) {
     const me = new User({
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       admin: Boolean(Math.round(Math.random())),
