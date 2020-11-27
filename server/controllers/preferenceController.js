@@ -4,6 +4,8 @@ const Preference = require('../db/models/preferenceModel'),
 exports.createPreference = async (req, res) => {
   const { age, zodiac, eligibleZipCodes, interestedIn } = req.body;
   try {
+    console.log(req);
+    console.log(req.id);
     const preferences = await new Preference({
       ...req.body,
       owner: req.user._id
