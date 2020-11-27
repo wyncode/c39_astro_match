@@ -16,6 +16,7 @@ exports.createUser = (req, res) => {
   User.create(req.body, async (err, user) => {
     console.log(req.body);
     if (err) {
+      console.log(err);
       res.status(400).json(err);
     } else {
       const token = await user.generateAuthToken();
