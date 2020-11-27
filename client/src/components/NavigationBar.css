@@ -1,19 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
 .title {
-  /* transform: scale(2); */
-  position: relative;
-  bottom: -10%;
+  /* position: relative; */
+  /* bottom: -10%; */
   color: #dfbc60;
-  /* left: 8%; */
-  /* padding-left: 20px; */
-  /* padding-top: 30px;  */
   font-size: 1.5em;
   font-family: 'Sacramento', cursive;
+  padding: 0em;
 }
 
 .logo {
-  /* transform: scale(2); */
   position: relative;
   right: 10%;
   padding-top: 30px;

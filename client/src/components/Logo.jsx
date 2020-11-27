@@ -7,9 +7,7 @@ import AstroLogo from './Images/Vectors/Matches/LogoGraphicThin.svg';
 const Logo = (props) => {
   const useStyles = makeStyles(
     {
-      root: {
-        width: 'off'
-      },
+      root: {},
       dif: {
         width: `${props.width}rem`,
         height: `${props.height}rem`,
@@ -22,11 +20,7 @@ const Logo = (props) => {
   const classes = useStyles(props);
   return (
     <Paper className={classes.dif}>
-      <img
-        src={AstroLogo}
-        // height={props.height || 25}
-        // width={props.width || 25}
-      />
+      <img src={AstroLogo} />
     </Paper>
   );
 };
