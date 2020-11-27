@@ -8,7 +8,6 @@ const Logo = (props) => {
   const useStyles = makeStyles(
     {
       root: {
-        width: 'off'
       },
       dif: {
         width: `${props.width}rem`,
@@ -24,8 +23,6 @@ const Logo = (props) => {
     <Paper className={classes.dif}>
       <img
         src={AstroLogo}
-        // height={props.height || 25}
-        // width={props.width || 25}
       />
     </Paper>
   );
