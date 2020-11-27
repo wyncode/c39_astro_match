@@ -23,7 +23,7 @@ exports.createPreference = async (req, res) => {
         { gender: { $in: interestedIn } }
       ]
     });
-    matchesFound.forEach((x) => user.matches.push(x._id));
+    matchesFound.forEach((match) => user.matches.push(match._id));
     await user.save();
     res.status(200).send(`preferences were created!`);
   } catch (error) {
