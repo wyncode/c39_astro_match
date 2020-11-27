@@ -165,14 +165,22 @@ exports.updatePassword = async (req, res) => {
 
 exports.getAllMatches = async (req, res) => {
   try {
+    console.log(req.user);
     await req.user.populate('matches').execPopulate();
-    let testArr = req.user.matches.map((x) => ({
-      firstName: x.firstName,
-      lastName: x.lastName,
-      age: x.age,
-      sunSign: x.sunSign,
-      moonSign: x.moonSign,
-      ascSign: x.ascSign
+    let { sunSign } = req.user;
+    console.log(sunSign);
+    let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
+    let compArr = (compareMe) =>
+      signArr.compatability.filter((sign) => sign.name === compareMe);
+    let testArr = req.user.matches.map((match) => ({
+      firstName: match.firstName,
+      lastName: match.lastName,
+      age: match.age,
+      sunSign: match.sunSign,
+      moonSign: match.moonSign,
+      ascSign: match.ascSign,
+      score: compArr(match.sunSign)[0].score,
+      bio: match.bio
     }));
     res.json(testArr);
   } catch (error) {
