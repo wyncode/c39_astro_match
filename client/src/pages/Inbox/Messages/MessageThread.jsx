@@ -1,164 +1,99 @@
-// import React, {useEffect, useState} from 'react';
-// import axios from 'axios';
-// import MessageCard from '../../Inbox/Messages/MessageCard';
-// import './MessageThread.css';
+import React, { useState, useEffect } from 'react';
+import socketIo from '../../../utilities/socket.io';
+import axios from 'axios';
+import MessageCard2 from './MessageCard2';
 
-// function MessageThread() {
-//     // const [user, setUser] = useState('');
-//     // const [userImage, setUserImage] = useState('');
-//     // const [matchImage, setMatchImage] = useState('');
-//     // const [participants, setParticipants] = useState('');
-//     // const [userMessage, setUserMessage] = useState('');
-//     // const [matchMessage, setmatchMessage] = useState('');
-//     const [conversation, setConversation] = useState('');
+const Chat = (props) => {
+  const [username, setUsername] = useState('');
+  const [message, setMessage] = useState('');
+  const [chats, setChats] = useState([]);
+  const [toggleMe, setToggleMe] = useState(false);
+  const [particpants, setParticpants] = useState([]);
+  //   const[text, setText] = useState([])
 
-// useEffect(() => {
-// axios
-//     .get('api/chat', { withCredentials: true })
-//     .then((response) => {
-//         setConversation(response.data)
-//         setParticipant(data.participants[i]);
-//         setUserMessage(messages[i]);
-//         setmatchMessage(response)
-//     })
-//     .catch((error) => {
-//         swal(`Oops!`, 'Something went wrong.');
+  const sendMessage = async (event) => {
+    event.preventDefault();
+    //we want to create a object in order to assign an author and message
+    //the first paramter always has to be a string
+    try {
+      console.log('i tried');
+      let response = await axios.post(
+        '/api/messages',
+        {
+          participants: {
+            recipient: '5fc1ae7f914cfe5ecb088a25',
+            sender: '5fbfbcbfbefd1f76df2a00d4'
+          },
+          text: message,
+          conversation: '5fc1b07dae94215ee0e7cbcb'
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+    socketIo.emit('send message', { author: username, message: message });
+    //clear message input box upon send
+    setMessage('');
+  };
 
-//     axios
-//         .get('/api/chat', { withCredentials: true })
-//         .then((response) => {(response.data)
-//         setFilteredTasks(response.data);
-//         })
-//         .catch((error) => {
-//         swal(`Oops!`, 'Something went wrong.');
-//         });
-//     }, [setTasks, setFilteredTasks, search, loading]);
+  //   useEffect(()=>{
+  //     //   let response = await axios.get('/chat/5fc1b07dae94215ee0e7cbcb', {withCredentials: true})
+  //     fetch('/chat/5fc1b07dae94215ee0e7cbcb').then(res => res.json()).then(data => )
+  //   })
 
-//     // get current conversation id
-//     // attach message?
+  // useEffect(()=>{
 
-//     async handleConversationData(conversation, user, match) {
-//         await('./api')
-//         (await this._isMounted) &&
-//           this.setState({
-//             room: room_id,
-//             username: username,
-//             userID: userID
-//           });
-//         this.updateChat();
-//       }
+  // }, [])
 
-//     useEffect(() => {
-//         fetch('./api/')
-//     return (
-//     );
+  useEffect(() => {
+    // you need the first parameter to match the .emit on server side
+    // if there is an on there must be an emit
+    //when database changes, socket needs to render again
+    socketIo.on('change data', (data) => {
+      console.log('receive message', data);
+      axios
+        .get('/api/chat/5fc1b07dae94215ee0e7cbcb', { withCredentials: true })
+        .then((response) => setChats(response.data))
+        .catch((e) => console.log(e));
+      //   console.log(data)
+      //   addMessage()
+      // setToggleMe(!toggleMe)
+    });
+  }, [chats]);
 
-//     async handleConversation(conversation, user, match) {
-//         await('./api')
+  return (
+    <>
+      <div className="dm-container">
+        <p> Go to Your Messages </p>
+        <p> DIRECT MESSAGES WITH JOHN</p>
+        <div>
+          <MessageCard2 />
+          {chats.map((chat) => {
+            return (
+              // <div>
+              //   {chat.from} == {chat.text}
+              // </div>
+              <MessageCard2 text={chat.text} />
+            );
+          })}
+        </div>
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="form-control"
+        />
+        <button onClick={sendMessage} className="btn btn-primary form-control">
+          Send
+        </button>
+      </div>
+    </>
+  );
+};
 
-//     };
-
-//     call from message schema
-//         <Message
-//         image={item.image}
-//         name={item.name}
-//         lastMessage={item.message}
-//       />
-
-//         <div>
-
-//             <div className="back" Link to="/Inbox" name="back">Go to Your Messages</div>
-
-//                 <div className="title">`DIRECT MESSAGES WITH ${match.name}`</div>
-
-//                     <div className="duoLogo">
-//                         <div className="userImage" name="userImage">{user.avatar}</div>
-//                         <div className="matchImage" name="matchImage">{match.avatar}</div>
-//                     </div>
-
-//             <div classname="window">
-//                 <div className="display"><MessageCard /></div>
-//             </div>
-
-//             <div className="inputFooter">
-//                 <div className="input" type="input">Type Here</div>
-//                 <div className="button" name="submit" onClick{(e) => setMessage(e.target.value)}>
-//                 <span className="buttonText">Send</span>
-//                 </div>
-//             </div>
-
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default MessageThread
-// const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     if (password.password !== password.confirmPassword) {
-//         swal('Error', 'Oops, passwords must match.');
-//       return;
-//     }
-//     await axios.put(
-//       '/api/users/password',
-//       { password: password.password },
-//       { withCredentials: true }
-//     );
-//     swal('Updated!', 'Your password has been updated!');
-//     history.push('/login');
-
-// const form = document.querySelector('form');
-// const input = document.querySelector('input');
-// const chatbox = document.querySelector('#chatbox');
-// const imFeelingLonely = document.querySelector('button');
-// const from = ['Me', 'Myself', 'I'];
-// let id = 3;
-// let apiURL = "https://api.chucknorris.io/jokes/random";
-// const timestamp = new Date().toLocaleTimeString('en-US');
-
-// form.addEventListener('submit', hitSubmit);
-// imFeelingLonely.addEventListener('click', chuckTime);
-
-// function hitSubmit(go) {
-//   go.preventDefault();
-//   id++
-//   const randomNumber = Math.floor(Math.random() * me.length);
-// //   const timestamp = new Date().toLocaleTimeString('en-US');
-
-//   const giveJoke = document.createElement('div');
-//   giveJoke.className = 'message';
-//   giveJoke.setAttribute('id', id);
-//   giveJoke.innerHTML = `
-//     <span>${timestamp}</span>
-//     <span class="sender">${from[randomNumber]}:</span>
-//     <span>${input.value}</span>
-//     <span class="delete" onclick="deleteJoke(${id})">❌</span>`;
-//   chatbox.appendChild(giveJoke);
-//   input.value = ''
-// }
-
-// function deleteJoke(id) {
-//     const joke = document.getElementById(id)
-//     joke.remove();
-// }
-
-// function chuckTime(){
-
-//     fetch(apiURL)
-//     .then((response) => response.json())
-//     .then((data) => {
-//         let joke = data.value
-//         let chuckJoke = document.createElement('div')
-//         chuckJoke.className = 'message'
-//         chuckJoke.setAttribute('id', id);
-//         chuckJoke.innerHTML =
-//         `
-//         <span>${(timestamp)}</span>
-//           <span class="sender">Fact:</span>
-//           <span>${joke}</span>
-//           <span class="delete" onclick="deleteJoke(${id})">❌</span>
-//         `;
-//         chatbox.appendChild(chuckJoke);
-//     });
-
-// }
+export default Chat;
