@@ -1,0 +1,44 @@
+.thread-container {
+  height: 100vh;
+  background: url('https://images.pexels.com/photos/5726193/pexels-photo-5726193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-size: cover;
+  padding: 0 1em 0 1em;
+}
+
+.link-dm {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.3em;
+  line-height: 28px;
+  text-decoration-line: underline;
+  color: #ffffff;
+  padding: 1em 0em 1em 0em;
+}
+
+.title-dm {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 28px;
+  color: #dfbc60;
+}
+
+.input-dm {
+  margin-top: 0.75em;
+}
+
+.form-control {
+  padding: 0.25em 0.5em;
+  font-size: 1em;
+  width: 16em;
+  margin-right: 1em;
+}
+
+.submit-dm {
+  width: 7em;
+  height: 2.2em;
+  border: none;
+  background-color: #dfbc60;
+}
