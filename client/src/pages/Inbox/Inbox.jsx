@@ -1,61 +1,64 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { AppContext } from '../../context/AppContext';
 import './Inbox.css';
+import { AppContext } from '../../context/AppContext';
+import { ChangeStream } from 'mongodb';
 
 const Inbox = () => {
-  const [userInbox, setUserInbox] = useState([]);
-  const [conversation, setConversation] = useState();
-  const [user, setUser] = useState();
-  const [match, setMatch] = useState();
+  const [inbox, setInbox] = useState([]);
+  const [user, setUser] = useState('');
+  const [match, setMatch] = useState('');
   const { currentUser } = useContext(AppContext);
 
   useEffect(() => {
     axios
-      .get(`/api/chat/${currentUser.inbox}`)
+      .get(`/api/users/inbox`, { withCredentials: true })
       .then((response) => {
-        setConversation(response);
+        setInbox(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  if (conversation.participants[0] === currentUser.id) {
-    setUser(conversation.participants[0]);
-    setMatch(conversation.participants[1]);
-  } else {
-    setUser(conversation.participants[1]);
-    setMatch(conversation.participants[0]);
-  }
+  //   let
+  //   if (inbox.participant === currentUser.id) {
+  //   setUser(inbox.participant[0]);
+  //   setMatch(inbox.participant[1]);
+  // } else {
+  //   setUser(inbox.participant[1]);
+  //   setMatch(inbox.participant[0]);
+  // }
 
-  // Conversation, participants, message, time, id,
+  // let news = ());
+  console.log(inbox);
+
   return (
     <div>
-      {userInbox.map((conversation) => {
-        return (
-          <>
-            <div className="background">
-              <div className="title">YOUR MESSAGES</div>
+      <div>
+        <div className="background">
+          <div className="title">YOUR MESSAGES</div>
 
-              <div className="incoming">
-                <span className="avatar">{match.avatar}</span>
+          {inbox &&
+            inbox.map((chat) => {
+              return (
+                <div className="incoming">
+                  <span className="avatar">{chat.id}</span>
 
-                <div className="messageBox">
-                  <div classsName="messageTitle">SUBJECT: HI!</div>
-                  <div className="text"> {conversation.participant.text} </div>
+                  <div className="messageBox">
+                    <div classsName="messageTitle">SUBJECT: HI!</div>
+                    <div className="text"> {chat._id}</div>
+                  </div>
                 </div>
-              </div>
-
-              <div className="button">
-                <span className="buttonText">Upgrade Membership</span>
-              </div>
-            </div>
-            ;
-          </>
-        );
-      })}
-      ;
+              );
+            })}
+          {/* <div className="button"> */}
+          {/* <span className="buttonText">Upgrade Membership</span> */}
+          {/* </div> */}
+        </div>
+        ; ;
+      </div>
     </div>
   );
 };

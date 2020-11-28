@@ -28,8 +28,8 @@ exports.getConversation = async (req, res) => {
     {
       participants: {
         $all: [
-          mongoose.Types.ObjectId(req.params.sender),
-          mongoose.Types.ObjectId(req.params.recipient)
+          mongoose.Types.ObjectId(req.user._id),
+          mongoose.Types.ObjectId(!req.user._id)
         ]
       }
     },
@@ -46,20 +46,6 @@ exports.getConversation = async (req, res) => {
     }
   );
 };
-
-//   exports.getConversationById = async (req, res) => {
-//     const _id = req.params.id;
-//     console.log(_id);
-//     if (!mongoose.Types.ObjectId.isValid(_id))
-//       return res.status(400).json({ message: 'not a valid thread' });
-//     try {
-//       const conversation = await Conversation.findById({ _id });
-//       if (!conversation) return res.status(400).json({ alert: 'Seems lonely. Say hello!' });
-//       res.status(200).json(conversation);
-//     } catch (error) {
-//       res.status(400).json({ error: error.message });
-//     }
-//   };
 
 exports.deleteConversationById = (req, res) => {
   Conversation.findByIdAndDelete(req.params.id)
