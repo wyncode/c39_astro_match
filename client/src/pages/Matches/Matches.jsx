@@ -19,7 +19,6 @@ const Matches = () => {
   return (
     <div className="background">
       <h1 className="title">YOUR BEST MATCHES</h1>
-
       {match &&
         match.map((match) => {
           return (
@@ -87,19 +86,23 @@ const Matches = () => {
                 <div className="location">
                   {match.city}, {match.state}
                 </div>
-                <div className="sunMoonAscendant">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                <div className="matchStats">
+                  <div className="name">{match.firstName}</div>
+                  <div className="age">AGE: {match.age}</div>
+                  <div className="location">
+                    {match.city}, {match.state}
+                  </div>
+                  <div className="sunMoonAscendant">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div className="percentageMatch">% Match</div>
+                  <div className="matchBio">{match.bio}</div>
                 </div>
-                <div className="percentageMatch">% Match</div>
-                <div className="matchBio">
-                  Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit
-                  amet, consectetur.Lorem ipsum dolor sit amet, consectetur.{' '}
+                <div className="button">
+                  <span className="buttonText">Upgrade Membership</span>
                 </div>
-              </div>
-              <div className="button">
-                <span className="buttonText">Upgrade Membership</span>
               </div>
             </div>
           </>
