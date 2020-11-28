@@ -1,8 +1,8 @@
 {
-  "name": "y",
-  "version": "y",
-  "main": "y",
-  "license": "y",
+  "name": "midterm_template",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
   "dependencies": {
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@sendgrid/mail": "^7.4.0",
@@ -48,9 +48,5 @@
     "dev": "concurrently --kill-others-on-fail \"yarn run server\" \"yarn run client\"",
     "heroku-postbuild": "cd client && yarn && yarn run build",
     "prettify": "prettier '*/**/*.js' '*/**/*.jsx' '*/**/*.html' '*/**/*.css' --write"
-  },
-  "description": "y",
-  "repository": "y",
-  "author": "y",
-  "private": true
+  }
 }
