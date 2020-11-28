@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     boxShadow: 'none',
-    background: 'transparent',
-    width: '25em'
+    background: 'transparent'
+    // width: '25em'
   },
   details: {
     display: 'flex',

@@ -5,6 +5,7 @@ const mongoose = require('mongoose'),
 
 exports.sendMessage = async (req, res) => {
   const { participants, text, conversation } = req.body;
+  console.log(participants);
   try {
     console.log('I AM HERE');
     const message = new Message(req.body);

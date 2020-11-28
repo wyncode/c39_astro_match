@@ -7,6 +7,7 @@ export const AppContextProvider = ({ children }) => {
   const [gender, setGender] = useState('string');
   const [loading, setLoading] = useState(false);
   const user = sessionStorage.getItem('user');
+  // const [recipient, setRecipient] = useState("")
 
   useEffect(() => {
     if (user && !currentUser) {

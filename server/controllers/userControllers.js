@@ -1,11 +1,9 @@
-const { populate } = require('../db/models/userModel');
-
 const User = require('../db/models/userModel'),
   cloudinary = require('cloudinary').v2,
   {
-    sendWelcomeEmail,
-    sendCancellationEmail,
-    forgotPasswordEmail
+    // sendWelcomeEmail,
+    // sendCancellationEmail,
+    // forgotPasswordEmail
   } = require('../emails/index'),
   jwt = require('jsonwebtoken');
 getMe = require('../../zodiac.json');
@@ -192,6 +190,8 @@ exports.getAllMatches = async (req, res) => {
 };
 
 exports.getInbox = async (req, res) => {
+  //need to isolate conversation ids
+  let conversationIds = req.user.inbox;
   try {
     await req.user
       .populate({
@@ -210,12 +210,16 @@ exports.getInbox = async (req, res) => {
         return {
           firstName: x.firstName,
           avatar: x.avatar,
-          _id: x._id
+          match_id: x._id
         };
       }
     });
-    //right now just information will figoure out how to get the message later
+    // right now just information will figoure out how to get the message later
     sendBackArr = sendBackArr.filter((x) => x);
+    sendBackArr = sendBackArr.map((x, i) => ({
+      ...x,
+      conversation_id: conversationIds[i]
+    }));
     res.send(sendBackArr);
   } catch (error) {
     console.log(error);

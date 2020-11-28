@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Inbox.css';
 import { AppContext } from '../../context/AppContext';
-import { ChangeStream } from 'mongodb';
 
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
   const [user, setUser] = useState('');
   const [match, setMatch] = useState('');
-  const { currentUser } = useContext(AppContext);
+  const { currentUser, recipient, setRecipient } = useContext(AppContext);
 
   useEffect(() => {
     axios
@@ -45,11 +45,17 @@ const Inbox = () => {
               return (
                 <div className="incoming">
                   <span className="avatar">{chat.id}</span>
-
+                  {/* <Link to={`/conversation/${chat.conversation_id}`}> */}
                   <div className="messageBox">
-                    <div classsName="messageTitle">SUBJECT: HI!</div>
-                    <div className="text"> {chat._id}</div>
+                    <Link
+                      to={`/conversation/${chat.conversation_id}`}
+                      onClick={() => setRecipient(chat.match_id)}
+                    >
+                      <div classsName="messageTitle">{chat.firstName}</div>
+                      <div className="text"> {chat.conversation_id}</div>
+                    </Link>
                   </div>
+                  {/* </Link> */}
                 </div>
               );
             })}

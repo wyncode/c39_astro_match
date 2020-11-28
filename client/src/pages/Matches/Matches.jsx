@@ -10,6 +10,7 @@ const Matches = () => {
       .get(`/api/users/matches/`, { withCredentials: true })
       .then((response) => {
         setMatch(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -28,13 +29,13 @@ const Matches = () => {
                   <img src="" alt={match.name} className="matchImage" />
                   <span className="viewProfile">View Profile</span>
                   <img
-                    src={match.ascendant}
+                    src={match.ascSign}
                     alt={match.ascendant}
                     className="ascendant"
                   />
-                  <img src={match.moon} alt={match.moon} className="moon" />
+                  <img src={match.moonSign} alt={match.moon} className="moon" />
                   <img
-                    src={match.starsign}
+                    src={match.sunSign}
                     alt={match.starsign}
                     className="starsign"
                   />
@@ -50,7 +51,7 @@ const Matches = () => {
                     <span></span>
                     <span></span>
                   </div>
-                  <div className="percentageMatch">% Match</div>
+                  <div className="percentageMatch">{match.score}% Match</div>
                   <div className="matchBio">{match.bio}</div>
                 </div>
                 <div className="button">

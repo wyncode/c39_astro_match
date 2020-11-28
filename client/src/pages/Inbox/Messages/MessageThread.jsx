@@ -1,31 +1,81 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import socketIo from '../../../utilities/socket.io';
 import axios from 'axios';
 import Sender from './MessageCard2';
 import Match from './MessageCard3';
 import './MessageThread.css';
 import { TextField } from '@material-ui/core';
+import { AppContext } from '../../../context/AppContext';
 
 const Chat = (props) => {
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
   const [message, setMessage] = useState('');
   const [chats, setChats] = useState([]);
-  const [toggleMe, setToggleMe] = useState(false);
-  const [particpants, setParticpants] = useState([]);
+  // const [toggleMe, setToggleMe] = useState(false);
+  const [participants, setParticipants] = useState('');
+  const messagesEndRef = useRef(null);
+  const [recipient, setRecipient] = useState('');
+  const { currentUser } = useContext(AppContext);
+
+  useEffect(() => getMessages(), []);
+
+  useEffect(() => {
+    socketIo.on('change data', (data) => {
+      console.log('receive message', data);
+      getMessages();
+      scrollToBottom();
+    });
+  }, [chats]);
+
+  // const getMessages = () => {
+  //   axios
+  //   .get('/api/chat/5fc1b07dae94215ee0e7cbcb', { withCredentials: true })
+  //   .then((response) => setChats(response.data))
+  //   .catch((e) => console.log(e));
+  // };
+
+  const getMessages = async () => {
+    try {
+      let response = await axios.get(`/api/chat/${props.match.params.id}`, {
+        withCredentials: true
+      });
+      // setParticipants(response.data)
+      setChats(response.data.messages);
+      setParticipants(response.data.participants);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // let filteredTasks = (participants && participants.find((x) => {
+  //   return x !== currentUser._id
+  // })).ID;
+  // console.log(filteredTasks)
+
+  let filteredTasks = (
+    participants &&
+    participants.find((x) => {
+      return x !== currentUser._id;
+    })
+  ).ID;
+  // const filteredPartcipants = participants?.filter((person)=> {
+  //   return person.sender_id
+  // })
 
   const sendMessage = async (event) => {
     event.preventDefault();
+    setRecipient(filteredTasks);
     try {
       console.log('i tried');
       let response = await axios.post(
         '/api/messages',
         {
           participants: {
-            recipient: '5fc1ae7f914cfe5ecb088a25',
-            sender: '5fbfbcbfbefd1f76df2a00d4'
+            recipient: `${recipient}`,
+            sender: `${currentUser._id}`
           },
           text: message,
-          conversation: '5fc1b07dae94215ee0e7cbcb'
+          conversation: `${props.match.params.id}`
         },
         { withCredentials: true }
       );
@@ -33,35 +83,46 @@ const Chat = (props) => {
     } catch (error) {
       console.log(error);
     }
-    socketIo.emit('send message', { author: username, message: message });
+    socketIo.emit('send message', { message: message });
     setMessage('');
   };
 
-  useEffect(() => {
-    socketIo.on('change data', (data) => {
-      console.log('receive message', data);
-      axios
-        .get('/api/chat/5fc1b07dae94215ee0e7cbcb', { withCredentials: true })
-        .then((response) => setChats(response.data))
-        .catch((e) => console.log(e));
-    });
-  }, [chats]);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // const otherParticipant = participants?.find(x => {return x !==currentUser._id})
 
   return (
     <div className="thread-container">
       <div>
-        <p className="link-dm"> Go to Your Messages </p>
-        <p className="title-dm"> DIRECT MESSAGES WITH JOHN</p>
+        <Link to="/inbox">
+          {' '}
+          <p className="link-dm"> Go to Your Messages </p>
+        </Link>
+        <p className="title-dm">
+          {' '}
+          {recipient}DIRECT MESSAGES WITH{' '}
+          {
+            (
+              participants &&
+              participants.find((x) => {
+                return x !== currentUser._id;
+              })
+            ).firstName
+          }
+        </p>
         <div className="dm-container">
           <Sender />
           {chats &&
             chats.map((chat) => {
               if (chat.from === 'user') {
-                return <Sender from={chat.from} />;
+                return <Sender from={chat.from} text={chat.text} />;
               } else {
-                return <Match from={chat.from} />;
+                return <Match from={chat.from} text={chat.text} />;
               }
             })}
+          <div ref={messagesEndRef} />
         </div>
       </div>
       <div className="input-dm">
@@ -72,7 +133,6 @@ const Chat = (props) => {
           onChange={(e) => setMessage(e.target.value)}
           className="form-control"
         />
-        {/* <TextField id="outlined-basic" label="Outlined" variant="outlined"/> */}
         <button onClick={sendMessage} className="submit-dm">
           Send
         </button>

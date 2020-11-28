@@ -27,6 +27,8 @@
 
 .input-dm {
   margin-top: 0.75em;
+  display: flex;
+  justify-content: center;
 }
 
 .form-control {
@@ -41,4 +43,16 @@
   height: 2.2em;
   border: none;
   background-color: #dfbc60;
+}
+
+.dm-container {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center;
+  align-items: center; */
+  /* flex: 1;
+  flex-wrap: wrap; */
+  /* border: solid black 2px; */
+  overflow: auto;
+  height: 70vh;
 }

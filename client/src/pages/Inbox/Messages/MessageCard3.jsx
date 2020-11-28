@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     boxShadow: 'none',
+    background: 'transparent'
     //   border: 'solid 1px black',
-    width: '25em'
+    // width: '25em'
   },
   details: {
     display: 'flex',
@@ -30,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
     border: 'solid 1px black',
     padding: '1.75rem 0.5rem',
     borderRadius: '4px',
-    width: '8em'
+    width: '8em',
+    background: '#ffffff'
   }
   // controls: {
   //   display: 'flex',
