@@ -6,18 +6,20 @@ const mongoose = require('mongoose'),
 exports.sendMessage = async (req, res) => {
   const { participants, text, conversation } = req.body;
   try {
+    console.log('I AM HERE');
     const message = new Message(req.body);
     await message.save();
-    console.log(message);
-    console.log(message.conversation);
+    // console.log(message);
+    // console.log(message.conversation);
     const found = await Conversation.findById(conversation);
-    console.log(found);
+    // console.log(found);
     found.messages.push(message);
-    console.log('I am after pushing found');
+    // console.log('I am after pushing found');
     await found.save();
-    console.log(found);
+    // console.log(found);
     res.status(200).json({ message: 'sent!' });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: error.message });
   }
 };
