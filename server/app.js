@@ -6,6 +6,7 @@ const express = require('express'),
 (messageRoutes = require('./routes/secure/chat/messageRoutes')),
   (conversationRoutes = require('./routes/secure/chat/conversationRoutes'));
 (userRouter = require('./routes/secure/userRoute')),
+  (fileUpload = require('express-fileupload')),
   (cookieParser = require('cookie-parser')),
   (passport = require('./middleware/authentication/index')),
   (preferencesRouter = require('./routes/secure/preferenceRoute'));
@@ -56,6 +57,13 @@ app.use(cookieParser());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/images'
+  })
+);
 
 // Any authentication middleware and related routing would be here.
 app.use('/api/*', passport.authenticate('jwt', { session: false }));

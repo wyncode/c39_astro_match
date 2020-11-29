@@ -9,7 +9,7 @@ const sendWelcomeEmail = (email, name) => {
     from: `${process.env.FROM_EMAIL}`,
     subject: 'Thanks for signing up.',
     text: `Hi ${name}! Welcome to AstroDate! Ready to find love in the stars?`
-    // html: exampleHTMLEmail
+    //html: exampleHTMLEmail
   });
 };
 
