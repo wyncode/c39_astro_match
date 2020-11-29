@@ -1,0 +1,185 @@
+/* These are the texts style-settings */
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+.userprofilecontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url('https://images.pexels.com/photos/5726193/pexels-photo-5726193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  color: #ffffff;
+  justify-content: center;
+}
+
+.userprofilehead {
+  position: center;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  justify-content: center;
+  width: 500px;
+}
+
+.chatinbox {
+  right: auto;
+  position: absolute;
+  right: 0;
+}
+
+.userimage {
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.userpicselect {
+  background: #dfbc60;
+  border: 1px solid #181827;
+  box-sizing: border-box;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userprofile {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  color: #dfbc60;
+}
+
+.userstats {
+  justify-content: center;
+  position: relative;
+  width: 700px;
+  padding: 2em;
+  margin: 20px;
+}
+.username {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #dfbc60;
+}
+.userage {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #ffffff;
+}
+.userlocation {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #ffffff;
+}
+
+.userbio {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5em;
+  color: #ffffff;
+}
+
+.usersigns {
+  justify-content: center;
+  text-align: center;
+}
+
+.signsheader {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #dfbc60;
+  justify-content: center;
+  text-align: center;
+  position: center;
+}
+
+.usersun {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #dfbc60;
+}
+.usersuntext {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  color: #ffffff;
+}
+
+.usermoon {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #dfbc60;
+}
+.usermoontext {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  color: #ffffff;
+}
+
+.userascendant {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #dfbc60;
+}
+
+.userascendanttext {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.button {
+  width: 374px;
+  height: 44px;
+  background: #dfbc60;
+  border: 1px solid #181827;
+  box-sizing: border-box;
+  border-radius: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8em;
+}
+.buttonText {
+  left: 0%;
+  right: 0%;
+  top: 18.18%;
+  bottom: 18.18%;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  color: #181827;
+}

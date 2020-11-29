@@ -1,103 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
-.main-holder {
-  background: #181826;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+.homecontainer {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background: url('https://images.pexels.com/photos/1146134/pexels-photo-1146134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ffffff;
 }
-.title {
+.hometitle {
   font-family: Spectral;
   font-style: normal;
   font-weight: normal;
-  font-size: 2em;
-  line-height: 37px;
-  color: #ffffff;
-  align-self: flex-start;
+  font-size: 48px;
+  line-height: 73px;
+  margin: 0em;
 }
 
-.div {
-  display: flex;
-  justify-content: center;
-}
-.h1 {
-  /* position: absolute;  */
-  text-align: center;
-  justify-content: center;
-  width: 356px;
-  height: 41px;
-  left: 29px;
-  top: 355px;
+.hometag-line {
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
   font-size: 35px;
   line-height: 41px;
   color: #ffffff;
+  margin: 1em 0 0em 0;
 }
-
-.h2 {
-  /* position: absolute; */
-  text-align: center;
-  justify-content: center;
-  width: 280px;
-  height: 45px;
-  left: 67px;
-  top: 543px;
+.homehelp-text {
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  line-height: 15px;
+  line-height: 20px;
   color: #ffffff;
-  display: block;
+  width: 280px;
+  margin: 2.5em 0 2.5em 0;
 }
 
 .create {
-  /* position: absolute;
-left: 0%;
-right: 0%; */
-  top: 18.18%;
-  bottom: 18.18%;
-  font-family: Karla;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-  transform: scale(2);
-  margin-bottom: 50px;
-  color: #3e3e4e;
+  list-style-type: none;
 }
-.account {
-  background-color: #dfbc60;
-  border-radius: 20px;
-  border: none;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  align-self: center;
-}
-.log {
-  /* position: absolute;
-    left: 0%;
-    right: 0%; */
-  top: 18.18%;
-  bottom: 18.18%;
 
+.account {
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
+  border: 1px solid #dfbc60;
+  display: flex;
+  align-items: center;
   text-align: center;
-  text-decoration-line: underline;
-  transform: scale(2);
-  color: #ffffff;
+  color: #181827;
+  background: #dfbc60;
+  box-sizing: border-box;
+  border-radius: 20px;
+  width: 18em;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0.8em;
+  list-style-type: none;
+}
+
+.log {
+  list-style-type: none;
+  text-align: center;
+}
+
+.sign {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: white;
+  list-style-type: none;
+  text-align: center;
 }
