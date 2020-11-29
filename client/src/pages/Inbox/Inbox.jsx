@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import './Inbox.css';
 import { AppContext } from '../../context/AppContext';
-import { ChangeStream } from 'mongodb';
 
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
   const [user, setUser] = useState('');
+  const [chat, setChat] = useState([]);
   const [match, setMatch] = useState('');
   const { currentUser } = useContext(AppContext);
 
@@ -20,33 +20,44 @@ const Inbox = () => {
       .catch((error) => {
         console.log(error);
       });
+    // axios
+    // .get(`/api/users/inbox/${inbox.id}`, { withCredentials: true })
+    // .then((response) => {
+    //   setChat(response.data);
+    //   console.log(response.data);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
   }, []);
-
-  console.log(inbox);
-  console.log(inbox.data);
 
   return (
     <div>
-      {inbox &&
-        inbox.map((chat) => {
-          return (
-            <div className="messageBar" style={{ width: 200, height: 50 }}>
-              <div className="matchImage" float="left">
-                <img
-                  src={chat.avatar}
-                  alt="profile-picture"
-                  width={250}
-                  height={250}
-                  roundedCircle
-                />
-              </div>
-              <div class="sender">{chat.firstName}</div>
-              <div className="messagePreview" float="right">
-                {chat.id}
-              </div>
-            </div>
-          );
-        })}
+      <div>
+        <div className="background">
+          <div className="titleInfo">YOUR MESSAGES</div>
+
+          {inbox &&
+            inbox.map((inbox) => {
+              return (
+                <div className="incoming">
+                  <span className="avatar">{inbox.avatar}</span>
+
+                  <div className="messageBox">
+                    <div className="messageTitle">{inbox.firstName}</div>
+                    {/* {chat &&
+            chat.map((chat) => { return ( */}
+                    <div className="text">{inbox.message}</div>
+                    {/* );})} */}
+                  </div>
+                </div>
+              );
+            })}
+          <div className="button">
+            <span className="buttonText">Upgrade Membership</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
