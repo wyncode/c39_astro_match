@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Matches.css';
 import { Aries } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Aries.jpg';
@@ -17,6 +18,7 @@ import { Pisces } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Si
 
 const Matches = () => {
   const [match, setMatch] = useState('');
+
   useEffect(() => {
     axios
       .get(`/api/users/matches/`, { withCredentials: true })
@@ -36,49 +38,51 @@ const Matches = () => {
         {match &&
           match.map((match) => {
             return (
-              <div className="matchProfile" id="linkToMatchProfile">
-                <div className="dynamicPicture">
-                  <img
-                    src={match.avatar}
-                    alt={match.name}
-                    className="matchImage"
-                  />
-                  <span className="viewProfile">View Profile</span>
-                  <img
-                    src={`${match.sunSign}`}
-                    alt={match.sunSign}
-                    className="starsign"
-                  />
-                  <img
-                    src={`${match.moonSign}`}
-                    alt={match.moonSign}
-                    className="moon"
-                  />
-                  <img
-                    src={`${match.ascSign}`}
-                    alt={match.ascSign}
-                    className="ascendant"
-                  />
-                </div>
-                <div className="matchStats">
-                  <div className="name">{match.firstName}</div>
-                  <div className="age">AGE: {match.age}</div>
-
-                  <div className="sunMoonAsc">
-                    <div className="matchSign">
-                      <img src={match.sunSign} /> {match.sunSign}
-                    </div>
-                    <div className="matchSign">
-                      <img src={match.moonSign} /> {match.moonSign}
-                    </div>
-                    <div className="matchSign">
-                      <img src={match.ascSign} /> {match.ascSign}
-                    </div>
+              <Link to={`/match/${match.match_id}`}>
+                <div className="matchProfile" id="linkToMatchProfile">
+                  <div className="dynamicPicture">
+                    <img
+                      src={match.avatar}
+                      alt={match.name}
+                      className="matchImage"
+                    />
+                    <span className="viewProfile">View Profile</span>
+                    <img
+                      src={`${match.sunSign}`}
+                      alt={match.sunSign}
+                      className="starsign"
+                    />
+                    <img
+                      src={`${match.moonSign}`}
+                      alt={match.moonSign}
+                      className="moon"
+                    />
+                    <img
+                      src={`${match.ascSign}`}
+                      alt={match.ascSign}
+                      className="ascendant"
+                    />
                   </div>
-                  <div className="percentageMatch">{match.score}% Match</div>
-                  <div className="matchBio">{match.bio}</div>
+                  <div className="matchStats">
+                    <div className="name">{match.firstName}</div>
+                    <div className="age">AGE: {match.age}</div>
+
+                    <div className="sunMoonAsc">
+                      <div className="matchSign">
+                        <img src={match.sunSign} /> {match.sunSign}
+                      </div>
+                      <div className="matchSign">
+                        <img src={match.moonSign} /> {match.moonSign}
+                      </div>
+                      <div className="matchSign">
+                        <img src={match.ascSign} /> {match.ascSign}
+                      </div>
+                    </div>
+                    <div className="percentageMatch">{match.score}% Match</div>
+                    <div className="matchBio">{match.bio}</div>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
       </div>
