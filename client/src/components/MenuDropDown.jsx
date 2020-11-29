@@ -65,7 +65,7 @@ export default function CustomizedMenus(props) {
           <ListItemText primary="Matches" />
         </StyledMenuItem>
         <StyledMenuItem>
-          <ListItemText primary="Logout" />
+          <ListItemText primary="Logout" onClick={props.handleSignOut} />
         </StyledMenuItem>
       </StyledMenu>
     </div>
