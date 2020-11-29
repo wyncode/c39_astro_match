@@ -44,11 +44,13 @@ const Inbox = () => {
                   <span className="avatar">{inbox.avatar}</span>
 
                   <div className="messageBox">
-                    <div className="messageTitle">{inbox.firstName}</div>
-                    {/* {chat &&
-            chat.map((chat) => { return ( */}
-                    <div className="text">{inbox.message}</div>
-                    {/* );})} */}
+                    <Link
+                      to={`/conversation/${inbox.conversation_id}`}
+                      onClick={() => setRecipient(inbox.match_id)}
+                    >
+                      <div className="messageTitle">{inbox.firstName}</div>
+                      <div className="text">{inbox.message}</div>
+                    </Link>
                   </div>
                 </div>
               );
