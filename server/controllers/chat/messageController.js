@@ -13,7 +13,6 @@ exports.sendMessage = async (req, res) => {
     await found.save();
     res.status(200).json({ message: 'sent!' });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ error: error.message });
   }
 };
