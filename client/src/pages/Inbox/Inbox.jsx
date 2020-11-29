@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Inbox.css';
 import { AppContext } from '../../context/AppContext';
@@ -8,14 +9,13 @@ const Inbox = () => {
   const [user, setUser] = useState('');
   const [chat, setChat] = useState([]);
   const [match, setMatch] = useState('');
-  const { currentUser } = useContext(AppContext);
+  const { currentUser, recipient, setRecipient } = useContext(AppContext);
 
   useEffect(() => {
     axios
       .get(`/api/users/inbox`, { withCredentials: true })
       .then((response) => {
         setInbox(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

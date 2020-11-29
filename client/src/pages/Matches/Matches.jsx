@@ -23,7 +23,6 @@ const Matches = () => {
       .then((response) => {
         setMatch(response.data);
         console.log(response.data);
-        console.log(match);
       })
       .catch((error) => {
         console.log(error);
@@ -48,7 +47,7 @@ const Matches = () => {
                   <img
                     src={`${match.sunSign}`}
                     alt={match.sunSign}
-                    className="ascendant"
+                    className="starsign"
                   />
                   <img
                     src={`${match.moonSign}`}
@@ -58,7 +57,7 @@ const Matches = () => {
                   <img
                     src={`${match.ascSign}`}
                     alt={match.ascSign}
-                    className="starsign"
+                    className="ascendant"
                   />
                 </div>
                 <div className="matchStats">
@@ -76,7 +75,6 @@ const Matches = () => {
                       <img src={match.ascSign} /> {match.ascSign}
                     </div>
                   </div>
-
                   <div className="percentageMatch">{match.score}% Match</div>
                   <div className="matchBio">{match.bio}</div>
                 </div>

@@ -8,14 +8,9 @@ exports.sendMessage = async (req, res) => {
   try {
     const message = new Message(req.body);
     await message.save();
-    console.log(message);
-    console.log(message.conversation);
     const found = await Conversation.findById(conversation);
-    console.log(found);
     found.messages.push(message);
-    console.log('I am after pushing found');
     await found.save();
-    console.log(found);
     res.status(200).json({ message: 'sent!' });
   } catch (error) {
     res.status(400).json({ error: error.message });
