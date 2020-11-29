@@ -52,13 +52,6 @@ const Profile = () => {
   //   }
   // };
 
-  useEffect(() => {
-    axios
-      .get('/api/users/me', { withCredentials: true })
-      .then((res) => console.log(res));
-    // .then((data) => console.log(data));
-  }, []);
-
   return (
     // <div>
     <div className="userprofilecontainer">
@@ -90,7 +83,9 @@ const Profile = () => {
       {/* <div className='button' type='submit'> <span className="buttonText">HI!</span></div> */}
 
       <div className="userstats">
-        <div className="username">Nina Dev</div>{' '}
+        <div className="username">
+          {currentUser.firstName} {currentUser.lastName}
+        </div>{' '}
         <Link to="/inbox">
           <a className="chatinbox">
             <svg
@@ -107,19 +102,16 @@ const Profile = () => {
             </svg>
           </a>{' '}
         </Link>
-        <div className="userage">Age: 35</div>
-        <div className="userlocation">Alexandria, VA</div>
-        <div className="userbio">
-          I am happy and fun-loving! I love trying new restaurants, traveling as
-          much as I can, and spending time with friends and family. I do
-          fundraising at a large nonprofit in the DC area. I love my job but I
-          work a lot so I’m hoping to find someone here that I can connect with.
-        </div>
+        <div className="userage">Age:{currentUser.age}</div>
+        <div className="userlocation">{currentUser.zipCode}</div>
+        <div className="userbio">{currentUser.bio || 'bio comming soon'}</div>
       </div>
 
       <div className="usersigns">
         <div className="signsheader">Top personality traits based on:</div>
-        <div className="usersun">SUN IN SAGGITARUS</div>
+        <div className="usersun">
+          SUN IN {currentUser.sunSign.toUpperCase()}
+        </div>
         <svg
           width="105"
           height="105"
@@ -177,7 +169,9 @@ const Profile = () => {
           The sun determines your ego, identity, and "role" in life. It's the
           core of who you are, and is the...
         </p>
-        <div className="usermoon">MOON IN CANCER</div>
+        <div className="usermoon">
+          MOON IN {currentUser.moonSign.toUpperCase()}
+        </div>
         <svg
           width="77"
           height="77"
@@ -218,7 +212,9 @@ const Profile = () => {
           The moon rules your emotions, moods, and feelings. This is likely the
           sign you most think of your...
         </p>
-        <div className="userascendant">ASCENDANT IN SAGGITARUS</div>
+        <div className="userascendant">
+          ASCENDANT IN {currentUser.ascSign.toUpperCase()}
+        </div>
         <svg
           width="78"
           height="78"
