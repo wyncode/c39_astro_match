@@ -47,6 +47,12 @@ exports.getConversation = async (req, res) => {
   );
 };
 
+const getConversationById = async (req, res) => {
+  await Conversation.findById(req.params.id)
+    .then((data) => res.json(data))
+    .catch((err) => res.status(500).json('Error: ' + err));
+};
+
 exports.deleteConversationById = (req, res) => {
   Conversation.findByIdAndDelete(req.params.id)
     .then((data) => {

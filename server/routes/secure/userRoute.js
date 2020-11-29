@@ -9,6 +9,7 @@ const router = require('express').Router(),
     updatePassword,
     getAllMatches,
     getInbox
+    // getUserById
   } = require('../../controllers/userControllers');
 
 router.get('/me', getCurrentUser);
@@ -20,5 +21,6 @@ router.post('/avatar', uploadAvatar);
 router.put('/password', updatePassword);
 router.get('/matches', getAllMatches);
 router.get('/inbox', getInbox);
+// router.get('/match', getUserById);
 
 module.exports = router;
