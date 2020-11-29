@@ -3,10 +3,14 @@
 .background {
   width: auto;
   height: 100vh;
-  background: #181827;
+  /* background: #181827; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url('../../components/Images/Vectors/pexels.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .title {
   padding-bottom: 2em;

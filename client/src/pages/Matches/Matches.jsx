@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Matches.css';
+import Aquarius from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Aquarius.webp';
+import Leo from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Leo.jpg';
 //import pictures?//
 
 const Matches = () => {
@@ -15,30 +17,30 @@ const Matches = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [match]);
 
   return (
     <div className="background">
-      <h1 className="title">YOUR BEST MATCHES</h1>
-      {match &&
-        match.map((match) => {
-          return (
-            <>
+      <h1 className="intro">YOUR BEST MATCHES</h1>
+      <div className="matchCard">
+        {match &&
+          match.map((match) => {
+            return (
               <div className="matchProfile" id="linkToMatchProfile">
                 <div className="dynamicPicture">
                   <img src="" alt={match.name} className="matchImage" />
                   <span className="viewProfile">View Profile</span>
                   <img
-                    src={match.ascSign}
+                    src={Aquarius}
                     alt={match.ascendant}
                     className="ascendant"
                   />
-                  <img src={match.moonSign} alt={match.moon} className="moon" />
                   <img
-                    src={match.sunSign}
-                    alt={match.starsign}
-                    className="starsign"
+                    src="https://static.displate.com/280x392/displate/2019-07-10/72e319e39e308bb5d06cd81bef1e8c3a_220ce183c372ebef78410fe2e74bfdb2.jpg"
+                    alt={match.moon}
+                    className="moon"
                   />
+                  <img src={Leo} alt={match.starsign} className="starsign" />
                 </div>
                 <div className="matchStats">
                   <div className="name">{match.firstName}</div>
@@ -54,13 +56,15 @@ const Matches = () => {
                   <div className="percentageMatch">{match.score}% Match</div>
                   <div className="matchBio">{match.bio}</div>
                 </div>
-                <div className="button">
-                  <span className="buttonText">Upgrade Membership</span>
-                </div>
               </div>
-            </>
-          );
-        })}
+            );
+          })}
+      </div>
+
+      <div className="button">
+        <span className="buttonText">Upgrade Membership</span>
+      </div>
+      <div className="footer"></div>
     </div>
   );
 };

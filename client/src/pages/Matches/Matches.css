@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
+/* .body {
+  background-image: url('https://images.pexels.com/photos/1146134/pexels-photo-1146134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+} */
+
 .background {
   width: auto;
-  height: 100vh;
+  height: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url('https://images.pexels.com/photos/1146134/pexels-photo-1146134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-attachment: fixed;
 }
-.title {
+.intro {
   top: 10px;
   font-family: Karla;
   font-style: normal;
@@ -19,11 +25,21 @@
   padding-top: 50px;
   padding-bottom: 88px;
 }
+.matchCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%vw;
+}
 .matchProfile {
   display: flex;
   justify-content: center;
-  width: 70%;
+  /* width: 70%; */
   height: 18em;
+  width: 50em;
+  flex: 0 1 150px;
+  margin-right: 2em;
+  margin-left: 3em;
 }
 .dynamicPicture {
   position: relative;
@@ -35,7 +51,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #c4c4c4;
+  /* background: #c4c4c4; */
   border: 0.15px solid #ffffff;
   box-sizing: border-box;
   border-radius: 10px;
@@ -55,26 +71,33 @@
 .ascendant {
   position: absolute;
   bottom: 0;
-  background: #ffffff;
-  width: 20px;
-  height: 20px;
+  /* background: #ffffff; */
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
 }
 .moon {
   position: absolute;
-  left: 47%;
+  left: 42%;
   right: 35%;
   bottom: 0;
-  background: #ffffff;
-  width: 20px;
-  height: 20px;
+  /* background: #ffffff; */
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
 }
 .starsign {
   position: absolute;
   right: 0;
   bottom: 0;
-  background: #ffffff;
-  width: 20px;
-  height: 20px;
+  /* background: #ffffff; */
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+.matchStats {
+  position: relative;
+  width: 350px;
 }
 .name {
   font-family: Karla;
@@ -114,12 +137,12 @@
   font-weight: normal;
   font-size: 24px;
   line-height: 20px;
-  color: #ffffff;
+  /* color: #ffffff; */
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .button {
-  position: absolute;
+  position: relative;
   bottom: 5%;
   width: 374px;
   height: 44px;
@@ -142,4 +165,8 @@
   line-height: 28px;
   text-align: center;
   color: #181827;
+}
+
+.footer {
+  height: 2em;
 }

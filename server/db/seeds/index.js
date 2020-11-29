@@ -43,7 +43,9 @@ const dbReset = async () => {
       email: faker.internet.email(),
       password: faker.internet.password(),
       birthday: faker.internet.birthday(),
-      sunSign: faker.internet.enum()
+      sunSign: faker.internet.enum(),
+      avatar: faker.image.avatar(),
+      gender: faker.name.gender()
     });
     await me.generateAuthToken();
     userIdArray.push(me._id);
@@ -53,34 +55,40 @@ const dbReset = async () => {
   for (let i = 0; i < 100; i++) {
     const message = new Message({
       description: faker.lorem.paragraph(),
-      completed: Boolean(Math.round(Math.random())),
-      dueDate: faker.date.future(),
-      owner: userIdArray[Math.floor(Math.random() * userIdArray.length)]
+      newStatus: faker.random.boolean,
+      recipient: faker.date.future(),
+      sender: userIdArray[Math.floor(Math.random() * userIdArray.length)],
+      senderAvatar: { me: avatar }
     });
     await message.save();
   }
 
-  //   //Loop 100 times and create 100 new preferences
-  //   for (let i = 0; i < 100; i++) {
-  //     const preference = new Preference({
-  //       description: faker.lorem.paragraph(),
-  //       completed: Boolean(Math.round(Math.random())),
-  //       dueDate: faker.date.future(),
-  //       owner: userIdArray[Math.floor(Math.random() * userIdArray.length)]
-  //     });
-  //     await message.save();
-  //   }
+  //Loop 100 times and create 100 new preferences
+  for (let i = 0; i < 100; i++) {
+    const preference = new Preference({
+      zodiac: faker.lorem.word(),
+      age: Boolean(Math.round(Math.random())),
+      interestedIn: faker.name.gender(),
+      distance: userIdArray[Math.floor(Math.random() * userIdArray.length)],
+      elegibleZipCodes: faker.address.zipCode()
+    });
+    await message.save();
+  }
 
-  //   //Loop 100 times and create 100 new conversations
-  //   for (let i = 0; i < 100; i++) {
-  //     const conversation = new Conversation({
-  //       description: faker.lorem.paragraph(),
-  //       completed: Boolean(Math.round(Math.random())),
-  //       dueDate: faker.date.future(),
-  //       owner: userIdArray[Math.floor(Math.random() * userIdArray.length)]
-  //     });
-  //     await message.save();
-  //   }
+  //Loop 100 times and create 100 new conversations
+  for (let i = 0; i < 100; i++) {
+    const conversation = new Conversation({
+      participants: `${[user._id]}``${
+        userIdArray[Math.floor(Math.random() * userIdArray.length)]
+      }`,
+      message: Boolean(Math.round(Math.random())),
+      dueDate: faker.date.future(),
+      owner: userIdArray[Math.floor(Math.random() * userIdArray.length)]
+    });
+    userIdArray.push(me._id),
+      userIdArray.push(recipient._id),
+      await message.save();
+  }
 
   //Count number of users ===> should be 100
   await User.countDocuments({}, function (err, count) {
@@ -98,7 +106,7 @@ const dbReset = async () => {
   });
 
   //Count number of preferences ===> should be 100
-  await Preference.countDocuments({}, function (err, count) {
+  await Conversation.countDocuments({}, function (err, count) {
     console.log('Number of preferences: ', count);
   });
 };
