@@ -184,7 +184,8 @@ exports.getAllMatches = async (req, res) => {
       moonSign: match.moonSign,
       ascSign: match.ascSign,
       score: compArr(match.sunSign)[0].score,
-      bio: match.bio
+      bio: match.bio,
+      avatar: match.avatar
     }));
     res.json(testArr);
   } catch (error) {
