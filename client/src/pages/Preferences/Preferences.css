@@ -3,9 +3,8 @@
 .preferences-container {
   background-color: #181827;
   height: inherit;
-  /* background-size: auto; */
-  /* width: inherit; */
-  padding: 2em 1em 2em 1em;
+  background-size: auto;
+  width: inherit;
   display: flex;
   flex-direction: column;
   background: #181826;
