@@ -2,16 +2,14 @@ const Preference = require('../db/models/preferenceModel'),
   User = require('../db/models/userModel');
 
 exports.createPreference = async (req, res) => {
-  const { age, zodiac, eligibleZipCodes, interestedIn } = req.body;
+  const { age, zodiac, interestedIn } = req.body;
   try {
-    console.log(req);
-    console.log(req.id);
     const preferences = await new Preference({
       ...req.body,
       owner: req.user._id
     });
-    console.log(preferences);
     await preferences.save();
+    let { eligibleZipCodes } = preferences;
     let user = await User.findOne({ _id: req.user._id });
     user.partnerPreference = preferences._id;
     let matchesFound = await User.find({
@@ -25,7 +23,9 @@ exports.createPreference = async (req, res) => {
     });
     matchesFound.forEach((match) => user.matches.push(match._id));
     await user.save();
-    res.status(200).send(`preferences were created!`);
+    res
+      .status(200)
+      .send(`Preferences were created! Matches have been found...`);
   } catch (error) {
     console.log(`Error creating preferences at ${new Date()}: ${error}`);
     res.status(400).json({ error: error.message });
