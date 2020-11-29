@@ -24,46 +24,28 @@ exports.createConversation = async (req, res) => {
 };
 
 exports.getConversation = async (req, res) => {
-  // await Conversation.find(
-  //   {
-  //     participants: {
-  //       $all: [
-  //         mongoose.Types.ObjectId(req.user._id),
-  //         mongoose.Types.ObjectId(!req.user._id)
-  //       ]
-  //     }
-  //   }),
-  console.log('????????????????????????');
-  console.log(req.params.id);
-  //need to grab the id of the particpant hmph
   try {
     let conversation = await Conversation.findById(req.params.id);
     await conversation.populate('messages').execPopulate();
     await conversation.populate('participants').execPopulate();
-    //send back this data another way
-    //need name need sender and user attache differenttly
-    //maybe by user?
     let sendMeBack = conversation.messages.map((message) => ({
       text: message.text,
       from:
         message.participants.sender.toString() === req.user._id.toString()
           ? 'user'
           : 'match'
-      // sender_id: message.participants.sender.toString() === req.user._id.toString() ? req.user._id : message.participants.sender
     }));
     let participants = conversation.participants.map((x) => ({
       firstName: x.firstName.toUpperCase(),
       lastName: x.lastName,
       ID: x._id.toString()
     }));
-    //split at the last 20 messages if less than 20 send back length
     if (sendMeBack.length >= 20) {
       sendMeBack = sendMeBack.slice(sendMeBack.length - 20);
     }
     res
       .status(201)
       .json({ messages: [...sendMeBack], participants: [...participants] });
-    // res.status(201).json(conversation)
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
