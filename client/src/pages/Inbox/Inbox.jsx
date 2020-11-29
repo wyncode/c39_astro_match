@@ -49,8 +49,8 @@ const Inbox = () => {
                       onClick={() => setRecipient(inbox.match_id)}
                     >
                       <div className="messageTitle">{inbox.firstName}</div>
-                      <div className="text">{inbox.message}</div>
                     </Link>
+                    <div className="text"> {inbox.lastMessage} </div>
                   </div>
                 </div>
               );

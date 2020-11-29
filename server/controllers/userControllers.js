@@ -203,6 +203,12 @@ exports.getInbox = async (req, res) => {
           path: 'participants'
         }
       })
+      .populate({
+        path: 'inbox',
+        populate: {
+          path: 'messages'
+        }
+      })
       .execPopulate();
     let inboxArr = req.user.inbox;
     let participants2 = inboxArr.map((obj) => obj.participants);
@@ -216,12 +222,15 @@ exports.getInbox = async (req, res) => {
         };
       }
     });
-    //right now just information will figure out how to get the message later
+    let lastMessArr = inboxArr.map(
+      (obj) => obj.messages[obj.messages.length - 1].text
+    );
     sendBackArr = sendBackArr.filter((x) => x);
-    sendBackArr = sendBackArr.map((x, i) => ({
-      ...x,
-      conversation_id: conversationIds[i]
-    }));
+    // sendBackArr = sendBackArr.map((x, i) => ({
+    //   ...x,
+    //   conversation_id: conversationIds[i],
+    //   lastMessage: lastMessArr[i]
+    // }));
     res.send(sendBackArr);
   } catch (error) {
     res.status(400).json('Please try again...');
