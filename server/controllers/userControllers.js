@@ -1,11 +1,9 @@
-const { populate } = require('../db/models/userModel');
-
 const User = require('../db/models/userModel'),
   cloudinary = require('cloudinary').v2,
   {
-    sendWelcomeEmail,
-    sendCancellationEmail,
-    forgotPasswordEmail
+    // sendWelcomeEmail,
+    // sendCancellationEmail,
+    // forgotPasswordEmail
   } = require('../emails/index'),
   jwt = require('jsonwebtoken');
 getMe = require('../../zodiac.json');
@@ -167,10 +165,8 @@ exports.updatePassword = async (req, res) => {
 
 exports.getAllMatches = async (req, res) => {
   try {
-    console.log(req.user);
     await req.user.populate('matches').execPopulate();
     let { sunSign } = req.user;
-    console.log(sunSign);
     let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
     let compArr = (compareMe) =>
       signArr.compatability.filter((sign) => sign.name === compareMe);
@@ -186,12 +182,12 @@ exports.getAllMatches = async (req, res) => {
     }));
     res.json(testArr);
   } catch (error) {
-    console.log(error);
     res.status(400).json(`Unable to do: ${error}`);
   }
 };
 
 exports.getInbox = async (req, res) => {
+  let conversationIds = req.user.inbox;
   try {
     await req.user
       .populate({
@@ -202,7 +198,6 @@ exports.getInbox = async (req, res) => {
       })
       .execPopulate();
     let inboxArr = req.user.inbox;
-    console.log(req.user._id.toString());
     let participants2 = inboxArr.map((obj) => obj.participants);
     let otherPeople = participants2.flat(1);
     let sendBackArr = otherPeople.map((x) => {
@@ -210,15 +205,17 @@ exports.getInbox = async (req, res) => {
         return {
           firstName: x.firstName,
           avatar: x.avatar,
-          _id: x._id
+          match_id: x._id
         };
       }
     });
-    //right now just information will figoure out how to get the message later
     sendBackArr = sendBackArr.filter((x) => x);
+    sendBackArr = sendBackArr.map((x, i) => ({
+      ...x,
+      conversation_id: conversationIds[i]
+    }));
     res.send(sendBackArr);
   } catch (error) {
-    console.log(error);
     res.status(400).json('Please try again...');
   }
 };

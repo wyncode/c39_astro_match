@@ -24,27 +24,44 @@ exports.createConversation = async (req, res) => {
 };
 
 exports.getConversation = async (req, res) => {
-  await Conversation.find(
-    {
-      participants: {
-        $all: [
-          mongoose.Types.ObjectId(req.user._id),
-          mongoose.Types.ObjectId(!req.user._id)
-        ]
-      }
-    },
-    async function (err, conversation) {
-      if (!Conversation) {
-        console.log('No conversation!');
-        await message.createConversation(req.body);
-        res.json(conversation);
-        await conversation.save();
-        return conversation;
-      } else {
-        res.status(201).json(conversation);
-      }
+  try {
+    let conversation = await Conversation.findById(req.params.id);
+    await conversation.populate('messages').execPopulate();
+    await conversation.populate('participants').execPopulate();
+    let sendMeBack = conversation.messages.map((message) => ({
+      text: message.text,
+      from:
+        message.participants.sender.toString() === req.user._id.toString()
+          ? 'user'
+          : 'match'
+    }));
+    let participants = conversation.participants.map((x) => ({
+      firstName: x.firstName.toUpperCase(),
+      lastName: x.lastName,
+      ID: x._id.toString()
+    }));
+    if (sendMeBack.length >= 20) {
+      sendMeBack = sendMeBack.slice(sendMeBack.length - 20);
     }
-  );
+    res
+      .status(201)
+      .json({ messages: [...sendMeBack], participants: [...participants] });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+
+  // async function (err, conversation) {
+  //   if (!Conversation) {
+  //     console.log('No conversation!');
+  //     await message.createConversation(req.body);
+  //     res.json(conversation);
+  //     await conversation.save();
+  //     return conversation;
+  //   } else {
+  //     res.status(201).json(conversation);
+  //   }
+  // }
 };
 
 exports.deleteConversationById = (req, res) => {
