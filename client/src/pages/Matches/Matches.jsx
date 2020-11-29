@@ -13,11 +13,12 @@ const Matches = () => {
       .then((response) => {
         setMatch(response.data);
         console.log(response.data);
+        console.log(match);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [match]);
+  }, []);
 
   return (
     <div className="background">
@@ -53,7 +54,7 @@ const Matches = () => {
                     <span></span>
                     <span></span>
                   </div>
-                  <div className="percentageMatch">{match.score}% Match</div>
+                  <div className="percentageMatch">% Match</div>
                   <div className="matchBio">{match.bio}</div>
                 </div>
               </div>

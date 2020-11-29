@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Inbox.css';
 import { AppContext } from '../../context/AppContext';
+import { ChangeStream } from 'mongodb';
 
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
   const [user, setUser] = useState('');
   const [match, setMatch] = useState('');
-  const { currentUser, recipient, setRecipient } = useContext(AppContext);
+  const { currentUser } = useContext(AppContext);
 
   useEffect(() => {
     axios
