@@ -16,7 +16,6 @@ const Inbox = () => {
       .get(`/api/users/inbox`, { withCredentials: true })
       .then((response) => {
         setInbox(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
