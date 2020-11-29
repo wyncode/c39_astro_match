@@ -7,16 +7,14 @@ import Login from '../Login/Login';
 
 const Home = () => {
   return (
-    //  <div className={'home-container'}>
-    <div className={'main-holder'}>
-      <head>
-        <title className="title">AstroDate</title>
-      </head>
-      <h1 className={'h1'}>Find Love in the Stars</h1>
-      <h2 className={'h2'}>
-        By signing up for AstroDate, you agree to our Terms of Service . Learn
-        how we process your data in our Privacy Policy and Cookies Policy
-      </h2>
+    <div className={'homecontainer'}>
+      <h1 className={'hometitle-log'}> Astrodate </h1>
+      <p className={'hometag-line'}>Find Love in the Stars!</p>
+      <p className={'homehelp-text'}>
+        {' '}
+        By signing up for Astrodate, you agree to our Terms of Service . Learn
+        how we process your data in our Privacy Policy and Cookies Policy.{' '}
+      </p>
       <ul>
         <li className={'create'}>
           <Link to="/signup">

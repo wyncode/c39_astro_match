@@ -2,21 +2,27 @@
 
 .background {
   width: auto;
-  height: 100vh;
-  background: #181827;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url('https://images.pexels.com/photos/2779948/pexels-photo-2779948.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+  min-height: 800px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
-.title {
-  padding-bottom: 2em;
-  height: 22px;
+.titleInfo {
+  top: 10px;
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
   font-size: 44px;
   line-height: 28px;
+  color: #dfbc60;
   align-self: center;
+  padding-top: 50px;
+  padding-bottom: 88px;
 }
 .incoming {
   display: flex;
@@ -26,6 +32,7 @@
   width: 70%;
   max-width: 664px;
   height: 8em;
+  margin-bottom: 2em;
 }
 .avatar {
   position: relative;
@@ -39,35 +46,37 @@
 .messageBox {
   box-sizing: border-box;
   border-radius: 10px;
+  height: 60%;
   width: 60%;
-  background-color: #ffffff;
+  margin-top: 3%;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .messageTitle {
   position: relative;
   top: 15%;
-  left: 25%;
+  left: 5%;
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 19px;
   color: #181827;
 }
 .text {
   position: relative;
-  bottom: 5%;
-  left: 5%;
-  width: 20%;
+  top: 10%;
+  left: 3%;
+  width: 90%;
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
   color: #181827;
-  padding: 10px;
+  margin: 5px;
 }
 .button {
-  position: absolute;
+  position: relative;
   bottom: 5%;
   width: 374px;
   height: 44px;
@@ -89,4 +98,7 @@
   line-height: 28px;
   text-align: center;
   color: #181827;
+}
+.footer {
+  height: 2em;
 }

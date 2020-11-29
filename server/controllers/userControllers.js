@@ -47,6 +47,12 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  await User.findById(req.params.id)
+    .then((data) => res.json(data))
+    .catch((err) => res.status(500).json('Error: ' + err));
+};
+
 exports.requestPasswordReset = async (req, res) => {
   try {
     const { email } = req.query;
@@ -209,6 +215,7 @@ exports.getInbox = async (req, res) => {
         };
       }
     });
+    //right now just information will figure out how to get the message later
     sendBackArr = sendBackArr.filter((x) => x);
     sendBackArr = sendBackArr.map((x, i) => ({
       ...x,
