@@ -15,7 +15,6 @@ const Inbox = () => {
       .get(`/api/users/inbox`, { withCredentials: true })
       .then((response) => {
         setInbox(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +44,6 @@ const Inbox = () => {
               return (
                 <div className="incoming">
                   <span className="avatar">{chat.id}</span>
-                  {/* <Link to={`/conversation/${chat.conversation_id}`}> */}
                   <div className="messageBox">
                     <Link
                       to={`/conversation/${chat.conversation_id}`}
@@ -55,7 +53,6 @@ const Inbox = () => {
                       <div className="text"> {chat.conversation_id}</div>
                     </Link>
                   </div>
-                  {/* </Link> */}
                 </div>
               );
             })}
