@@ -81,7 +81,7 @@ const Preferences = ({ history }) => {
         <RangeSlider
           handleChange={handleChange}
           step={5}
-          min={5}
+          min={0}
           max={200}
           id="distance"
         />

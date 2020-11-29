@@ -15,8 +15,11 @@ const Chat = (props) => {
   // const [toggleMe, setToggleMe] = useState(false);
   const [participants, setParticipants] = useState('');
   const messagesEndRef = useRef(null);
-  const [recipient, setRecipient] = useState('');
-  const { currentUser } = useContext(AppContext);
+  const { recipient, setRecipient, currentUser } = useContext(AppContext);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => getMessages(), []);
 
@@ -87,22 +90,20 @@ const Chat = (props) => {
     setMessage('');
   };
 
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
   // const otherParticipant = participants?.find(x => {return x !==currentUser._id})
 
   return (
     <div className="thread-container">
       <div>
-        <Link to="/inbox">
+        {/* <Link to="/inbox"> */}{' '}
+        <p className="link-dm" onClick={() => props.history.push('/inbox')}>
           {' '}
-          <p className="link-dm"> Go to Your Messages </p>
-        </Link>
+          Go to Your Messages{' '}
+        </p>
+        {/* </Link> */}
         <p className="title-dm">
           {' '}
-          {recipient}DIRECT MESSAGES WITH{' '}
+          DIRECT MESSAGES WITH{' '}
           {
             (
               participants &&

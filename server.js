@@ -20,8 +20,8 @@ const changeStream = Conversation.watch();
 //nice now just need to map through messages in the front?
 changeStream.on('change', (change) => {
   console.log('**********************');
-  console.log(change);
-  console.log(change.updateDescription.updatedFields);
+  // console.log(change);
+  // console.log(change.updateDescription.updatedFields);
   io.emit('change data', change);
 });
 

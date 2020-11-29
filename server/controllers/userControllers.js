@@ -182,6 +182,7 @@ exports.getAllMatches = async (req, res) => {
       score: compArr(match.sunSign)[0].score,
       bio: match.bio
     }));
+    console.log('**********************');
     res.json(testArr);
   } catch (error) {
     console.log(error);

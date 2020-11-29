@@ -65,6 +65,7 @@ PreferenceSchema.pre('save', async function (next) {
   if (pref.isModified('zodiac')) {
     console.log({ _id: pref.owner });
     let { sunSign } = await User.findOne({ _id: pref.owner });
+    console.log('****************');
     console.log(sunSign);
     let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
     let newSignArr = signArr.compatability.filter(
@@ -79,6 +80,7 @@ PreferenceSchema.pre('save', async function (next) {
     const zipRadius = zipCodeData.getRadius(zipCode, pref.distance, 'M');
     const zipCodeArr = zipRadius.map((x) => x.zipcode);
     pref.eligibleZipCodes = zipCodeArr;
+    pref.eligibleZipCodes.push(zipCode);
   }
   next();
 });
