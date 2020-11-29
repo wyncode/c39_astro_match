@@ -1,0 +1,128 @@
+/* These are the texts style-settings */
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+.userprofilecontainer-visit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url('https://images.pexels.com/photos/5726193/pexels-photo-5726193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  color: #ffffff;
+  justify-content: center;
+}
+.userimage-visit {
+  justify-content: center;
+  border-radius: 50%;
+}
+.userpicselect-visit {
+  background: #dfbc60;
+  border: 1px solid #181827;
+  box-sizing: border-box;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.userprofile-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  color: #dfbc60;
+}
+.userstats-visit {
+  justify-content: center;
+  position: relative;
+  width: 700px;
+  padding: 2em;
+  margin: 20px;
+}
+.username-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #dfbc60;
+}
+.userage-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #ffffff;
+}
+.userlocation-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #ffffff;
+}
+.userbio-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5em;
+  color: #ffffff;
+}
+.usersigns-visit {
+  justify-content: center;
+  text-align: center;
+}
+.signsheader-visist {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  color: #dfbc60;
+  justify-content: center;
+  text-align: center;
+  position: center;
+}
+.usersun-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #dfbc60;
+}
+.usersuntext-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  color: #ffffff;
+}
+.usermoon-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #dfbc60;
+}
+.usermoontext-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  color: #ffffff;
+}
+.userascendant-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #dfbc60;
+}
+.userascendanttext-visit {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  line-height: 16px;
+  color: #ffffff;
+}
