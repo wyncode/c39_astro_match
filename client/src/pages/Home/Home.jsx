@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import SignUp from '../SignUp';
 import Login from '../Login/Login';
-import Aries from '../../components/ZodiacComponents/Aries';
+import Logo from '../../components/Logo';
 
 const Home = () => {
   return (
     <div className={'homecontainer'}>
       <h1 className={'hometitle-log'}> Astrodate </h1>
-      <Aries width={25} height={25} />
+      <Logo height={'7.625em'} width={'10.625em'} />
       <p className={'hometag-line'}>Find Love in the Stars!</p>
       <p className={'homehelp-text'}>
         {' '}
