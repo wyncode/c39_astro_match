@@ -74,6 +74,9 @@ const Profile = () => {
         <div className="userpicselect">
           <form className="d-flex flex-column" onSubmit={handleSubmit}>
             <input type="file" accept="image/*" onChange={handleImageSelect} />
+            <button type="submit">
+              Save Image
+            </button>
           </form>
         </div>
 
