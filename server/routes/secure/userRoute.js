@@ -6,8 +6,7 @@ const router = require('express').Router(),
     logoutAllDevices,
     deleteUser,
     uploadAvatar,
-    updatePassword,
-    uploadAvatar
+    updatePassword
   } = require('../../controllers/userControllers');
 
 router.get('/me', getCurrentUser);
