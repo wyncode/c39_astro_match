@@ -33,12 +33,6 @@ const useStyles = makeStyles((theme) => ({
     width: '8em',
     background: '#ffffff'
   }
-  // controls: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   paddingLeft: theme.spacing(1),
-  //   paddingBottom: theme.spacing(1),
-  // }
 }));
 
 const Sender = (props) => {
