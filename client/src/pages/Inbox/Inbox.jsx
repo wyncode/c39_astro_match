@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import './Inbox.css';
 import { AppContext } from '../../context/AppContext';
-import { ChangeStream } from 'mongodb';
 
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
