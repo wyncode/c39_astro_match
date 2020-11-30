@@ -19,7 +19,7 @@ const Chat = (props) => {
 
   useEffect(() => {
     getMessages();
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     scrollToBottom();
@@ -39,7 +39,14 @@ const Chat = (props) => {
         withCredentials: true
       });
       setChats(response.data.messages);
-      setParticipants(response.data.participants);
+      console.log(response.data.participants[0].ID);
+      console.log(currentUser?._id);
+      if (response.data.participants[0].ID !== currentUser?._id) {
+        setParticipants(response.data.participants[0]);
+      } else {
+        setParticipants(response.data.participants[1]);
+      }
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -78,18 +85,9 @@ const Chat = (props) => {
         </Link>
         <p className="title-dm">
           {' '}
-          DIRECT MESSAGES WITH{' '}
-          {
-            (
-              participants &&
-              participants.find((x) => {
-                return x !== currentUser?._id;
-              })
-            ).firstName
-          }
+          DIRECT MESSAGES WITH {participants.firstName || 'MATCH'}
         </p>
         <div className="dm-container">
-          <Sender />
           {chats &&
             chats.map((chat) => {
               if (chat.from === 'user') {
@@ -105,7 +103,7 @@ const Chat = (props) => {
                   <Match
                     from={chat.from}
                     text={chat.text}
-                    avatar={chat.avatar}
+                    avatar={participants.avatar}
                   />
                 );
               }
