@@ -1,3 +1,5 @@
+const { populate } = require('../db/models/userModel');
+
 const User = require('../db/models/userModel'),
   cloudinary = require('cloudinary').v2,
   {
@@ -201,19 +203,21 @@ exports.getAllMatches = async (req, res) => {
 
 exports.getInbox = async (req, res) => {
   let conversationIds = req.user.inbox;
+  let sendBackArr;
   try {
     await req.user
       .populate({
         path: 'inbox',
         populate: {
-          path: 'participants'
+          path: 'participants',
+          model: 'User'
         }
       })
       .execPopulate();
     let inboxArr = req.user.inbox;
     let participants2 = inboxArr.map((obj) => obj.participants);
     let otherPeople = participants2.flat(1);
-    let sendBackArr = otherPeople.map((x) => {
+    sendBackArr = otherPeople.map((x) => {
       if (x._id.toString() !== req.user._id.toString()) {
         return {
           firstName: x.firstName,
@@ -222,7 +226,6 @@ exports.getInbox = async (req, res) => {
         };
       }
     });
-    //right now just information will figure out how to get the message later
     sendBackArr = sendBackArr.filter((x) => x);
     sendBackArr = sendBackArr.map((x, i) => ({
       ...x,
@@ -230,6 +233,26 @@ exports.getInbox = async (req, res) => {
     }));
     res.send(sendBackArr);
   } catch (error) {
+    res.status(400).json('Please try again...');
+  }
+};
+
+exports.getLastMessage = async (req, res) => {
+  try {
+    await req.user
+      .populate({
+        path: 'inbox',
+        populate: {
+          path: 'messages'
+        }
+      })
+      .execPopulate();
+    let lastMessArr = req.user.inbox.map(
+      (obj) => obj.messages[obj.messages.length - 1].text
+    );
+    res.send(lastMessArr);
+  } catch (error) {
+    console.log(error);
     res.status(400).json('Please try again...');
   }
 };

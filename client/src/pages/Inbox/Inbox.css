@@ -28,7 +28,6 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  justify-content: space-between;
   width: 70%;
   max-width: 664px;
   height: 8em;
@@ -41,6 +40,7 @@
   border: 0.15px solid #ffffff;
   box-sizing: border-box;
   border-radius: 75px;
+  margin-right: 3em;
 }
 .messageBox {
   box-sizing: border-box;
@@ -49,6 +49,7 @@
   width: 60%;
   margin-top: 3%;
   background-color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
 }
 .messageTitle {
   position: relative;
