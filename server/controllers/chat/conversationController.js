@@ -5,6 +5,11 @@ const mongoose = require('mongoose'),
 
 exports.createConversation = async (req, res) => {
   const { participants } = req.body;
+  let found = await Conversation.find({ $all: { participants } });
+  if (found) {
+    res.json(found._id);
+    getConversation(req);
+  }
   try {
     const conversation = new Conversation(req.body);
     conversation.participants = participants;
@@ -17,6 +22,7 @@ exports.createConversation = async (req, res) => {
     await userTwo.save();
     console.log(conversation);
     res.status(201).json(conversation);
+    return conversation._id;
   } catch (error) {
     console.log(error);
     res.status(500).json('Oops...');
@@ -50,18 +56,6 @@ exports.getConversation = async (req, res) => {
     console.log(error);
     res.status(500).json(error);
   }
-
-  // async function (err, conversation) {
-  //   if (!Conversation) {
-  //     console.log('No conversation!');
-  //     await message.createConversation(req.body);
-  //     res.json(conversation);
-  //     await conversation.save();
-  //     return conversation;
-  //   } else {
-  //     res.status(201).json(conversation);
-  //   }
-  // }
 };
 
 const getConversationById = async (req, res) => {

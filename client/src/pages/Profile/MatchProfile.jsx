@@ -9,6 +9,8 @@ const MatchProfile = (props) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [match, setMatch] = useState({});
+  const [conversationId, setConversationId] = useState({});
+  const { currentUser } = useContext(AppContext);
 
   useEffect(() => {
     axios
@@ -23,6 +25,22 @@ const MatchProfile = (props) => {
         console.log(error);
       });
   }, []);
+
+  let sendMessage = () => {
+    axios
+      .get(
+        `/api/chat/`,
+        { participants: [props.match.params.id, currentUser._id] },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        setConversationId(response.data);
+        props.history.push(`/conversation/${conversationId}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="userprofilecontainer-visit">
@@ -47,22 +65,20 @@ const MatchProfile = (props) => {
         <div className="username-visit">
           {match?.firstName} {match?.lastName}
         </div>{' '}
-        <Link to="/inbox">
-          <a className="chatinbox">
-            <svg
-              width="40"
-              height="29"
-              viewBox="0 0 40 29"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.196 4.3982L18.69 14.6263C19.0563 14.9521 19.5296 15.1321 20.02 15.1321C20.5104 15.1321 20.9837 14.9521 21.35 14.6263L32.846 4.3982H7.196ZM36 6.94125L24.012 17.6109C22.913 18.5892 21.4922 19.1299 20.02 19.1299C18.5478 19.1299 17.127 18.5892 16.028 17.6109L4 6.9033V24.3751H36V6.94125ZM4 0.402832H36C37.0609 0.402832 38.0783 0.823771 38.8284 1.57305C39.5786 2.32233 40 3.33856 40 4.3982V24.3751C40 25.4347 39.5786 26.4509 38.8284 27.2002C38.0783 27.9495 37.0609 28.3704 36 28.3704H4C2.93913 28.3704 1.92172 27.9495 1.17157 27.2002C0.421427 26.4509 0 25.4347 0 24.3751V4.3982C0 3.33856 0.421427 2.32233 1.17157 1.57305C1.92172 0.823771 2.93913 0.402832 4 0.402832Z"
-                fill="#DFBC60"
-              />
-            </svg>
-          </a>{' '}
-        </Link>
+        <div className="chatinbox" onClick={sendMessage}>
+          <svg
+            width="40"
+            height="29"
+            viewBox="0 0 40 29"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.196 4.3982L18.69 14.6263C19.0563 14.9521 19.5296 15.1321 20.02 15.1321C20.5104 15.1321 20.9837 14.9521 21.35 14.6263L32.846 4.3982H7.196ZM36 6.94125L24.012 17.6109C22.913 18.5892 21.4922 19.1299 20.02 19.1299C18.5478 19.1299 17.127 18.5892 16.028 17.6109L4 6.9033V24.3751H36V6.94125ZM4 0.402832H36C37.0609 0.402832 38.0783 0.823771 38.8284 1.57305C39.5786 2.32233 40 3.33856 40 4.3982V24.3751C40 25.4347 39.5786 26.4509 38.8284 27.2002C38.0783 27.9495 37.0609 28.3704 36 28.3704H4C2.93913 28.3704 1.92172 27.9495 1.17157 27.2002C0.421427 26.4509 0 25.4347 0 24.3751V4.3982C0 3.33856 0.421427 2.32233 1.17157 1.57305C1.92172 0.823771 2.93913 0.402832 4 0.402832Z"
+              fill="#DFBC60"
+            />
+          </svg>
+        </div>{' '}
         <div className="userage-visit">Age:{match?.age}</div>
         <div className="userlocation-visit">{match?.zipCode}</div>
         <div className="userbio-visit">{match?.bio}</div>
