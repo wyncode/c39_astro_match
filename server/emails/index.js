@@ -8,8 +8,9 @@ const sendWelcomeEmail = (email, name) => {
     to: email,
     from: `${process.env.FROM_EMAIL}`,
     subject: 'Thanks for signing up.',
-    text: `Hi ${name}! Welcome to AstroDate! Ready to find love in the stars?`
-    //html: exampleHTMLEmail
+    text: `Hi ${name}! Welcome to AstroDate! Ready to find love in the stars?`,
+    html: `<head> <title>AstroDate Update!</title>
+  <body> <p style="color:white;font-size:46px; background: url('https://images.pexels.com/photos/5726193/pexels-photo-5726193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"></p></body>`
   });
 };
 
@@ -18,7 +19,9 @@ const sendCancellationEmail = (email, name) => {
     to: email,
     from: `${process.env.FROM_EMAIL}`,
     subject: 'Sorry to see you go.',
-    text: `Bye ${name}. Hope your quest for love leads you back to us someday!`
+    text: `Bye ${name}. Hope your quest for love leads you back to us someday!`,
+    html: `<head> <title>AstroDate Update!</title>
+  <body> <p style="color:white;font-size:46px; background: url('https://images.pexels.com/photos/5726193/pexels-photo-5726193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"></p></body>`
   });
 };
 const forgotPasswordEmail = (email, name) => {
@@ -26,7 +29,9 @@ const forgotPasswordEmail = (email, name) => {
     to: email,
     from: `${process.env.FROM_EMAIL}`,
     subject: 'Sorry to see you go.',
-    text: `Hi ${name}! I see you forgot your password! Let me help you with that!`
+    text: `Hi ${name}! I see you forgot your password! Let me help you with that!`,
+    html: `<head> <title>AstroDate Update!</title>
+  <body> <p style="color:white;font-size:46px; background: url('https://images.pexels.com/photos/5726193/pexels-photo-5726193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"></p></body>`
   });
 };
 module.exports = {
