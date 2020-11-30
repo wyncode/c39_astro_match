@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import socketIo from '../../../utilities/socket.io';
 import axios from 'axios';
-import Sender from './MessageCard2';
-import Match from './MessageCard3';
+import Sender from './SenderCard';
+import Match from './MatchCard';
 import './MessageThread.css';
 import { AppContext } from '../../../context/AppContext';
 
@@ -20,6 +20,10 @@ const Chat = (props) => {
   useEffect(() => {
     getMessages();
   }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chats]);
 
   useEffect(() => {
     socketIo.on('change data', (data) => {
@@ -50,7 +54,7 @@ const Chat = (props) => {
         {
           participants: {
             recipient: `${recipient}`,
-            sender: `${currentUser._id}`
+            sender: `${currentUser?._id}`
           },
           text: message,
           conversation: `${props.match.params.id}`
@@ -79,7 +83,7 @@ const Chat = (props) => {
             (
               participants &&
               participants.find((x) => {
-                return x !== currentUser._id;
+                return x !== currentUser?._id;
               })
             ).firstName
           }
@@ -89,9 +93,21 @@ const Chat = (props) => {
           {chats &&
             chats.map((chat) => {
               if (chat.from === 'user') {
-                return <Sender from={chat.from} text={chat.text} />;
+                return (
+                  <Sender
+                    from={chat.from}
+                    text={chat.text}
+                    avatar={currentUser?.avatar}
+                  />
+                );
               } else {
-                return <Match from={chat.from} text={chat.text} />;
+                return (
+                  <Match
+                    from={chat.from}
+                    text={chat.text}
+                    avatar={chat.avatar}
+                  />
+                );
               }
             })}
           <div ref={messagesEndRef} />

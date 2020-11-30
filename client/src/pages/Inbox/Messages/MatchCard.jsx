@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     boxShadow: 'none',
     background: 'transparent'
-    // width: '25em'
   },
   details: {
     display: 'flex',
@@ -35,12 +34,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Sender = (props) => {
+const Match = (props) => {
   const classes = useStyles();
   const theme = useTheme();
 
   return (
     <Card className={classes.root}>
+      <CardMedia
+        className={classes.cover}
+        image={props.avatar}
+        title="Live from space album cover"
+      />
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="p" variant="p" className={classes.message}>
@@ -48,13 +52,8 @@ const Sender = (props) => {
           </Typography>
         </CardContent>
       </div>
-      <CardMedia
-        className={classes.cover}
-        image="https://images.pexels.com/photos/5331983/pexels-photo-5331983.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        title="Live from space album cover"
-      />
     </Card>
   );
 };
 
-export default Sender;
+export default Match;
