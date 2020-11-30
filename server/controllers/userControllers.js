@@ -47,10 +47,15 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-const getUserById = async (req, res) => {
-  await User.findById(req.params.id)
-    .then((data) => res.json(data))
-    .catch((err) => res.status(500).json('Error: ' + err));
+exports.getSingleUser = async (req, res) => {
+  console.log('I am at Single User');
+  try {
+    console.log(req.params.id);
+    let user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json('Error: ' + err);
+  }
 };
 
 exports.requestPasswordReset = async (req, res) => {
@@ -185,7 +190,8 @@ exports.getAllMatches = async (req, res) => {
       ascSign: match.ascSign,
       score: compArr(match.sunSign)[0].score,
       bio: match.bio,
-      avatar: match.avatar
+      avatar: match.avatar,
+      match_id: match._id
     }));
     res.json(testArr);
   } catch (error) {

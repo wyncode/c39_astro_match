@@ -1,54 +1,28 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Profile.css';
+import './MatchProfile.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { AppContext } from '../../context/AppContext';
 
-const Profile = () => {
-  const { currentUser, setCurrentUser } = useContext(AppContext);
+const MatchProfile = (props) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [match, setMatch] = useState({});
 
-  const handleImageSelect = (e) => {
-    setPreview(URL.createObjectURL(e.target.files[0]));
-    setImage(e.target.files[0]);
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const avatar = new FormData();
-    avatar.append('avatar', image, image.name);
-    try {
-      const updatedUser = await axios({
-        method: 'POST',
-        url: '/api/users/avatar',
-        data: avatar,
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+  useEffect(() => {
+    axios
+      .get(`/api/users/match/${props.match.params.id}`, {
+        withCredentials: true
+      })
+      .then((response) => {
+        setMatch(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      setCurrentUser({ ...currentUser, avatar: updatedUser.data.secure_url });
-      swal('Sweet!', 'Your celestial visage has been saved!', 'EUREKA!');
-    } catch (error) {
-      swal('Error', 'Oops, the stars are misaligned!');
-    }
-  };
-  // const handleDelete = async () => {
-  //   setLoading(true);
-  //    try {
-  //     await axios({
-  //       method: 'DELETE',
-  //       url: '/api/users/me',
-  //       withCredentials: true
-  //     });
-  //     setLoading(false);
-  //     sessionStorage.removeItem('user');
-  //     setCurrentUser(null);
-  //     push('/login');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  }, []);
 
   return (
     <div className="userprofilecontainer-visit">
@@ -58,8 +32,8 @@ const Profile = () => {
           src={
             preview
               ? preview
-              : currentUser?.avatar
-              ? currentUser?.avatar
+              : match?.avatar
+              ? match?.avatar
               : 'https://s3-alpha-sig.figma.com/img/8074/24dd/dcd76c7711d65ceea1300d1c6b21fda1?Expires=1607299200&Signature=duymJxN--q5ZuX0IYwcRARrcnXiSIHXDd6ys6nhNK0b4J9UmtuSirfsU6Wktw6GQWuueroXpX4FABM~FDu-MXuumtwOB4HH6HY73Rrjp~EWZ7SWqXLfzvosHVOIBTPChe8T2s55xhqk8hfbMWlKq~AsxASM0Y2aOCOQuODl1DANXmQPBQjgIWK-dbaCnGS8abs-XezDL8XKYqk1b1R45YPs0CXc7DAqP7FHPeDuHDwVpJOioQyVTUK4ZTkd9dZqHswMLXOAlLCDvtX-A30D5ftUgy1wjqGdTzRqnl89Lj49hs3ZRWIcNclAYLXaVzubzZT~tqUvJTQXlQCP4dQC4NA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'
           }
           alt="profile-picture-visit"
@@ -68,14 +42,10 @@ const Profile = () => {
           roundedCircle
         />
       </div>
-      <div className="userpicselect-visit">
-        <form className="d-flex flex-column" onSubmit={handleSubmit}>
-          <input type="file" accept="image/*" onChange={handleImageSelect} />
-        </form>
-      </div>
+
       <div className="userstats-visit">
         <div className="username-visit">
-          {visitUser.firstName} {visitUser.lastName}
+          {match?.firstName} {match?.lastName}
         </div>{' '}
         <Link to="/inbox">
           <a className="chatinbox">
@@ -93,17 +63,15 @@ const Profile = () => {
             </svg>
           </a>{' '}
         </Link>
-        <div className="userage-visit">Age:{visitUser.age}</div>
-        <div className="userlocation-visit">{visitUser.zipCode}</div>
-        <div className="userbio-visit">{visitUser.bio}</div>
+        <div className="userage-visit">Age:{match?.age}</div>
+        <div className="userlocation-visit">{match?.zipCode}</div>
+        <div className="userbio-visit">{match?.bio}</div>
       </div>
       <div className="usersigns-visit">
         <div className="signsheader-visit">
           Top personality traits based on:
         </div>
-        <div className="usersun-visit">
-          SUN IN {visitUser.sunSign.toUpperCase()}
-        </div>
+        <div className="usersun-visit">SUN IN {match?.sunSign}</div>
         <svg
           width="105"
           height="105"
@@ -160,9 +128,7 @@ const Profile = () => {
           The sun determines your ego, identity, and "role" in life. It's the
           core of who you are, and is the...
         </p>
-        <div className="usermoon-visit">
-          MOON IN {visitUser.moonSign.toUpperCase()}
-        </div>
+        <div className="usermoon-visit">MOON IN {match?.moonSign}</div>
         <svg
           width="77"
           height="77"
@@ -203,9 +169,7 @@ const Profile = () => {
           The moon rules your emotions, moods, and feelings. This is likely the
           sign you most think of your...
         </p>
-        <div className="userascendant-visit">
-          ASCENDANT IN {visitUser.ascSign.toUpperCase()}
-        </div>
+        <div className="userascendant-visit">ASCENDANT IN {match?.ascSign}</div>
         <svg
           width="78"
           height="78"
@@ -232,4 +196,4 @@ const Profile = () => {
     </div>
   );
 };
-export default Profile2;
+export default MatchProfile;

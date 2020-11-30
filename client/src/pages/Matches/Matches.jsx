@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Matches.css';
-import { Aries } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Aries.jpg';
-import { Gemini } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Gemini.jpg';
-import { Taurus } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Taurus.jpg';
-import { Cancer } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Cancer.jpg';
-import { Leo } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Leo.jpg';
-import { Virgo } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Virgo.webp';
-import { Libra } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Libra.webp';
-import { Scorpio } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Scorpio.webp';
-import { Capricorn } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Capricorn.webp';
-import { Sagittarius } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Sagittarius.webp';
-import { Aquarius } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Aquarius.webp';
-import { Pisces } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Pisces.webp';
-//import pictures?//
+import Aries from '../../components/Images/ZodiacImages/Aries.svg';
+import Gemini from '../../components/Images/ZodiacImages/Gemini.svg';
+import Taurus from '../../components/Images/ZodiacImages/Taurus.svg';
+import Cancer from '../../components/Images/ZodiacImages/Cancer.svg';
+import Leo from '../../components/Images/ZodiacImages/Leo.svg';
+import Virgo from '../../components/Images/ZodiacImages/Virgo.svg';
+import Libra from '../../components/Images/ZodiacImages/Libra.svg';
+import Scorpio from '../../components/Images/ZodiacImages/Scorpio.svg';
+import Capricorn from '../../components/Images/ZodiacImages/Capricorn.svg';
+import Sagittarius from '../../components/Images/ZodiacImages/Sagittarius.svg';
+import Aquarius from '../../components/Images/ZodiacImages/Aquarius.svg';
+import Pisces from '../../components/Images/ZodiacImages/Pisces.svg';
 
 const Matches = () => {
   const [match, setMatch] = useState('');
+
   useEffect(() => {
     axios
       .get(`/api/users/matches/`, { withCredentials: true })
@@ -29,6 +30,24 @@ const Matches = () => {
       });
   }, []);
 
+  const getImageBySign = (sunSign) => {
+    const sunSignMap = {
+      Leo: Leo,
+      Gemini: Gemini,
+      Aries: Aries,
+      Taurus: Taurus,
+      Cancer: Cancer,
+      Virgo: Virgo,
+      Libra: Libra,
+      Scorpio: Scorpio,
+      Capricorn: Capricorn,
+      Sagittarius: Sagittarius,
+      Aquarius: Aquarius,
+      Pisces: Pisces
+    };
+    return sunSignMap[sunSign];
+  };
+
   return (
     <div className="background">
       <h1 className="intro">YOUR BEST MATCHES</h1>
@@ -36,49 +55,39 @@ const Matches = () => {
         {match &&
           match.map((match) => {
             return (
-              <div className="matchProfile" id="linkToMatchProfile">
-                <div className="dynamicPicture">
-                  <img
-                    src={match.avatar}
-                    alt={match.name}
-                    className="matchImage"
-                  />
-                  <span className="viewProfile">View Profile</span>
-                  <img
-                    src={`${match.sunSign}`}
-                    alt={match.sunSign}
-                    className="starsign"
-                  />
-                  <img
-                    src={`${match.moonSign}`}
-                    alt={match.moonSign}
-                    className="moon"
-                  />
-                  <img
-                    src={`${match.ascSign}`}
-                    alt={match.ascSign}
-                    className="ascendant"
-                  />
-                </div>
-                <div className="matchStats">
-                  <div className="name">{match.firstName}</div>
-                  <div className="age">AGE: {match.age}</div>
-
-                  <div className="sunMoonAsc">
-                    <div className="matchSign">
-                      <img src={match.sunSign} /> {match.sunSign}
-                    </div>
-                    <div className="matchSign">
-                      <img src={match.moonSign} /> {match.moonSign}
-                    </div>
-                    <div className="matchSign">
-                      <img src={match.ascSign} /> {match.ascSign}
-                    </div>
+              <Link
+                to={`/match/${match.match_id}`}
+                className="linkToMatchProfile"
+              >
+                <div className="matchProfile">
+                  <div className="dynamicPicture">
+                    <img
+                      src={match.avatar}
+                      alt={match.name}
+                      className="matchImage"
+                    />
+                    <span className="viewProfile">View Profile</span>
                   </div>
-                  <div className="percentageMatch">{match.score}% Match</div>
-                  <div className="matchBio">{match.bio}</div>
+                  <div className="matchStats">
+                    <div className="name">{match.firstName}</div>
+                    <div className="age">AGE: {match.age}</div>
+
+                    <div className="sunMoonAsc">
+                      <div className="matchSign">
+                        <img src={getImageBySign(match.sunSign)} />
+                      </div>
+                      <div className="matchSign">
+                        <img src={getImageBySign(match.moonSign)} />
+                      </div>
+                      <div className="matchSign">
+                        <img src={getImageBySign(match.ascSign)} />
+                      </div>
+                    </div>
+                    <div className="percentageMatch">{match.score}% Match</div>
+                    <div className="matchBio">{match.bio}</div>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
       </div>
