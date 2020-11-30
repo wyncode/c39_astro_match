@@ -18,6 +18,7 @@ import Pisces from '../../components/Images/ZodiacImages/Pisces.svg';
 
 const Matches = () => {
   const [match, setMatch] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -51,7 +52,8 @@ const Matches = () => {
     };
     return sunSignMap[sunSign];
   };
-  // if (isLoading) return <Loader />
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="background">
