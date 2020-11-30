@@ -8,7 +8,8 @@ const router = require('express').Router(),
     uploadAvatar,
     updatePassword,
     getAllMatches,
-    getInbox
+    getInbox,
+    getLastMessage
     // getUserById
   } = require('../../controllers/userControllers');
 
@@ -22,5 +23,6 @@ router.put('/password', updatePassword);
 router.get('/matches', getAllMatches);
 router.get('/inbox', getInbox);
 // router.get('/match', getUserById);
+router.get('/lastMessage', getLastMessage);
 
 module.exports = router;

@@ -7,7 +7,7 @@ import { AppContext } from '../../context/AppContext';
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
   const [user, setUser] = useState('');
-  const [chat, setChat] = useState([]);
+  const [last, setLast] = useState('');
   const [match, setMatch] = useState('');
   const { currentUser, recipient, setRecipient } = useContext(AppContext);
 
@@ -20,15 +20,15 @@ const Inbox = () => {
       .catch((error) => {
         console.log(error);
       });
-    // axios
-    // .get(`/api/users/inbox/${inbox.id}`, { withCredentials: true })
-    // .then((response) => {
-    //   setChat(response.data);
-    //   console.log(response.data);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+    axios
+      .get(`/api/users/lastMessage`, { withCredentials: true })
+      .then((response) => {
+        setLast(response.data);
+        console.log(last);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
@@ -36,22 +36,24 @@ const Inbox = () => {
       <div>
         <div className="background">
           <div className="titleInfo">YOUR MESSAGES</div>
-
           {inbox &&
-            inbox.map((inbox) => {
+            inbox.map((inbox, i) => {
               return (
                 <div className="incoming">
-                  <span className="avatar">{inbox.avatar}</span>
-
-                  <div className="messageBox">
-                    <Link
-                      to={`/conversation/${inbox.conversation_id}`}
-                      onClick={() => setRecipient(inbox.match_id)}
-                    >
-                      <div className="messageTitle">{inbox.firstName}</div>
+                  <span>
+                    <Link to={`/match/${inbox.match_id}`}>
+                      <img src={`${inbox.avatar}`} className="avatar" />
                     </Link>
-                    <div className="text"> {inbox.lastMessage} </div>
-                  </div>
+                  </span>
+
+                  <Link
+                    to={`/conversation/${inbox.conversation_id}`}
+                    onClick={() => setRecipient(inbox.match_id)}
+                    className="messageBox"
+                  >
+                    <div className="messageTitle">{inbox.firstName}</div>
+                    <div className="text">Last Message: {last && last[i]} </div>
+                  </Link>
                 </div>
               );
             })}
