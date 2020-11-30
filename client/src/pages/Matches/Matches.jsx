@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Matches.css';
-import { Aries } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Aries.jpg';
-import { Gemini } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Gemini.jpg';
-import { Taurus } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Taurus.jpg';
-import { Cancer } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Cancer.jpg';
-import { Leo } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Leo.jpg';
-import { Virgo } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Virgo.webp';
-import { Libra } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Libra.webp';
-import { Scorpio } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Scorpio.webp';
-import { Capricorn } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Capricorn.webp';
-import { Sagittarius } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Sagittarius.webp';
-import { Aquarius } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Aquarius.webp';
-import { Pisces } from '../../components/Images/Vectors/Matches/ZodiacSymbols/Signs/Glow/Pisces.webp';
-//import pictures?//
+import { Aries } from '../../components/Images/ZodiacImages/Aries.svg';
+import { Gemini } from '../../components/Images/ZodiacImages/Gemini.svg';
+import { Taurus } from '../../components/Images/ZodiacImages/Taurus.svg';
+import { Cancer } from '../../components/Images/ZodiacImages/Cancer.svg';
+import Leo from '../../components/Images/ZodiacImages/Leo.svg';
+import Virgo from '../../components/Images/ZodiacImages/Virgo.svg';
+import Libra from '../../components/Images/ZodiacImages/Libra.svg';
+import Scorpio from '../../components/Images/ZodiacImages/Scorpio.svg';
+import Capricorn from '../../components/Images/ZodiacImages/Capricorn.svg';
+import Sagittarius from '../../components/Images/ZodiacImages/Sagittarius.svg';
+import Aquarius from '../../components/Images/ZodiacImages/Aquarius.svg';
+import Pisces from '../../components/Images/ZodiacImages/Pisces.svg';
 
 const Matches = () => {
   const [match, setMatch] = useState('');
@@ -31,6 +30,8 @@ const Matches = () => {
       });
   }, []);
 
+  console.log(match);
+
   return (
     <div className="background">
       <h1 className="intro">YOUR BEST MATCHES</h1>
@@ -38,8 +39,11 @@ const Matches = () => {
         {match &&
           match.map((match) => {
             return (
-              <Link to={`/match/${match.match_id}`}>
-                <div className="matchProfile" id="linkToMatchProfile">
+              <Link
+                to={`/match/${match.match_id}`}
+                className="linkToMatchProfile"
+              >
+                <div className="matchProfile">
                   <div className="dynamicPicture">
                     <img
                       src={match.avatar}
@@ -48,7 +52,7 @@ const Matches = () => {
                     />
                     <span className="viewProfile">View Profile</span>
                     <img
-                      src={`${match.sunSign}`}
+                      src={Pisces}
                       alt={match.sunSign}
                       className="starsign"
                     />
