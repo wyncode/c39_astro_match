@@ -2,6 +2,7 @@
   padding: 1em;
   background-image: url('https://images.pexels.com/photos/2779948/pexels-photo-2779948.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
   background-attachment: fixed;
+  background-size: contain;
   height: 130vh;
 }
 
@@ -15,6 +16,7 @@
   /* background: #181826; */
   background-image: url('https://images.pexels.com/photos/2779948/pexels-photo-2779948.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
   background-attachment: fixed;
+  background-size: contain;
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
@@ -129,16 +131,16 @@
 /* ***** CAROUSEL !!!! ****** */
 /* ****************************** */
 .carousel-item {
-  background: #181826;
+  /* background: #181826; */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 25em;
+  width: 35em;
 }
 .carousel-img {
   height: 70vh;
-  width: 25em;
+  width: 40em;
 }
 .carousel-p {
   font-family: Karla;
