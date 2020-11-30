@@ -20,15 +20,6 @@ const Inbox = () => {
       .catch((error) => {
         console.log(error);
       });
-    // axios
-    // .get(`/api/users/inbox/${inbox.id}`, { withCredentials: true })
-    // .then((response) => {
-    //   setChat(response.data);
-    //   console.log(response.data);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
   }, []);
 
   return (
@@ -45,10 +36,7 @@ const Inbox = () => {
 
                   <div className="messageBox">
                     <div className="messageTitle">{inbox.firstName}</div>
-                    {/* {chat &&
-            chat.map((chat) => { return ( */}
                     <div className="text">{inbox.message}</div>
-                    {/* );})} */}
                   </div>
                 </div>
               );
