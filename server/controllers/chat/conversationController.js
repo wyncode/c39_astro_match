@@ -4,18 +4,26 @@ const mongoose = require('mongoose'),
   Conversation = require('../../db/models/chat/privateMessages/conversationModel');
 
 exports.createConversation = async (req, res) => {
-  const { participants } = req.body;
-  let found = await Conversation.find({ $all: { participants } });
+  const reqPart = req.body.participants;
+  console.log('HERE I AM AT CONVERSATION');
+  console.log(typeof mongoose.Types.ObjectId(reqPart[0]));
+  let found = await Conversation.findOne({
+    participants: [
+      mongoose.Types.ObjectId(reqPart[0]),
+      mongoose.Types.ObjectId(reqPart[1])
+    ]
+  });
   if (found) {
-    res.json(found._id);
-    getConversation(req);
+    res.json({ _id: found._id });
+    // getConversation(req);
+    return;
   }
   try {
     const conversation = new Conversation(req.body);
-    conversation.participants = participants;
+    conversation.participants = reqPart;
     await conversation.save();
-    let userOne = await User.findById(participants[0]);
-    let userTwo = await User.findById(participants[1]);
+    let userOne = await User.findById(reqPart[0]);
+    let userTwo = await User.findById(reqPart[1]);
     userOne.inbox.push(conversation);
     userTwo.inbox.push(conversation);
     await userOne.save();

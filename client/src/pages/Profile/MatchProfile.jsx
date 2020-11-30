@@ -10,7 +10,7 @@ const MatchProfile = (props) => {
   const [preview, setPreview] = useState(null);
   const [match, setMatch] = useState({});
   const [conversationId, setConversationId] = useState({});
-  const { currentUser } = useContext(AppContext);
+  const { currentUser, setRecipient } = useContext(AppContext);
 
   useEffect(() => {
     axios
@@ -26,20 +26,20 @@ const MatchProfile = (props) => {
       });
   }, []);
 
-  let sendMessage = () => {
-    axios
-      .get(
-        `/api/chat/`,
+  let sendMessage = async () => {
+  
+
+    try {
+      let response = await axios.post(
+        '/api/chat',
         { participants: [props.match.params.id, currentUser._id] },
         { withCredentials: true }
-      )
-      .then((response) => {
-        setConversationId(response.data);
-        props.history.push(`/conversation/${conversationId}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      );
+      setRecipient(props.match.params.id);
+      props.history.push(`/conversation/${response.data._id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
