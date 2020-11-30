@@ -9,8 +9,8 @@ const router = require('express').Router(),
     updatePassword,
     getAllMatches,
     getInbox,
-    getLastMessage
-    // getUserById
+    getLastMessage,
+    getSingleUser
   } = require('../../controllers/userControllers');
 
 router.get('/me', getCurrentUser);
@@ -22,7 +22,8 @@ router.post('/avatar', uploadAvatar);
 router.put('/password', updatePassword);
 router.get('/matches', getAllMatches);
 router.get('/inbox', getInbox);
-// router.get('/match', getUserById);
 router.get('/lastMessage', getLastMessage);
+router.get(`/match/:id`, getSingleUser);
+
 
 module.exports = router;
