@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Loader from '../../components/Loader';
 import './Matches.css';
 import Aries from '../../components/Images/ZodiacImages/Aries.svg';
 import Gemini from '../../components/Images/ZodiacImages/Gemini.svg';
@@ -27,6 +28,9 @@ const Matches = () => {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -47,12 +51,13 @@ const Matches = () => {
     };
     return sunSignMap[sunSign];
   };
+  // if (isLoading) return <Loader />
 
   return (
     <div className="background">
       <h1 className="intro">YOUR BEST MATCHES</h1>
       <div className="matchCard">
-        {match &&
+        {match ? (
           match.map((match) => {
             return (
               <Link
@@ -89,7 +94,10 @@ const Matches = () => {
                 </div>
               </Link>
             );
-          })}
+          })
+        ) : (
+          <Loader />
+        )}
       </div>
 
       <div className="button">
