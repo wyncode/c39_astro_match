@@ -19,7 +19,7 @@ const Chat = (props) => {
 
   useEffect(() => {
     getMessages();
-  }, [currentUser]);
+  }, [currentUser, chats]);
 
   useEffect(() => {
     scrollToBottom();
