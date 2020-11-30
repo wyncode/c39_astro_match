@@ -22,10 +22,14 @@ const App = () => {
         <NavigationBar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/conversation/:id" component={MessageThread} />
-          <Route exact path="/matches" component={Matches} />
-          <Route exact path="/match/:id" component={Match} />
-          <Route exact path="/inbox" component={Inbox} />
+          <PrivateRoute
+            exact
+            path="/conversation/:id"
+            component={MessageThread}
+          />
+          <PrivateRoute exact path="/matches" component={Matches} />
+          <PrivateRoute exact path="/match/:id" component={Match} />
+          <PrivateRoute exact path="/inbox" component={Inbox} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/profile" component={Profile} />
