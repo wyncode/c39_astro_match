@@ -63,10 +63,10 @@ const Login = ({ history }) => {
             onChange={handleChange}
             placeholder="email address"
             className="user-login"
-            required
-            size="small"
-            id="outlined-required"
-            variant="outlined"
+            // required
+            // size="small"
+            // id="outlined-required"
+            // variant="outlined"
           />
           <br />
           <TextField
@@ -75,11 +75,11 @@ const Login = ({ history }) => {
             placeholder="password"
             onChange={handleChange}
             className="user-login"
-            id="outlined-password-input"
-            required
-            size="small"
-            autoComplete="current-password"
-            variant="outlined"
+            // id="outlined-password-input"
+            // required
+            // size="small"
+            // autoComplete="current-password"
+            // variant="outlined"
           />
           <br className="space"></br>
           <input type="submit" />
