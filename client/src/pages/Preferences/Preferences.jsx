@@ -71,7 +71,7 @@ const Preferences = ({ history }) => {
         <RangeSlider
           handleChange={handleChange}
           step={1}
-          min={21}
+          min={18}
           max={91}
           id="age"
         />
