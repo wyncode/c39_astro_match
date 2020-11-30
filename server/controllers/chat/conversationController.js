@@ -52,7 +52,8 @@ exports.getConversation = async (req, res) => {
     let participants = conversation.participants.map((x) => ({
       firstName: x.firstName.toUpperCase(),
       lastName: x.lastName,
-      ID: x._id.toString()
+      ID: x._id.toString(),
+      avatar: x.avatar
     }));
     if (sendMeBack.length >= 20) {
       sendMeBack = sendMeBack.slice(sendMeBack.length - 20);

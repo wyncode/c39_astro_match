@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import socketIo from '../../../utilities/socket.io';
 import axios from 'axios';
-import Sender from './MessageCard2';
-import Match from './MessageCard3';
+import Sender from './SenderCard';
+import Match from './MatchCard';
 import './MessageThread.css';
 import { AppContext } from '../../../context/AppContext';
 
@@ -19,7 +19,11 @@ const Chat = (props) => {
 
   useEffect(() => {
     getMessages();
-  }, []);
+  }, [currentUser]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chats]);
 
   useEffect(() => {
     socketIo.on('change data', (data) => {
@@ -35,7 +39,14 @@ const Chat = (props) => {
         withCredentials: true
       });
       setChats(response.data.messages);
-      setParticipants(response.data.participants);
+      console.log(response.data.participants[0].ID);
+      console.log(currentUser?._id);
+      if (response.data.participants[0].ID !== currentUser?._id) {
+        setParticipants(response.data.participants[0]);
+      } else {
+        setParticipants(response.data.participants[1]);
+      }
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +61,7 @@ const Chat = (props) => {
         {
           participants: {
             recipient: `${recipient}`,
-            sender: `${currentUser._id}`
+            sender: `${currentUser?._id}`
           },
           text: message,
           conversation: `${props.match.params.id}`
@@ -74,24 +85,27 @@ const Chat = (props) => {
         </Link>
         <p className="title-dm">
           {' '}
-          DIRECT MESSAGES WITH{' '}
-          {
-            (
-              participants &&
-              participants.find((x) => {
-                return x !== currentUser._id;
-              })
-            ).firstName
-          }
+          DIRECT MESSAGES WITH {participants.firstName || 'MATCH'}
         </p>
         <div className="dm-container">
-          <Sender />
           {chats &&
             chats.map((chat) => {
               if (chat.from === 'user') {
-                return <Sender from={chat.from} text={chat.text} />;
+                return (
+                  <Sender
+                    from={chat.from}
+                    text={chat.text}
+                    avatar={currentUser?.avatar}
+                  />
+                );
               } else {
-                return <Match from={chat.from} text={chat.text} />;
+                return (
+                  <Match
+                    from={chat.from}
+                    text={chat.text}
+                    avatar={participants.avatar}
+                  />
+                );
               }
             })}
           <div ref={messagesEndRef} />
