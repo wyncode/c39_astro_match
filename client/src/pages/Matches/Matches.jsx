@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Matches.css';
-import { Aries } from '../../components/Images/ZodiacImages/Aries.svg';
-import { Gemini } from '../../components/Images/ZodiacImages/Gemini.svg';
-import { Taurus } from '../../components/Images/ZodiacImages/Taurus.svg';
-import { Cancer } from '../../components/Images/ZodiacImages/Cancer.svg';
+import Aries from '../../components/Images/ZodiacImages/Aries.svg';
+import Gemini from '../../components/Images/ZodiacImages/Gemini.svg';
+import Taurus from '../../components/Images/ZodiacImages/Taurus.svg';
+import Cancer from '../../components/Images/ZodiacImages/Cancer.svg';
 import Leo from '../../components/Images/ZodiacImages/Leo.svg';
 import Virgo from '../../components/Images/ZodiacImages/Virgo.svg';
 import Libra from '../../components/Images/ZodiacImages/Libra.svg';
@@ -30,7 +30,23 @@ const Matches = () => {
       });
   }, []);
 
-  console.log(match);
+  const getImageBySign = (sunSign) => {
+    const sunSignMap = {
+      Leo: Leo,
+      Gemini: Gemini,
+      Aries: Aries,
+      Taurus: Taurus,
+      Cancer: Cancer,
+      Virgo: Virgo,
+      Libra: Libra,
+      Scorpio: Scorpio,
+      Capricorn: Capricorn,
+      Sagittarius: Sagittarius,
+      Aquarius: Aquarius,
+      Pisces: Pisces
+    };
+    return sunSignMap[sunSign];
+  };
 
   return (
     <div className="background">
@@ -51,21 +67,6 @@ const Matches = () => {
                       className="matchImage"
                     />
                     <span className="viewProfile">View Profile</span>
-                    <img
-                      src={Pisces}
-                      alt={match.sunSign}
-                      className="starsign"
-                    />
-                    <img
-                      src={`${match.moonSign}`}
-                      alt={match.moonSign}
-                      className="moon"
-                    />
-                    <img
-                      src={`${match.ascSign}`}
-                      alt={match.ascSign}
-                      className="ascendant"
-                    />
                   </div>
                   <div className="matchStats">
                     <div className="name">{match.firstName}</div>
@@ -73,13 +74,13 @@ const Matches = () => {
 
                     <div className="sunMoonAsc">
                       <div className="matchSign">
-                        <img src={match.sunSign} /> {match.sunSign}
+                        <img src={getImageBySign(match.sunSign)} />
                       </div>
                       <div className="matchSign">
-                        <img src={match.moonSign} /> {match.moonSign}
+                        <img src={getImageBySign(match.moonSign)} />
                       </div>
                       <div className="matchSign">
-                        <img src={match.ascSign} /> {match.ascSign}
+                        <img src={getImageBySign(match.ascSign)} />
                       </div>
                     </div>
                     <div className="percentageMatch">{match.score}% Match</div>
