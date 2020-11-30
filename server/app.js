@@ -23,9 +23,6 @@ app.use('/api/location', locationRoutes);
 app.use(cookieParser());
 
 // Serve any static files
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
 
 app.use(
   fileUpload({
@@ -45,9 +42,14 @@ app.use('/api', conversationRoutes);
 app.use('/api/preferences', preferencesRouter);
 
 // Handle React routing, return all requests to React app
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 if (process.env.NODE_ENV === 'production') {
   app.get('*', (request, response) => {
     response.sendFile(path.join(__dirname, '../client/build', 'index.html'));
   });
 }
+
 module.exports = app;
