@@ -26,6 +26,10 @@ const Chat = (props) => {
   }, [chats]);
 
   useEffect(() => {
+    scrollToBottom();
+  }, [chats]);
+
+  useEffect(() => {
     socketIo.on('change data', (data) => {
       console.log('receive message', data);
       getMessages();
