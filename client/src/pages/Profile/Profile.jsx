@@ -33,6 +33,7 @@ const Profile = () => {
       swal('Error', 'Oops, the stars are misaligned!');
     }
   };
+
   // const handleDelete = async () => {
   //   setLoading(true);
   //    try {
@@ -51,7 +52,6 @@ const Profile = () => {
   // };
 
   return (
-    // <div>
     <>
       <div className="userprofilecontainer">
         <h1 className="userprofilehead"> Your Profile </h1>
@@ -68,15 +68,14 @@ const Profile = () => {
             width={250}
             height={250}
             roundedCircle
+            className="profileImage"
           />
         </div>
 
         <div className="userpicselect">
           <form className="d-flex flex-column" onSubmit={handleSubmit}>
             <input type="file" accept="image/*" onChange={handleImageSelect} />
-            <button type="submit">
-              Save Image
-            </button>
+            <button type="submit">Save Image</button>
           </form>
         </div>
 

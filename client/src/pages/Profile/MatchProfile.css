@@ -8,6 +8,23 @@
   color: #ffffff;
   justify-content: center;
 }
+
+.userprofilehead-visit {
+  position: center;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3em;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  justify-content: center;
+  width: 500px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 50%;
+}
+
 .userimage-visit {
   justify-content: center;
   border-radius: 50%;
@@ -21,6 +38,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.matchProfileImage {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+}
+
 .userprofile-visit {
   font-family: Karla;
   font-style: normal;

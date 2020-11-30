@@ -21,6 +21,8 @@
   color: #ffffff;
   justify-content: center;
   width: 500px;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .chatinbox {
@@ -42,6 +44,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.profileImage {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
 }
 
 .userprofile {

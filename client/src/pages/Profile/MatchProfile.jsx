@@ -44,7 +44,7 @@ const MatchProfile = (props) => {
 
   return (
     <div className="userprofilecontainer-visit">
-      <h1 className="userprofilehead-visit"> Your Profile </h1>
+      <h1 className="userprofilehead-visit"> {match?.firstName}'s Profile </h1>
       <div className="userimage-visit">
         <img
           src={
@@ -58,6 +58,7 @@ const MatchProfile = (props) => {
           width={250}
           height={250}
           roundedCircle
+          className="matchProfileImage"
         />
       </div>
 

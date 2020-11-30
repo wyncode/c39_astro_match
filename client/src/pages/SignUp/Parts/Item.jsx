@@ -1,15 +1,15 @@
 import React from 'react';
+import slideOne from './Images/slideOne.png';
+import slideTwo from './Images/slideTwo.png';
+import slideThree from './Images/slideThree.png';
+
+const imgArr = [slideOne, slideTwo, slideThree];
 
 const Item = (props) => {
   return (
     <div className={'carousel-item'}>
       {/* //placeholder image waiting for vector files from UXUI */}
-      <img
-        className="carousel-img"
-        src={
-          'https://images.pexels.com/photos/1257860/pexels-photo-1257860.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-        }
-      />
+      <img className="carousel-img" src={imgArr[props.check]} />
       <h2>{props.item.name}</h2>
       <p className={'carousel-p'}>{props.item.description}</p>
 
