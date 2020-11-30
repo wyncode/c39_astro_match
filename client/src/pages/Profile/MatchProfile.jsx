@@ -27,19 +27,7 @@ const MatchProfile = (props) => {
   }, []);
 
   let sendMessage = async () => {
-    // await axios
-    //   .get(
-    //     `/api/chat`,
-    //     { participants: [props.match.params.id, currentUser._id] },
-    //     { withCredentials: true }
-    //   )
-    //   .then((response) => {
-    //     setConversationId(response.data);
-    //     props.history.push(`/conversation/${conversationId}`);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+  
 
     try {
       let response = await axios.post(
@@ -47,8 +35,6 @@ const MatchProfile = (props) => {
         { participants: [props.match.params.id, currentUser._id] },
         { withCredentials: true }
       );
-      // setConversationId(response.data._id)
-      // console.log(typeof response.data._id)
       setRecipient(props.match.params.id);
       props.history.push(`/conversation/${response.data._id}`);
     } catch (error) {
