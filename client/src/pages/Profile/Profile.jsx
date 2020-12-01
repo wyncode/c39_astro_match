@@ -62,7 +62,7 @@ const Profile = () => {
                 ? preview
                 : currentUser?.avatar
                 ? currentUser?.avatar
-                : 'https://s3-alpha-sig.figma.com/img/8074/24dd/dcd76c7711d65ceea1300d1c6b21fda1?Expires=1607299200&Signature=duymJxN--q5ZuX0IYwcRARrcnXiSIHXDd6ys6nhNK0b4J9UmtuSirfsU6Wktw6GQWuueroXpX4FABM~FDu-MXuumtwOB4HH6HY73Rrjp~EWZ7SWqXLfzvosHVOIBTPChe8T2s55xhqk8hfbMWlKq~AsxASM0Y2aOCOQuODl1DANXmQPBQjgIWK-dbaCnGS8abs-XezDL8XKYqk1b1R45YPs0CXc7DAqP7FHPeDuHDwVpJOioQyVTUK4ZTkd9dZqHswMLXOAlLCDvtX-A30D5ftUgy1wjqGdTzRqnl89Lj49hs3ZRWIcNclAYLXaVzubzZT~tqUvJTQXlQCP4dQC4NA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'
+                : 'https://images.pexels.com/photos/4610741/pexels-photo-4610741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
             }
             alt="profile-picture"
             width={250}
