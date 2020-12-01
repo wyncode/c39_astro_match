@@ -23,18 +23,9 @@ const useStyles = makeStyles({
     border: 0,
     color: '#181826',
     paddingLeft: '1em'
-    //   height: 48,
-    //   padding: '0 30px',
-    // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
-  // label: {
-  //   textTransform: 'capitalize',
-  //   content: 'asdasdasdds'
-  // },
   icon: {
-    //the icon (if it's a check mark or not oooooh)
     borderRadius: '50%',
-    // backgroundColor: 'blue',
     width: '1em',
     height: '1em',
     'input:disabled ~ &': {
@@ -44,17 +35,8 @@ const useStyles = makeStyles({
   },
   checkedIcon: {
     backgroundColor: '#ffd76e',
-    // width: '1em',
-    // height: '0.5em',
-    // visibility: 'hidden',
     '&:before': {
-      //before the check, like the hover over
-      // borderRadius: '5px',
-      // display: 'block',
-      // width: '1em',
-      // height: '0.5em',
       content: '""'
-      // visibility: 'hidden',
     }
   }
 });
@@ -62,31 +44,10 @@ const useStyles = makeStyles({
 const Interested = (props) => {
   const classes = useStyles();
 
-  // const handleClick = (e) => {
-  //   console.log(e.target);
-  //   console.log(e.target.name);
-  // };
   return (
     <div>
       <div className={`answer-container`}>
         {options.map((identity, i) => (
-          //   <div
-          //     key={identity}
-          //     name={i}
-          //     className={`button-identity`}
-          //     id="gender"
-          //     onClick={handleClick}
-          //     value={identity}
-          //   >
-          //     <p className={'button-identity-p'}>{identity}</p>
-          //   </div>
-
-          // <Checkbox
-          // className={classes.root}
-          // checkedIcon={
-          //   <span className={clsx(classes.icon, classes.checkedIcon)} />
-          // } />
-
           <FormControlLabel
             className={`${classes.root} centerMe`}
             // onClick={props.handleClick}
@@ -103,7 +64,6 @@ const Interested = (props) => {
               />
             }
             label={identity}
-            // className={'radio-buttons-signs'}
           />
         ))}
       </div>

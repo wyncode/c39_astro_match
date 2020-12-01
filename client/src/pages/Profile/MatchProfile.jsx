@@ -19,7 +19,6 @@ const MatchProfile = (props) => {
       })
       .then((response) => {
         setMatch(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -27,8 +26,6 @@ const MatchProfile = (props) => {
   }, []);
 
   let sendMessage = async () => {
-  
-
     try {
       let response = await axios.post(
         '/api/chat',

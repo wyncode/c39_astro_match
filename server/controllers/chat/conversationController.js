@@ -5,8 +5,6 @@ const mongoose = require('mongoose'),
 
 exports.createConversation = async (req, res) => {
   const reqPart = req.body.participants;
-  console.log('HERE I AM AT CONVERSATION');
-  console.log(typeof mongoose.Types.ObjectId(reqPart[0]));
   let found = await Conversation.findOne({
     participants: [
       mongoose.Types.ObjectId(reqPart[0]),
@@ -15,7 +13,6 @@ exports.createConversation = async (req, res) => {
   });
   if (found) {
     res.json({ _id: found._id });
-    // getConversation(req);
     return;
   }
   try {
@@ -28,11 +25,9 @@ exports.createConversation = async (req, res) => {
     userTwo.inbox.push(conversation);
     await userOne.save();
     await userTwo.save();
-    console.log(conversation);
     res.status(201).json(conversation);
     return conversation._id;
   } catch (error) {
-    console.log(error);
     res.status(500).json('Oops...');
   }
 };
@@ -62,7 +57,6 @@ exports.getConversation = async (req, res) => {
       .status(201)
       .json({ messages: [...sendMeBack], participants: [...participants] });
   } catch (error) {
-    console.log(error);
     res.status(500).json(error);
   }
 };

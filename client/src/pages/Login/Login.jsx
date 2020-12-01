@@ -13,13 +13,11 @@ const Login = ({ history }) => {
 
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
-    console.log(loginData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(`Will send this to the backend`, loginData);
       const response = await axios.post('/api/login', loginData);
       sessionStorage.setItem('user', response.data);
       setCurrentUser(response.data.user);

@@ -7,7 +7,6 @@ const SelectCity = ({ handleChange, userData }) => {
 
   const handleSearch = async () => {
     try {
-      console.log(userData);
       let response = await axios.get(
         `/api/location/city/${userData.birthState}`
       );

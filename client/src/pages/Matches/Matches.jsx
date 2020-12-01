@@ -25,7 +25,6 @@ const Matches = () => {
       .get(`/api/users/matches/`, { withCredentials: true })
       .then((response) => {
         setMatch(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
