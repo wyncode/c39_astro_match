@@ -24,7 +24,6 @@ const Inbox = () => {
       .get(`/api/users/lastMessage`, { withCredentials: true })
       .then((response) => {
         setLast(response.data);
-        console.log(last);
       })
       .catch((error) => {
         console.log(error);

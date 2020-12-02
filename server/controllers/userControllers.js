@@ -14,11 +14,8 @@ exports.createUser = (req, res) => {
   let nameArr = req.body.name.split(' ');
   req.body.firstName = nameArr[0];
   req.body.lastName = nameArr[1];
-
   User.create(req.body, async (err, user) => {
-    console.log(req.body);
     if (err) {
-      console.log(err);
       res.status(400).json(err);
     } else {
       const token = await user.generateAuthToken();
@@ -44,15 +41,12 @@ exports.loginUser = async (req, res) => {
     });
     res.json(user);
   } catch (e) {
-    console.log(e);
     res.status(400).json({ error: e.toString() });
   }
 };
 
 exports.getSingleUser = async (req, res) => {
-  console.log('I am at Single User');
   try {
-    console.log(req.params.id);
     let user = await User.findById(req.params.id);
     res.json(user);
   } catch (error) {
@@ -108,9 +102,7 @@ exports.updateCurrentUser = async (req, res) => {
     return res.status(400).json({ message: 'Invalid updates' });
   try {
     updates.forEach((update) => (req.user[update] = req.body[update]));
-
     await req.user.save();
-
     res.json(req.user);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -252,7 +244,6 @@ exports.getLastMessage = async (req, res) => {
     );
     res.send(lastMessArr);
   } catch (error) {
-    console.log(error);
     res.status(400).json('Please try again...');
   }
 };

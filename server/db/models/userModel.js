@@ -241,7 +241,6 @@ UserSchema.pre('save', async function (next) {
 
   if (user.isModified('birthdayCoords')) {
     let planetInfo = await getSigns(user);
-    console.log('done planet');
     user.sunSign = planetInfo.planets.sun.sign;
     user.moonSign = planetInfo.planets.moon.sign;
     user.ascSign = planetInfo.angles.asc.sign;

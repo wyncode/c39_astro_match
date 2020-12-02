@@ -27,7 +27,6 @@ const Chat = (props) => {
 
   useEffect(() => {
     socketIo.on('change data', (data) => {
-      console.log('receive message', data);
       getMessages();
       // scrollToBottom();
     });
@@ -39,14 +38,11 @@ const Chat = (props) => {
         withCredentials: true
       });
       setChats(response.data.messages);
-      console.log(response.data.participants[0].ID);
-      console.log(currentUser?._id);
       if (response.data.participants[0].ID !== currentUser?._id) {
         setParticipants(response.data.participants[0]);
       } else {
         setParticipants(response.data.participants[1]);
       }
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +51,6 @@ const Chat = (props) => {
   const sendMessage = async (event) => {
     event.preventDefault();
     try {
-      console.log('i tried');
       let response = await axios.post(
         '/api/messages',
         {
@@ -68,7 +63,6 @@ const Chat = (props) => {
         },
         { withCredentials: true }
       );
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }

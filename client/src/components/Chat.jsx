@@ -8,7 +8,6 @@ const Chat = () => {
 
   useEffect(() => {
     socketIo.on('receive message', (data) => {
-      console.log('receive message', data);
       addMessage(data);
     });
   }, [chats]);

@@ -33,14 +33,11 @@ const SignUp = ({ history }) => {
     }
 
     if (userData.password !== userData.password_confirm) {
-      console.log('Passowrds do not match');
       alert('password do not match');
       return;
     }
     try {
-      console.log(`Will send this to the backend`, userData);
       const response = await axios.post('/api', userData);
-      console.log(`here is the data saved to the DB`, response.data);
       sessionStorage.setItem('user', response.data);
       setCurrentUser(response.data.user);
       history.push('/preferences');
@@ -53,7 +50,6 @@ const SignUp = ({ history }) => {
 
   const initForm = (_) => {
     setActiveSchema(schema.one);
-    console.log(activeSchema);
   };
 
   if (!activeSchema) return <Start initForm={initForm} />;

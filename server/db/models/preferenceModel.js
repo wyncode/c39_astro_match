@@ -63,9 +63,7 @@ const PreferenceSchema = new mongoose.Schema({
 PreferenceSchema.pre('save', async function (next) {
   const pref = this;
   if (pref.isModified('zodiac')) {
-    console.log({ _id: pref.owner });
     let { sunSign } = await User.findOne({ _id: pref.owner });
-    console.log(sunSign);
     let [signArr] = getMe.zodiac.filter((sign) => sign.name === sunSign);
     let newSignArr = signArr.compatability.filter(
       (match, i) => match.score >= 75
