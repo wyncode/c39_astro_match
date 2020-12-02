@@ -43,11 +43,8 @@ const messageSchema = new mongoose.Schema(
 
 messageSchema.methods.addToConversation = async function () {
   const conversation = Conversation.ObjectId;
-  // next two lines are for matching purposes
   const sender = this.sender;
   const recipient = this.recipient;
-  console.log(sender);
-  console.log(recipient);
   const messages = {
     text: this.text,
     sender: this.sender,

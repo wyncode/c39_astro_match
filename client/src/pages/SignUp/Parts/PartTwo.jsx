@@ -15,7 +15,6 @@ const PartTwo = ({ handleChange, userData }) => {
   const handleSearch = async () => {
     try {
       let response = await axios.get('/api/location/country');
-      console.log('ididt', response.data);
       setApiData(response.data);
     } catch (error) {
       console.log('here is error', error);

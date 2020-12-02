@@ -19,7 +19,6 @@ exports.sendMessage = async (req, res) => {
 
 exports.getMessageById = async (req, res) => {
   const _id = req.params.id;
-  console.log(_id);
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(400).json({ message: 'not a valid message' });
   try {
