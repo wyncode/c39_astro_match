@@ -2,14 +2,14 @@ const Preference = require('../db/models/preferenceModel'),
   User = require('../db/models/userModel');
 
 exports.createPreference = async (req, res) => {
-  const { age, zodiac, interestedIn } = req.body;
+  const { age, interestedIn } = req.body;
   try {
     const preferences = await new Preference({
       ...req.body,
       owner: req.user._id
     });
     await preferences.save();
-    let { eligibleZipCodes } = preferences;
+    let { eligibleZipCodes, zodiac } = preferences;
     let user = await User.findOne({ _id: req.user._id });
     user.partnerPreference = preferences._id;
     let matchesFound = await User.find({
