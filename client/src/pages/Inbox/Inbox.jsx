@@ -56,9 +56,9 @@ const Inbox = () => {
                 </div>
               );
             })}
-          <div className="button">
+          {/* <div className="button">
             <span className="buttonText">Upgrade Membership</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

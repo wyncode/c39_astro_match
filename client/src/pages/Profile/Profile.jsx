@@ -104,9 +104,7 @@ const Profile = () => {
           </Link>
           <div className="userage">Age:{currentUser?.age}</div>
           <div className="userlocation">{currentUser?.zipCode}</div>
-          <div className="userbio">
-            {currentUser?.bio || 'bio comming soon'}
-          </div>
+          <div className="userbio">{currentUser?.bio || 'Bio coming soon'}</div>
         </div>
 
         <div className="usersigns">

@@ -119,12 +119,12 @@ const Preferences = ({ history }) => {
           <p>Submit</p>
         </button>
       </form>
-      <Link to="/profile" className={'centerMe'}>
+      {/* <Link to="/profile" className={'centerMe'}>
         <button className={'centerSelf'}>
           {' '}
           <p>Edit Profile</p>
         </button>
-      </Link>
+      </Link> */}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Chat = (props) => {
   const [message, setMessage] = useState('');
   const [chats, setChats] = useState([]);
   const [participants, setParticipants] = useState('');
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef({});
   const { recipient, setRecipient, currentUser } = useContext(AppContext);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -28,7 +28,7 @@ const Chat = (props) => {
   useEffect(() => {
     socketIo.on('change data', (data) => {
       getMessages();
-      scrollToBottom();
+      // scrollToBottom();
     });
   }, [chats]);
 
