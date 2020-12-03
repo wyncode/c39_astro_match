@@ -10,6 +10,11 @@ A user, who is at minumum 18 years of age, signs up to AstroDate shares their bi
 
 Users also have the option of applying additional filters based on criteria such as gender identity, location range and even express a preference for particular sun signs in their search. Users can message one another and engage in conversation on the site.
 
+## Dev Team: 
+- Ianne Itchon
+- Sekela Rita Mwaikinda 
+- Paul Vila 
+
 ## Features:
 
 - Profile creation
@@ -32,7 +37,7 @@ Users also have the option of applying additional filters based on criteria such
 - Mongoose DB
 - JSON Web Tokens
 - Socket.IO
-- SweerAlert
+- SweetAlert
 - axios
 - brcyrpt
 - express-fileupload
@@ -48,3 +53,9 @@ Users also have the option of applying additional filters based on criteria such
 - `git clone` this repo.
 - `cd` into it.
 - `cd client && yarn install`
+
+## Available Build Commands
+- `yarn dev`: Runs BOTH your Express.JS and React developer environment locally at the same time. Any logs coming from Express will be prefaced with [0], any logs from - create-react-app will be prefaced with [1].
+- `yarn server`: Runs JUST your Express.JS server.
+- `yarn client`: Runs JUST your front-end React app.
+
